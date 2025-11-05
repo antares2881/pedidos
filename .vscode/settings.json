@@ -1,0 +1,185 @@
+{
+    "php.validate.executablePath": "",
+    
+    // === OPTIMIZACIONES CRÍTICAS DE RENDIMIENTO ===
+    
+    // Excluir directorios pesados del watcher de archivos
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/vendor/**": true,
+        "**/storage/**": true,
+        "**/bootstrap/cache/**": true,
+        "**/public/js/**": true,
+        "**/public/css/**": true,
+        "**/public/fonts/**": true,
+        "**/public/images/**": true,
+        "**/public/mix-manifest.json": true,
+        "**/.git/**": true,
+        "**/*.log": true,
+        "**/tests/**": true
+    },
+    
+    // Excluir de búsquedas para mejor rendimiento
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/storage": true,
+        "**/bootstrap/cache": true,
+        "**/public/js": true,
+        "**/public/css": true,
+        "**/public/fonts": true,
+        "**/public/images": true,
+        "**/.git": true,
+        "**/*.log": true,
+        "**/tests": true
+    },
+    
+    // Ocultar archivos innecesarios del explorador
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/storage/logs": true,
+        "**/storage/framework": true,
+        "**/storage/app/public": true,
+        "**/bootstrap/cache": true,
+        "**/public/js": true,
+        "**/public/css": true,
+        "**/public/fonts": true,
+        "**/public/hot": true,
+        "**/public/mix-manifest.json": true,
+        "**/.phpunit.result.cache": true,
+        "**/composer.lock": true,
+        "**/package-lock.json": true,
+        "**/.env.example": true
+    },
+    
+    // === OPTIMIZACIONES DEL EDITOR (AGRESIVAS) ===
+    
+    // Desactivar características pesadas
+    "editor.semanticHighlighting.enabled": false,
+    "editor.bracketPairColorization.enabled": false,
+    "editor.guides.bracketPairs": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.codeLens": false,
+    "editor.lightbulb.enabled": "off",
+    "editor.hover.enabled": false,
+    "editor.occurrencesHighlight": "off",
+    "editor.selectionHighlight": false,
+    "editor.wordHighlight": false,
+    "editor.linkedEditing": false,
+    "editor.colorDecorators": false,
+    
+    // Optimizar sugerencias y autocompletado (MÁS AGRESIVO)
+    "editor.suggest.showStatusBar": false,
+    "editor.suggest.preview": false,
+    "editor.parameterHints.enabled": false,
+    "editor.wordBasedSuggestions": "off",
+    "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.tabCompletion": "off",
+    "editor.suggest.localityBonus": false,
+    "editor.suggest.shareSuggestSelections": false,
+    
+    // === OPTIMIZACIONES DE LENGUAJES ===
+    
+    // Límites de memoria para TypeScript
+    "typescript.preferences.maxTsServerMemory": 1024,
+    "typescript.suggest.autoImports": false,
+    "typescript.preferences.includePackageJsonAutoImports": "off",
+    "javascript.suggest.autoImports": false,
+    
+    // Optimizar PHP
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
+    
+    // === OPTIMIZACIONES DE GIT ===
+    
+    "git.enabled": true,
+    "git.autofetch": false,
+    "git.autorefresh": false,
+    "git.decorations.enabled": false,
+    "git.ignoreLimitWarning": true,
+    
+    // === OPTIMIZACIONES DEL WORKSPACE ===
+    
+    // Limitar pestañas abiertas
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.value": 8,
+    "workbench.editor.limit.perEditorGroup": true,
+    "workbench.editor.closeOnFileDelete": true,
+    
+    // Optimizar autoguardado
+    "files.autoSave": "onFocusChange",
+    "files.autoSaveDelay": 3000,
+    
+    // Configuraciones adicionales de rendimiento
+    "editor.largeFileOptimizations": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "workbench.editor.enablePreview": false,
+    "extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
+    
+    // === CONFIGURACIONES ESPECÍFICAS POR ARCHIVO ===
+    
+    "[php]": {
+        "editor.suggest.showKeywords": false,
+        "editor.suggest.showSnippets": false
+    },
+    
+    "[javascript]": {
+        "editor.suggest.showKeywords": false,
+        "editor.suggest.showSnippets": false
+    },
+    
+    "[vue]": {
+        "editor.suggest.showKeywords": false,
+        "editor.suggest.showSnippets": false
+    },
+    
+    // === OPTIMIZACIONES EXTREMAS ===
+    
+    // Desactivar completamente el análisis de archivos grandes
+    "editor.maxTokenizationLineLength": 500,
+    "diffEditor.maxComputationTime": 1000,
+    "editor.maxComputationTime": 1000,
+    
+    // Limitar extensiones y características
+    "telemetry.telemetryLevel": "off",
+    "update.mode": "none",
+    "extensions.ignoreRecommendations": true,
+    "workbench.tips.enabled": false,
+    "workbench.welcome.enabled": false,
+    "workbench.startupEditor": "none",
+    
+    // Optimizar terminal
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.fastScrollSensitivity": 5,
+    "terminal.integrated.scrollback": 1000,
+    
+    // Desactivar características de workspace pesadas
+    "problems.decorations.enabled": false,
+    "outline.showProperties": false,
+    "outline.showVariables": false,
+    "scm.diffDecorations": "none",
+    "scm.diffDecorationsGutterWidth": 1,
+    
+    // Configuración de memoria crítica
+    "typescript.preferences.maxTsServerMemory": 512,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "javascript.preferences.includePackageJsonAutoImports": "off",
+    "typescript.preferences.includePackageJsonAutoImports": "off",
+    
+    // Desactivar validaciones pesadas
+    "html.validate.scripts": false,
+    "html.validate.styles": false,
+    "css.validate": false,
+    "scss.validate": false,
+    "less.validate": false
+}
