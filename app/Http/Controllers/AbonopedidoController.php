@@ -231,6 +231,22 @@ class AbonopedidoController extends Controller
             $abono->estado_id = 3;
             $abono->save();
 
+            // Cambiar el estado de la venta a 5 si se proporciona venta_id
+            if ($request->has('venta_id') && $request->venta_id) {
+                $estadoVenta = Estadoventa::where('venta_id', $request->venta_id)->first();
+                if ($estadoVenta) {
+                    $estadoVenta->estado_id = 5; // Cambiar estado a 5
+                    $estadoVenta->save();
+                }
+            } else {
+                // Si no se proporciona venta_id, usar el del abono
+                $estadoVenta = Estadoventa::where('venta_id', $abono->venta_id)->first();
+                if ($estadoVenta) {
+                    $estadoVenta->estado_id = 5; // Cambiar estado a 5
+                    $estadoVenta->save();
+                }
+            }
+
             // Si se usó nota, actualizar el estado de la nota
             if ($abono->valor_nota > 0) {
                 $venta = Venta::find($abono->venta_id);
@@ -253,7 +269,7 @@ class AbonopedidoController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Recibo cancelado exitosamente'
+                'message' => 'Recibo cancelado exitosamente y estado de venta actualizado'
             ]);
 
         } catch (\Exception $e) {

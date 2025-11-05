@@ -34,8 +34,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!-- Selector de Productos -->
-                                <div class="form-group mb-4">
+                                <!-- Selector de Productos - Fuera del scroll para evitar corte -->
+                                <div class="form-group mb-3">
                                     <label for="productoSelect" class="form-label">
                                         <i class="fas fa-search mr-2 text-turquesa"></i>
                                         Seleccionar Producto
@@ -50,46 +50,51 @@
                                     ></basic-select>
                                 </div>
 
-                                <!-- Loading de productos -->
-                                <div v-if="loadingProductos" class="text-center my-4">
-                                    <div class="spinner-border text-turquesa" role="status">
-                                        <span class="sr-only">Cargando productos...</span>
-                                    </div>
-                                    <p class="mt-2 text-muted">Cargando productos...</p>
-                                </div>
-
-                                <!-- Información del producto seleccionado -->
-                                <div v-if="productoSeleccionado.value" class="producto-info-card mb-4">
-                                    <div class="card border-turquesa">
-                                        <div class="card-header bg-light">
-                                            <h6 class="mb-0">
-                                                <i class="fas fa-info-circle text-turquesa mr-2"></i>
-                                                Información del Producto
-                                            </h6>
+                                <!-- Contenido con scroll -->
+                                <div class="content-scroll">
+                                    <!-- Loading de productos -->
+                                    <div v-if="loadingProductos" class="text-center my-4">
+                                        <div class="spinner-border text-turquesa" role="status">
+                                            <span class="sr-only">Cargando productos...</span>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p><strong>Código:</strong> {{ productoSeleccionado.codigo }}</p>
-                                                    <p><strong>Precio:</strong> {{ productoSeleccionado.precio | currency }}</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p><strong>Stock:</strong> {{ productoSeleccionado.stock }}</p>
-                                                    <p><strong>Presentación:</strong> {{ productoSeleccionado.presentacion }}</p>
-                                                </div>
+                                        <p class="mt-2 text-muted">Cargando productos...</p>
+                                    </div>
+
+                                    <!-- Información del producto seleccionado - Compacta -->
+                                    <div v-if="productoSeleccionado.value" class="producto-info-compact mb-3">
+                                        <div class="row bg-light p-2 rounded border">
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Código:</small><br>
+                                                <strong>{{ productoSeleccionado.codigo }}</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Precio:</small><br>
+                                                <strong>{{ productoSeleccionado.precio | currency }}</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Stock:</small><br>
+                                                <strong>{{ productoSeleccionado.stock }}</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Presentación:</small><br>
+                                                <strong>{{ productoSeleccionado.presentacion }}</strong>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Historial de movimientos -->
-                                <div v-if="productoSeleccionado.value" class="movimientos-section">
-                                    <h6 class="mb-3">
-                                        <i class="fas fa-history text-turquesa mr-2"></i>
-                                        Historial de Movimientos
-                                    </h6>
-                                    
-                                    <!-- Loading de movimientos -->
+                                    <!-- Historial de movimientos - Más prominente -->
+                                    <div v-if="productoSeleccionado.value" class="movimientos-section">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <h5 class="mb-0 text-turquesa">
+                                                <i class="fas fa-history mr-2"></i>
+                                                Historial de Movimientos
+                                            </h5>
+                                            <div class="ml-auto">
+                                                <span v-if="!movimientos.loading && movimientos.lista.length > 0" class="badge badge-info">
+                                                    {{ movimientos.lista.length }} movimientos
+                                                </span>
+                                            </div>
+                                        </div>                                    <!-- Loading de movimientos -->
                                     <div v-if="movimientos.loading" class="text-center my-4">
                                         <div class="spinner-border text-turquesa" role="status">
                                             <span class="sr-only">Cargando movimientos...</span>
@@ -186,6 +191,7 @@
                                         No se encontraron movimientos para este producto y cliente.
                                     </div>
                                 </div>
+                                </div> <!-- Cierre de content-scroll -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -260,10 +266,10 @@
                                                 <span class="name-text">{{ cliente.razon_social }}</span>
                                             </div>
                                         </td>
-                                        <td class="municipio-cell">{{ cliente.municipio }}</td>
-                                        <td class="email-cell">{{ cliente.email }}</td>
-                                        <td class="direccion-cell">{{ cliente.direccion }}</td>
-                                        <td class="telefono-cell">{{ cliente.telefono }}</td>
+                                        <td class="municipio-cell">{{ cliente.municipio || 'N/A' }}</td>
+                                        <td class="email-cell">{{ cliente.email || 'Sin email' }}</td>
+                                        <td class="direccion-cell">{{ cliente.direccion || 'Sin dirección' }}</td>
+                                        <td class="telefono-cell">{{ cliente.telefono || 'Sin teléfono' }}</td>
                                         <td class="status-cell">
                                             <span class="status-badge" :class="cliente.estado === 'Activo' ? 'status-active' : 'status-inactive'">
                                                 <i class="fas fa-circle status-dot"></i>
@@ -304,15 +310,15 @@
                             <div class="card-body">
                                 <div class="info-row">
                                     <i class="fas fa-envelope"></i>
-                                    <span>{{ cliente.email }}</span>
+                                    <span>{{ cliente.email || 'Sin email' }}</span>
                                 </div>
                                 <div class="info-row">
                                     <i class="fas fa-map-pin"></i>
-                                    <span>{{ cliente.direccion }}</span>
+                                    <span>{{ cliente.direccion || 'Sin dirección' }}</span>
                                 </div>
                                 <div class="info-row">
                                     <i class="fas fa-phone"></i>
-                                    <span>{{ cliente.telefono }}</span>
+                                    <span>{{ cliente.telefono || 'Sin teléfono' }}</span>
                                 </div>
                             </div>
                             <div class="actions-section">
@@ -776,14 +782,22 @@
                 let filtered = this.clientes;
                 
                 // Aplicar filtro de búsqueda
-                if (this.search) {
-                    filtered = filtered.filter(cliente => 
-                        cliente.razon_social.toLowerCase().includes(this.search.toLowerCase()) ||
-                        cliente.municipio.toLowerCase().includes(this.search.toLowerCase()) ||
-                        cliente.email.toLowerCase().includes(this.search.toLowerCase()) ||
-                        cliente.direccion.toLowerCase().includes(this.search.toLowerCase()) ||
-                        cliente.telefono.toLowerCase().includes(this.search.toLowerCase())
-                    );
+                if (this.search && this.search.trim() !== '') {
+                    const searchTerm = this.search.toLowerCase().trim();
+                    filtered = filtered.filter(cliente => {
+                        // Verificar cada campo de manera segura
+                        const razonSocial = (cliente.razon_social || '').toLowerCase();
+                        const municipio = (cliente.municipio || '').toLowerCase();
+                        const email = (cliente.email || '').toLowerCase();
+                        const direccion = (cliente.direccion || '').toLowerCase();
+                        const telefono = (cliente.telefono || '').toLowerCase();
+                        
+                        return razonSocial.includes(searchTerm) ||
+                               municipio.includes(searchTerm) ||
+                               email.includes(searchTerm) ||
+                               direccion.includes(searchTerm) ||
+                               telefono.includes(searchTerm);
+                    });
                 }
                 
                 return filtered;
@@ -1569,10 +1583,84 @@
 
 /* Estilos para el modal de movimientos */
 .movimientos-table-container {
-    max-height: 400px;
+    max-height: 550px;
     overflow-y: auto;
     border: 1px solid #e9ecef;
     border-radius: 8px;
+    /* Mejorar la barra de scroll */
+    scrollbar-width: thin;
+    scrollbar-color: #17a2b8 #f1f5f9;
+    margin-top: 1rem;
+}
+
+/* Webkit scrollbar styles */
+.movimientos-table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.movimientos-table-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.movimientos-table-container::-webkit-scrollbar-thumb {
+    background: #17a2b8;
+    border-radius: 4px;
+}
+
+.movimientos-table-container::-webkit-scrollbar-thumb:hover {
+    background: #138496;
+}
+
+/* Mejorar legibilidad de la tabla */
+.movimientos-table-container .table {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.movimientos-table-container .table th {
+    background: #17a2b8;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.75rem 0.5rem;
+    border: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.movimientos-table-container .table td {
+    padding: 0.75rem 0.5rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.85rem;
+}
+
+.movimientos-table-container .table tbody tr:hover {
+    background-color: rgba(23, 162, 184, 0.1);
+}
+
+/* Mejorar badges */
+.movimientos-table-container .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.movimientos-table-container .badge-outline-primary {
+    color: #17a2b8;
+    border: 1px solid #17a2b8;
+    background: white;
+}
+
+.movimientos-table-container .badge-success {
+    background: #28a745;
+    color: white;
+}
+
+.movimientos-table-container .badge-primary {
+    background: #007bff;
+    color: white;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -1591,6 +1679,8 @@
 
 .movimientos-summary {
     margin-top: 1.5rem;
+    margin-bottom: 3rem; /* Más espacio para las tarjetas */
+    padding-bottom: 1rem; /* Padding adicional */
 }
 
 .summary-card {
@@ -1761,6 +1851,98 @@
         align-self: stretch;
         justify-content: center;
     }
+    
+    /* Modal en pantallas muy pequeñas */
+    #movimientosModal .modal-dialog {
+        max-height: 98vh;
+        margin: 0.25rem auto;
+    }
+    
+    #movimientosModal .modal-body {
+        max-height: calc(98vh - 140px); /* Más altura en móviles */
+        padding: 0.75rem;
+        padding-bottom: 3rem; /* Más espacio extra para el footer */
+        font-size: 0.875rem;
+        overflow-y: auto;
+    }
+    
+    #movimientosModal .modal-dialog {
+        max-height: 98vh; /* Aprovechar casi toda la altura en móviles */
+        margin: 0.5rem auto; /* Menos margen en móviles */
+    }
+    
+    #movimientosModal .modal-content {
+        max-height: 98vh; /* Más altura del contenido en móviles */
+    }
+    
+    #movimientosModal .movimientos-table-container {
+        max-height: 450px; /* Más altura en móviles también */
+        font-size: 0.8rem;
+        margin-bottom: 3rem; /* Más espacio en móviles también */
+        border: 1px solid #dee2e6;
+        border-radius: 0.375rem;
+        overflow-y: auto;
+    }
+    
+    #movimientosModal .table {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+    
+    #movimientosModal .table th,
+    #movimientosModal .table td {
+        padding: 0.5rem 0.3rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    #movimientosModal .table th {
+        background-color: #20c997;
+        color: white;
+        font-weight: 600;
+        border-bottom: 2px solid #17a2b8;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    #movimientosModal .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+    
+    #movimientosModal .summary-card {
+        padding: 0.6rem;
+        margin-bottom: 1rem;
+    }
+    
+    #movimientosModal .summary-card i {
+        font-size: 1.2rem;
+    }
+    
+    #movimientosModal .summary-info span {
+        font-size: 1rem;
+    }
+    
+    #movimientosModal .movimientos-summary {
+        margin-top: 1.5rem;
+        margin-bottom: 5rem; /* Más espacio extra antes del footer */
+        padding-bottom: 2rem; /* Padding adicional para las tarjetas */
+    }
+    
+    /* Información compacta en móviles */
+    .producto-info-compact .col-md-3 {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+        padding: 0.4rem;
+    }
+    
+    .producto-info-compact .col-md-3:last-child {
+        border-bottom: none;
+    }
+    
+    .producto-info-compact small {
+        font-size: 0.7rem;
+    }
 }
 
 /* Modal Movimientos Styles */
@@ -1796,10 +1978,119 @@
     cursor: not-allowed;
 }
 
+/* Arreglar modal que se corta */
+#movimientosModal .modal-dialog {
+    max-height: 98vh; /* Más altura del modal */
+    margin: 0.5rem auto; /* Menos margen para aprovechar más espacio */
+    display: flex;
+    align-items: center;
+}
+
+#movimientosModal .modal-content {
+    max-height: 98vh; /* Más altura del contenido */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#movimientosModal .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(98vh - 180px); /* Más altura disponible */
+    padding: 1.5rem;
+    padding-bottom: 4rem; /* Más espacio para evitar superposición con footer */
+}
+
+#movimientosModal .modal-header {
+    flex-shrink: 0;
+    border-bottom: 2px solid #e9ecef;
+}
+
+#movimientosModal .modal-footer {
+    flex-shrink: 0;
+    border-top: 2px solid #e9ecef;
+    background-color: #f8f9fa;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    padding: 1rem 1.5rem;
+    margin-top: auto;
+}
+
+/* Arreglar z-index del selector de productos para que se muestre por encima */
+#movimientosModal .form-group {
+    position: relative;
+    z-index: 1060;
+    margin-bottom: 2rem; /* Más espacio para el dropdown */
+}
+
+#movimientosModal .vue-search-select {
+    position: relative;
+    z-index: 1060;
+}
+
+#movimientosModal .vue-search-select .dropdown {
+    position: absolute;
+    z-index: 1070;
+    width: 100%;
+    max-height: 400px; /* Más altura para mostrar más productos */
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    top: 100%; /* Asegurar que aparezca debajo del input */
+    left: 0;
+}
+
+/* Asegurar que el modal-body permita que el dropdown se muestre */
+#movimientosModal .modal-body {
+    overflow: visible; /* Permitir que elementos salgan del contenedor */
+}
+
+/* Pero mantener scroll solo para el contenido interno */
+#movimientosModal .modal-body .content-scroll {
+    overflow-y: auto;
+    max-height: calc(95vh - 200px); /* Más altura para el contenido con scroll */
+    padding-bottom: 2rem; /* Espacio extra para los botones */
+}
+
 .form-label {
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
+}
+
+/* Información del producto compacta */
+.producto-info-compact {
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+    border: 1px solid #dee2e6;
+}
+
+.producto-info-compact .row {
+    margin: 0;
+}
+
+.producto-info-compact .col-md-3 {
+    padding: 0.5rem;
+    border-right: 1px solid #dee2e6;
+}
+
+.producto-info-compact .col-md-3:last-child {
+    border-right: none;
+}
+
+.producto-info-compact small {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+/* Mejorar el título del historial */
+.movimientos-section h5 {
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .producto-info-card .card-header {
@@ -1853,6 +2144,127 @@
     .modal-header,
     .modal-footer {
         padding: 1rem 1.5rem;
+    }
+    
+    /* Ajustes específicos para móviles */
+    #movimientosModal .modal-dialog {
+        max-height: 95vh;
+        margin: 0.5rem auto;
+    }
+    
+    #movimientosModal .modal-body {
+        max-height: calc(95vh - 140px);
+        padding: 1rem;
+        overflow-y: auto;
+    }
+    
+    #movimientosModal .modal-header,
+    #movimientosModal .modal-footer {
+        padding: 1rem;
+        border-top: 1px solid #dee2e6;
+        background-color: #f8f9fa;
+        margin-top: 1rem;
+    }
+    
+    /* Mejorar la tabla en móviles */
+    #movimientosModal .movimientos-table-container {
+        max-height: 500px; /* Más altura para la tabla */
+        margin-bottom: 3rem; /* Más espacio para los botones */
+        border: 1px solid #dee2e6;
+        border-radius: 0.375rem;
+    }
+    
+    #movimientosModal .movimientos-table-container .table {
+        margin-bottom: 0;
+    }
+    
+    #movimientosModal .movimientos-table-container .table th,
+    #movimientosModal .movimientos-table-container .table td {
+        padding: 0.5rem 0.4rem;
+        font-size: 0.8rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    #movimientosModal .movimientos-table-container .table th {
+        background-color: #20c997;
+        color: white;
+        font-weight: 600;
+        border-bottom: 2px solid #17a2b8;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    #movimientosModal .movimientos-table-container .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+}
+
+/* Estilos para tablets */
+/* Tablets medianas - mayor ancho */
+@media (min-width: 768px) and (max-width: 992px) {
+    #movimientosModal .modal-dialog {
+        max-height: 98vh;
+        margin: 0.5rem auto;
+        max-width: 95%;
+        width: 95%;
+    }
+    
+    #movimientosModal .modal-content {
+        max-height: 98vh;
+    }
+    
+    #movimientosModal .modal-body {
+        max-height: calc(98vh - 140px);
+        padding: 1rem;
+        padding-bottom: 3rem;
+    }
+    
+    #movimientosModal .modal-body .content-scroll {
+        max-height: calc(98vh - 160px);
+    }
+    
+    #movimientosModal .movimientos-table-container {
+        max-height: 520px;
+    }
+    
+    #movimientosModal .movimientos-summary {
+        margin-bottom: 4rem;
+        padding-bottom: 2rem;
+    }
+}
+
+/* Tablets grandes */
+@media (min-width: 993px) and (max-width: 1024px) {
+    #movimientosModal .modal-dialog {
+        max-height: 98vh;
+        margin: 0.5rem auto;
+        max-width: 90%;
+        width: 90%;
+    }
+    
+    #movimientosModal .modal-content {
+        max-height: 98vh;
+    }
+    
+    #movimientosModal .modal-body {
+        max-height: calc(98vh - 140px);
+        padding: 1rem;
+        padding-bottom: 3rem;
+    }
+    
+    #movimientosModal .modal-body .content-scroll {
+        max-height: calc(98vh - 160px);
+    }
+    
+    #movimientosModal .movimientos-table-container {
+        max-height: 520px;
+    }
+    
+    #movimientosModal .movimientos-summary {
+        margin-bottom: 4rem;
+        padding-bottom: 2rem;
     }
 }
 

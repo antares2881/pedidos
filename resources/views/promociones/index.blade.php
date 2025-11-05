@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('productos-show')
+    show
+@endsection
 @section('promociones', 'active')
 
 @section('content')

@@ -22,7 +22,10 @@ class CobroController extends Controller
     }
 
     public function show($factura_id){
-        $cobros = Cobro::where('factura_id', $factura_id)->get();
+        $cobros = Cobro::
+            where('factura_id', $factura_id)
+            ->where('estado_id', 4)
+            ->get();
         return $cobros;
     }
 
@@ -250,6 +253,22 @@ class CobroController extends Controller
             $cobro->estado_id = 3;
             $cobro->save();
 
+            // Cambiar el estado de la factura a 5 si se proporciona factura_id
+            if ($request->has('factura_id') && $request->factura_id) {
+                $factura = Factura::find($request->factura_id);
+                if ($factura) {
+                    $factura->estado_id = 5; // Cambiar estado a 5
+                    $factura->save();
+                }
+            } else {
+                // Si no se proporciona factura_id, usar el del cobro
+                $factura = Factura::find($cobro->factura_id);
+                if ($factura) {
+                    $factura->estado_id = 5; // Cambiar estado a 5
+                    $factura->save();
+                }
+            }
+
             // Si se usó nota, actualizar el estado de la nota
             if ($cobro->valor_nota > 0) {
                 $factura = Factura::find($cobro->factura_id);
@@ -272,7 +291,7 @@ class CobroController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Recibo cancelado exitosamente'
+                'message' => 'Recibo cancelado exitosamente y estado de factura actualizado'
             ]);
 
         } catch (\Exception $e) {

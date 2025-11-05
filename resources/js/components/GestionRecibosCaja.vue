@@ -469,6 +469,7 @@ export default {
 
         procesarDatosRecibo(data, tipoCliente) {
             return data.map(item => {
+                console.log('Procesando item:', item); // Debug para verificar datos
                 return {
                     id: item.id,
                     num_recibo_caja: item.num_recibo_caja,
@@ -488,8 +489,10 @@ export default {
                     tipo_cliente: tipoCliente,
                     estado_id: item.estado_id,
                     // Incluir IDs necesarios para cancelación
-                    factura_id: tipoCliente == '1' ? item.factura_id : null,
-                    venta_id: tipoCliente == '2' ? item.venta_id : null
+                    // Para clientes indirectos (cobros) - necesitamos factura_id
+                    factura_id: tipoCliente == '1' ? (item.factura_id || item.id_factura) : null,
+                    // Para clientes directos (abonos) - necesitamos venta_id
+                    venta_id: tipoCliente == '2' ? (item.venta_id || item.id_venta || item.pedido_id) : null
                 };
             });
         },
@@ -523,22 +526,29 @@ export default {
                     
                     // Determinar la ruta y datos según el tipo de cliente
                     if (tipoCliente === '1') {
-                        // Clientes indirectos - enviar factura_id
+                        // Clientes indirectos - enviar factura_id para CobroController
                         url = `/cancelar-cobro/${numRecibo}`;
-                        payload.factura_id = facturaId;
+                        if (facturaId) {
+                            payload.factura_id = facturaId;
+                        }
+                        console.log('Cancelando cobro con factura_id:', facturaId);
                     } else if (tipoCliente === '2') {
-                        // Clientes directos - enviar venta_id
+                        // Clientes directos - enviar venta_id para AbonopedidoController
                         url = `/cancelar-abono/${numRecibo}`;
-                        payload.venta_id = ventaId;
+                        if (ventaId) {
+                            payload.venta_id = ventaId;
+                        }
+                        console.log('Cancelando abono con venta_id:', ventaId);
                     }
 
+                    console.log('Payload enviado:', payload);
                     const response = await axios.put(url, payload);
                     
                     if (response.data.success) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Recibo cancelado',
-                            text: 'El recibo ha sido cancelado exitosamente'
+                            text: 'El recibo ha sido cancelado exitosamente. El estado de la factura/venta ha sido actualizado.'
                         });
                         
                         // Actualizar la búsqueda para mostrar el estado actualizado
