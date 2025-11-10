@@ -1,0 +1,361 @@
+/* Correcciones para el sidebar - Posición de íconos de flecha */
+
+/* MÁXIMA ESPECIFICIDAD - Override absoluto del CSS original que tiene right: 20px */
+.dashboard-main-wrapper .nav-left-sidebar .menu-list .navbar .navbar-nav .nav-item .nav-link[data-toggle="collapse"]::after,
+.dashboard-main-wrapper .nav-left-sidebar .navbar-nav .nav-item .nav-link[data-toggle="collapse"]::after,
+.nav-left-sidebar .menu-list .navbar-nav .nav-link[data-toggle="collapse"]::after,
+.nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+    display: inline-block !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    right: 3px !important; /* EXTREMA DERECHA - Override total del right: 20px original */
+    top: 50% !important;
+    left: auto !important; /* Forzar que no use left */
+    transform: translateY(-50%) rotate(-90deg) !important; /* Centrar verticalmente y rotar */
+    transition: transform 0.35s ease, opacity 0.35s ease !important;
+    opacity: 0.7 !important;
+    z-index: 1000 !important; /* Z-index alto para estar encima */
+    content: "" !important;
+    border-top: 0.3em solid !important;
+    border-right: 0.3em solid transparent !important;
+    border-bottom: 0 !important;
+    border-left: 0.3em solid transparent !important;
+    vertical-align: 0.255em !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Estado expandido de la flecha */
+.nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="true"]::after {
+    transform: translateY(-50%) rotate(0deg) !important; /* Sin rotación cuando está expandido */
+}
+
+/* Estado colapsado de la flecha */
+.nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="false"]::after {
+    transform: translateY(-50%) rotate(-90deg) !important; /* Rotado cuando está colapsado */
+}
+
+/* Ajustar el padding del texto para dar espacio a la flecha */
+.nav-left-sidebar .nav-link[data-toggle="collapse"] {
+    padding-right: 35px !important; /* Reducir padding ya que la flecha está más a la derecha */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+/* Cuando el sidebar está oculto, ocultar las flechas para evitar sobreposición */
+.sidebar-hidden .nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+    display: none !important;
+}
+
+/* Ajustar el padding del texto cuando el sidebar está oculto */
+.sidebar-hidden .nav-left-sidebar .nav-link[data-toggle="collapse"] {
+    padding-right: 12px !important; /* Volver al padding normal */
+}
+
+/* Mejorar la transición cuando se oculta/muestra el sidebar */
+.nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+    transition: transform 0.35s ease, opacity 0.35s ease, display 0.3s ease !important;
+}
+
+/* Hover effect para la flecha */
+.nav-left-sidebar .nav-link[data-toggle="collapse"]:hover::after {
+    opacity: 1 !important;
+    color: #ecf0f1 !important;
+}
+
+/* Estados activos */
+.nav-left-sidebar .navbar-nav .nav-link:focus[data-toggle="collapse"]::after,
+.nav-left-sidebar .navbar-nav .nav-link.active[data-toggle="collapse"]::after {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Posicionamiento extremo derecho - ajuste fino */
+.nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+    right: 3px !important; /* Lo más pegado posible al borde derecho */
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+}
+
+/* Override para asegurar posicionamiento correcto - Selectores múltiples para máxima especificidad */
+.nav-left-sidebar .navbar-nav .nav-link[data-toggle="collapse"]::after,
+.nav-left-sidebar .navbar-nav .nav-item .nav-link[data-toggle="collapse"]::after,
+.nav-left-sidebar .menu-list .navbar-nav .nav-link[data-toggle="collapse"]::after {
+    right: 3px !important; /* Forzar posición extrema derecha */
+}
+
+/* Override específico para el estado colapsado también */
+.nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="false"]:after,
+.nav-left-sidebar .navbar-nav .nav-link[data-toggle="collapse"][aria-expanded="false"]:after {
+    right: 3px !important;
+    transform: translateY(-50%) rotate(-90deg) !important;
+}
+
+/* Override específico para el estado expandido */
+.nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="true"]:after,
+.nav-left-sidebar .navbar-nav .nav-link[data-toggle="collapse"][aria-expanded="true"]:after {
+    right: 3px !important;
+    transform: translateY(-50%) rotate(0deg) !important;
+}
+
+/* ========== RESPONSIVE: PANTALLAS PEQUEÑAS < 992px ========== */
+@media (max-width: 992px) {
+    /* Restaurar comportamiento original del sidebar en móviles */
+    .nav-left-sidebar {
+        width: auto !important; /* Permitir que Bootstrap maneje el ancho */
+        position: relative !important; /* Posición normal, no fixed */
+        top: auto !important;
+        left: auto !important;
+        z-index: auto !important;
+        height: auto !important;
+        transform: none !important; /* Quitar transforms que puedan ocultar contenido */
+    }
+    
+    /* Asegurar que el sidebar sea visible cuando está colapsado en móviles */
+    .nav-left-sidebar.collapse:not(.show) {
+        display: none !important;
+    }
+    
+    .nav-left-sidebar.collapse.show {
+        display: block !important;
+    }
+    
+    /* Restaurar comportamiento original responsive para los contenedores */
+    .nav-left-sidebar .menu-list,
+    .nav-left-sidebar .navbar,
+    .nav-left-sidebar .navbar-collapse,
+    .nav-left-sidebar .navbar-nav {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Los nav-items deben ocupar el ancho disponible */
+    .nav-left-sidebar .navbar-nav .nav-item,
+    .nav-left-sidebar .navbar-nav .nav-item .nav-link {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    /* Ajustar padding para móviles */
+    .nav-left-sidebar .navbar-nav .nav-item .nav-link {
+        padding: 15px 20px !important; /* Padding más grande para táctil */
+        font-size: 16px !important;
+        border-radius: 0 !important;
+    }
+    
+    .nav-left-sidebar .nav-link[data-toggle="collapse"] {
+        padding: 15px 20px !important;
+        padding-right: 50px !important; /* Más espacio para flecha en móvil */
+    }
+    
+    /* Flechas en móviles */
+    .nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+        right: 15px !important; /* Más separación del borde en móviles */
+    }
+    
+    /* Submenús en móviles */
+    .nav-left-sidebar .submenu {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 10px 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    .nav-left-sidebar .submenu .nav .nav-item .nav-link {
+        padding: 12px 30px !important; /* Más indentación en móviles */
+        font-size: 15px !important;
+    }
+    
+    /* Estados hover/active en móviles */
+    .nav-left-sidebar .navbar-nav .nav-link:hover,
+    .nav-left-sidebar .navbar-nav .nav-link:focus,
+    .nav-left-sidebar .navbar-nav .nav-link.active {
+        margin: 0 !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        transform: none !important;
+    }
+    
+    /* Asegurar que el contenido principal sea visible */
+    .dashboard-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* El botón toggle debe funcionar correctamente en móviles */
+    .sidebar-toggle-btn {
+        display: block !important;
+    }
+    
+    /* Cuando el sidebar está oculto en móviles */
+    .sidebar-hidden .nav-left-sidebar {
+        transform: translateX(-100%) !important;
+        position: fixed !important;
+        top: 60px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 60px) !important;
+        z-index: 1050 !important;
+        transition: transform 0.3s ease !important;
+    }
+    
+    /* Cuando el sidebar está visible en móviles */
+    body:not(.sidebar-hidden) .nav-left-sidebar {
+        transform: translateX(0) !important;
+        position: relative !important;
+    }
+}
+
+/* Responsive: En pantallas medianas (993px - 1199px) */
+@media (min-width: 993px) and (max-width: 1199px) {
+    .nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+        right: 8px !important;
+    }
+    
+    .nav-left-sidebar .nav-link[data-toggle="collapse"] {
+        padding-right: 40px !important;
+    }
+}
+
+/* Ajuste adicional para evitar que el texto se corte */
+.nav-left-sidebar .nav-link {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Asegurar que el contenido del enlace no interfiera con la flecha */
+.nav-left-sidebar .nav-link[data-toggle="collapse"] > i {
+    flex-shrink: 0 !important; /* El ícono no se debe reducir */
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"] > span,
+.nav-left-sidebar .nav-link[data-toggle="collapse"]:not(:has(span)) {
+    flex-grow: 1 !important; /* El texto puede expandirse */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* ========== CORRECCIONES PARA ANCHO COMPLETO DEL SIDEBAR - SOLO PANTALLAS GRANDES ========== */
+@media (min-width: 993px) {
+    /* Asegurar que todos los contenedores ocupen el ancho completo */
+    .nav-left-sidebar {
+        width: 264px !important;
+        box-sizing: border-box !important;
+    }
+
+    .nav-left-sidebar .menu-list {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .nav-left-sidebar .navbar {
+        width: 100% !important;
+        padding: 14px 0 !important; /* Solo padding vertical */
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .nav-left-sidebar .navbar-collapse {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .nav-left-sidebar .navbar-nav {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Elementos nav-item ocupan todo el ancho */
+    .nav-left-sidebar .navbar-nav .nav-item {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Enlaces ocupan todo el ancho disponible */
+    .nav-left-sidebar .navbar-nav .nav-item .nav-link {
+        width: 100% !important;
+        margin: 4px 0 !important; /* Solo margen vertical */
+        padding: 12px 16px !important; /* Padding uniforme */
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* Corrección específica para enlaces con collapse */
+    .nav-left-sidebar .nav-link[data-toggle="collapse"] {
+        width: 100% !important;
+        margin: 4px 0 !important;
+        padding: 12px 16px !important;
+        padding-right: 35px !important; /* Espacio para la flecha */
+        box-sizing: border-box !important;
+    }
+
+    /* Submenús también ocupan todo el ancho */
+    .nav-left-sidebar .submenu {
+        width: 100% !important;
+        margin: 4px 0 !important; /* Sin márgenes laterales */
+        padding: 8px 0 !important; /* Solo padding vertical */
+        box-sizing: border-box !important;
+        background: rgba(0, 0, 0, 0.1) !important;
+        border-radius: 0 !important; /* Sin border-radius para ocupar todo */
+    }
+
+    .nav-left-sidebar .submenu .nav {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .nav-left-sidebar .submenu .nav .nav-item {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .nav-left-sidebar .submenu .nav .nav-item .nav-link {
+        width: 100% !important;
+        margin: 1px 0 !important;
+        padding: 8px 24px !important; /* Indentación para mostrar jerarquía */
+        box-sizing: border-box !important;
+    }
+
+    /* Override para estados hover y active manteniendo el ancho completo */
+    .nav-left-sidebar .navbar-nav .nav-link:hover,
+    .nav-left-sidebar .navbar-nav .nav-link:focus,
+    .nav-left-sidebar .navbar-nav .nav-link.active {
+        margin: 4px 0 !important; /* Mantener solo margen vertical */
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        transform: none !important; /* Remover transform que puede causar problemas */
+        border-left: 4px solid #3498db !important;
+        border-radius: 0 !important; /* Sin border-radius para usar todo el ancho */
+    }
+
+    /* Corrección para submenús en hover */
+    .nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
+        margin: 1px 0 !important;
+        padding: 8px 24px !important;
+        transform: none !important; /* Sin transform */
+        border-radius: 0 !important;
+    }
+
+    /* Asegurar que no haya padding/margin en el contenedor principal que reduzca el ancho */
+    .nav-left-sidebar * {
+        box-sizing: border-box !important;
+    }
+} /* Fin del media query para pantallas grandes */

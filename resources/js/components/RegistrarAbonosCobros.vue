@@ -607,11 +607,11 @@
             this.getClientes();
             
             // Listener para recarga de clientes cuando cambia el tamaño de pantalla
-            window.addEventListener('resize', this.handleResize);
+            // window.addEventListener('resize', this.handleResize);
         },
         beforeDestroy() {
             // Limpiar el listener cuando se destruye el componente
-            window.removeEventListener('resize', this.handleResize);
+            // window.removeEventListener('resize', this.handleResize);
         },
         methods: {            
             buscarConsecutivo(){
@@ -825,7 +825,7 @@
                             const isMobile = window.innerWidth < 992;
                             let clientText;
                             
-                            if (isMobile) {
+                            /* if (isMobile) {
                                 // En móviles: mostrar solo las primeras palabras + municipio abreviado
                                 const razonSocial = res.data[i].razon_social;
                                 const municipio = res.data[i].municipios.mcpio;
@@ -840,7 +840,8 @@
                             } else {
                                 // En desktop: mostrar texto completo
                                 clientText = res.data[i].razon_social + ' - ' + res.data[i].municipios.mcpio;
-                            }
+                            } */
+                            clientText = res.data[i].razon_social + ' - ' + res.data[i].municipios.mcpio;
                             
                             this.clientes.push({
                                 value: res.data[i].id,
@@ -1425,6 +1426,9 @@
     .modal-facturas-pendientes .vs__dropdown-menu {
         font-size: 0.85em !important;
         max-height: 200px !important; /* Limitar altura para mejor UX */
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
     }
     
     .modal-facturas-pendientes .vs__dropdown-option {
@@ -1432,6 +1436,31 @@
         line-height: 1.3 !important;
         word-wrap: break-word !important;
         white-space: normal !important; /* Permitir que el texto se envuelva */
+        overflow: visible !important;
+        text-overflow: unset !important;
+        display: block !important;
+        min-height: auto !important;
+    }
+    
+    /* Campo seleccionado del cliente - mostrar nombre completo */
+    .modal-facturas-pendientes .vs__selected {
+        font-size: 0.8em !important;
+        line-height: 1.2 !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        max-width: none !important;
+        width: auto !important;
+        display: block !important;
+        padding: 2px 4px !important;
+    }
+    
+    /* Dropdown toggle - permitir altura variable */
+    .modal-facturas-pendientes .vs__dropdown-toggle {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 8px !important;
     }
     
     /* Campo de búsqueda del select más grande en móviles */
@@ -1443,6 +1472,57 @@
     /* Botón de limpiar más accesible */
     .modal-facturas-pendientes .vs__clear {
         padding: 8px !important;
+    }
+    
+    /* Asegurar que el placeholder sea visible */
+    .modal-facturas-pendientes .vs__search::placeholder {
+        font-size: 0.85em !important;
+        color: #6c757d !important;
+    }
+}
+
+/* MEDIA QUERY ADICIONAL PARA PANTALLAS MUY PEQUEÑAS (MÓVILES) */
+@media (max-width: 767.98px) {
+    /* Select de clientes optimizado para móviles pequeños */
+    .modal-facturas-pendientes .search-controls .form-group:first-child {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .modal-facturas-pendientes .vs__dropdown-toggle {
+        min-height: 45px !important;
+        padding: 10px 12px !important;
+        font-size: 0.9em !important;
+    }
+    
+    .modal-facturas-pendientes .vs__selected {
+        font-size: 0.85em !important;
+        line-height: 1.1 !important;
+        padding: 3px 6px !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    
+    .modal-facturas-pendientes .vs__dropdown-menu {
+        max-height: 180px !important;
+        font-size: 0.9em !important;
+        width: calc(100vw - 60px) !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .modal-facturas-pendientes .vs__dropdown-option {
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+        font-size: 0.9em !important;
+        line-height: 1.4 !important;
+    }
+    
+    .modal-facturas-pendientes .vs__dropdown-option--highlight {
+        background-color: #e3f2fd !important;
+        color: #1976d2 !important;
     }
 }
 

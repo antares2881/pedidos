@@ -137,7 +137,7 @@ class ReporteController extends Controller
             switch ($request->tiporeporte) {
                 
                 case 1:
-                    // Primera consulta: facturas unidas con cobros
+                    // Primera consulta: facturas agrupadas con sumas de cobros
                     $datos = DB::table('facturas AS f')
                         ->leftJoin('cobros AS co', 'f.id', 'co.factura_id')
                         ->leftJoin('estados AS e', 'f.estado_id', 'e.id')
@@ -147,20 +147,18 @@ class ReporteController extends Controller
                             'f.valor', 
                             'f.fecha_factura',
                             'e.estado',
-                            'co.num_recibo_caja',
-                            'co.fecha as fecha_abono',
-                            'co.valor as abono',
-                            'co.retencion',
-                            'co.descuento',
-                            'co.valor_nota',
-                            'co.pendiente',
-                            'co.saldo'
+                            DB::raw('SUM(co.valor) as abono'),
+                            DB::raw('SUM(co.retencion) as retencion'),
+                            DB::raw('SUM(co.descuento) as descuento'),
+                            DB::raw('SUM(co.valor_nota) as valor_nota'),
+                            DB::raw('MAX(co.fecha) as fecha_abono'),
+                            DB::raw('(SELECT co2.pendiente FROM cobros co2 WHERE co2.factura_id = f.id ORDER BY co2.fecha DESC LIMIT 1) as pendiente')
                         )
                         ->where('f.cliente_id', $request->cliente_id)
                         ->where('f.estado_id', '!=', 3)
                         ->whereBetween('f.fecha_factura', [$request->fecha_inicial, $request->fecha_final])
+                        ->groupBy('f.id', 'f.numero_factura', 'f.electronica', 'f.valor', 'f.fecha_factura', 'e.estado')
                         ->orderBy('f.numero_factura')
-                        ->orderBy('co.fecha', 'DESC')
                         ->get();
 
                     // Segunda consulta: cobros unidos con facturas
@@ -191,7 +189,7 @@ class ReporteController extends Controller
                         ->get();
                     break;
                 case 2:
-                    // Primera consulta: ventas unidas con abonopedidos
+                    // Primera consulta: ventas agrupadas con sumas de abonopedidos
                     $datos = DB::table('ventas AS v')
                         ->leftJoin('abonopedidos AS ap', 'v.id', 'ap.venta_id')
                         ->leftJoin('estadoventas AS ev', 'v.id', 'ev.venta_id')
@@ -201,21 +199,20 @@ class ReporteController extends Controller
                             'v.fecha_factura',
                             'v.total_factura as valor',
                             'e.estado',
-                            'ap.num_recibo_caja',
-                            'ap.fecha as fecha_abono',
-                            'ap.valor_abono as abono',
-                            'ap.retencion',
-                            'ap.descuento',
-                            'ap.valor_nota',
-                            'ap.pendiente',
-                            'ap.saldo'
+                            DB::raw('SUM(ap.valor_abono) as abono'),
+                            DB::raw('SUM(ap.retencion) as retencion'),
+                            DB::raw('SUM(ap.descuento) as descuento'),
+                            DB::raw('SUM(ap.valor_nota) as valor_nota'),
+                            DB::raw('MAX(ap.fecha) as fecha_abono'),
+                            DB::raw('(SELECT ap2.saldo FROM abonopedidos ap2 WHERE ap2.venta_id = v.id ORDER BY ap2.fecha DESC LIMIT 1) as saldo'),
+                            DB::raw('(SELECT ap2.pendiente FROM abonopedidos ap2 WHERE ap2.venta_id = v.id ORDER BY ap2.fecha DESC LIMIT 1) as pendiente')
                         )
                         ->where('v.cliente_id', $request->cliente_id)
                         ->where('v.laboratorio_id', $request->laboratorio_id)
                         ->where('ev.estado_id', '!=', 3)
                         ->whereBetween('v.fecha_factura', [$request->fecha_inicial, $request->fecha_final])
+                        ->groupBy('v.id', 'v.numero_factura', 'v.fecha_factura', 'v.total_factura', 'e.estado')
                         ->orderBy('v.numero_factura')
-                        ->orderBy('ap.fecha', 'DESC')
                         ->get();
 
                     // Segunda consulta: abonopedidos unidos con ventas

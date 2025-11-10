@@ -34,6 +34,7 @@
         <link href="{{ asset('css/newStyles.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/icon-fixes.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/sidebar-fixes.css') }}" rel="stylesheet">
         
     </head>
     <body>
@@ -44,8 +45,9 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="/">Pedidos App</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="estilo-texto">{{ Auth::user()->name }}</span> <i class="fas fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-right-top">
@@ -77,9 +79,7 @@
                 <div class="menu-list">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <a class="d-xl-none d-lg-none" href="#"></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                        
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav flex-column">
                                
@@ -132,17 +132,17 @@
                                 </li>
                                 
                                 @if (Auth::user()->role_id == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#informes" aria-controls="informes"><i class="fas fa-file-excel"></i>Informes</a>
-                                    <div id="informes" class="collapse submenu @yield('informes-show')" style="">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link @yield('informes')" href="/informe-calox">Ventas - Cobros - Transferencias</a>
-                                                <a class="nav-link @yield('cartera')" href="/informe-facturacion-cartera">Cartera</a>
-                                            </li>                                     
-                                        </ul>
-                                    </div>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#informes" aria-controls="informes"><i class="fas fa-file-excel"></i>Informes</a>
+                                        <div id="informes" class="collapse submenu @yield('informes-show')" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link @yield('informes')" href="/informe-calox">Ventas - Cobros - Transferencias</a>
+                                                    <a class="nav-link @yield('cartera')" href="/informe-facturacion-cartera">Cartera</a>
+                                                </li>                                     
+                                            </ul>
+                                        </div>
+                                    </li>
                                     <li class="nav-item">
 
                                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#productos" aria-controls="productos"><i class="fas fa-dolly-flatbed"></i>Productos</a>
@@ -216,7 +216,17 @@
                                             </li>                                      
                                         </ul>
                                     </div>
-                                </li>  
+                                </li>
+                                <li class="nav-item mostrar-movil">
+                                    <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>{{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -238,6 +248,33 @@
                 margin-right: 15px;
                 border-radius: 4px;
                 transition: all 0.3s ease;
+            }
+
+            .mostrar-movil {
+                display: none;
+            }
+
+            .estilo-texto {
+                font-size: 16px;
+                font-weight: 300;
+                color: #343a40;
+            }
+
+            .fas {
+                background: none;
+                border: none;
+                font-size: 18px;
+                color: #6c757d;
+                padding: 8px 12px;
+                margin-right: 15px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+
+            @media (max-width: 992px) {
+                .mostrar-movil {
+                    display: block;
+                }
             }
 
             .sidebar-toggle-btn:hover {
@@ -270,10 +307,29 @@
                 transition: margin-left 0.3s ease;
             }
 
+            /* Mejoras adicionales para el sidebar oculto */
+            .sidebar-hidden .nav-left-sidebar .submenu {
+                display: none !important; /* Ocultar completamente los submenús */
+            }
+
+            /* Transición suave para los elementos del menú */
+            .nav-left-sidebar .nav-link,
+            .nav-left-sidebar .submenu {
+                transition: all 0.3s ease;
+            }
+
             /* Responsive adjustments */
             @media (max-width: 1199px) {
                 .sidebar-toggle-btn {
-                    display: none;
+                    display: block !important; /* Mostrar el botón en pantallas pequeñas */
+                }
+            }
+            
+            /* Ajustes específicos para móviles */
+            @media (max-width: 992px) {
+                /* Ocultar SOLO el botón hamburguesa de la izquierda */
+                .sidebar-toggle-btn {
+                    display: none !important;
                 }
             }
 
@@ -310,6 +366,22 @@
                     mainWrapper.classList.add('sidebar-hidden');
                 }
 
+                // Función para manejar las flechas del menú
+                function handleArrowsVisibility(isHidden) {
+                    const collapseLinks = document.querySelectorAll('.nav-left-sidebar .nav-link[data-toggle="collapse"]');
+                    collapseLinks.forEach(link => {
+                        if (isHidden) {
+                            // Cuando está oculto, cerrar todos los submenús
+                            const targetId = link.getAttribute('data-target');
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement && targetElement.classList.contains('show')) {
+                                targetElement.classList.remove('show');
+                                link.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                }
+
                 toggleBtn.addEventListener('click', function() {
                     mainWrapper.classList.toggle('sidebar-hidden');
                     
@@ -317,11 +389,17 @@
                     const isHidden = mainWrapper.classList.contains('sidebar-hidden');
                     localStorage.setItem('sidebarHidden', isHidden);
                     
+                    // Manejar la visibilidad de las flechas
+                    handleArrowsVisibility(isHidden);
+                    
                     // Trigger resize event para que los componentes Vue se ajusten
                     setTimeout(() => {
                         window.dispatchEvent(new Event('resize'));
                     }, 300);
                 });
+
+                // Manejar estado inicial
+                handleArrowsVisibility(sidebarHidden);
 
                 // También agregar la funcionalidad con tecla de acceso rápido (Shift + S)
                 document.addEventListener('keydown', function(e) {
@@ -329,6 +407,17 @@
                         e.preventDefault();
                         toggleBtn.click();
                     }
+                });
+
+                // Prevenir que se abran submenús cuando el sidebar está oculto
+                document.querySelectorAll('.nav-left-sidebar .nav-link[data-toggle="collapse"]').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        if (mainWrapper.classList.contains('sidebar-hidden')) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                    });
                 });
             });
         </script>
