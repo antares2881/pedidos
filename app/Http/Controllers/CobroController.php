@@ -225,61 +225,85 @@ class CobroController extends Controller
 
     /**
      * Cancelar recibo de cliente indirecto
+     * Un número de recibo puede estar asociado a múltiples facturas
      */
     public function cancelarRecibo(Request $request, $numRecibo)
     {
         try {
             DB::beginTransaction();
 
-            // Obtener el cobro
-            $cobro = Cobro::where('num_recibo_caja', $numRecibo)->first();
+            // 1. Obtener TODOS los cobros asociados al número de recibo
+            $cobros = Cobro::where('num_recibo_caja', $numRecibo)->get();
             
-            if (!$cobro) {
+            if ($cobros->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Recibo no encontrado'
                 ], 404);
             }
 
-            // Verificar si ya está cancelado
-            if ($cobro->estado_id == 3) {
+            // Verificar si alguno ya está cancelado
+            $yaCancelado = $cobros->where('estado_id', 3)->first();
+            if ($yaCancelado) {
                 return response()->json([
                     'success' => false,
                     'message' => 'El recibo ya se encuentra cancelado'
                 ], 400);
             }
 
-            // Actualizar estado del cobro a cancelado (estado_id = 3)
-            $cobro->estado_id = 3;
-            $cobro->save();
+            $facturasAfectadas = [];
+            $totalNotasRevertidas = 0;
+            $cliente_id = null;
 
-            // Cambiar el estado de la factura a 5 si se proporciona factura_id
-            if ($request->has('factura_id') && $request->factura_id) {
-                $factura = Factura::find($request->factura_id);
-                if ($factura) {
-                    $factura->estado_id = 5; // Cambiar estado a 5
-                    $factura->save();
+            // 2. Actualizar estado de CADA uno de los registros encontrados
+            foreach ($cobros as $cobro) {
+                // Actualizar estado del cobro a cancelado (estado_id = 3)
+                $cobro->estado_id = 3;
+                $cobro->save();
+
+                // Guardar las facturas afectadas para actualizarlas después
+                if (!in_array($cobro->factura_id, $facturasAfectadas)) {
+                    $facturasAfectadas[] = $cobro->factura_id;
                 }
-            } else {
-                // Si no se proporciona factura_id, usar el del cobro
-                $factura = Factura::find($cobro->factura_id);
+
+                // Sumar el total de notas usadas para revertir
+                if ($cobro->valor_nota > 0) {
+                    $totalNotasRevertidas += $cobro->valor_nota;
+                    
+                    // Obtener el cliente_id si aún no lo tenemos
+                    if (!$cliente_id) {
+                        $factura = Factura::find($cobro->factura_id);
+                        $cliente_id = $factura->cliente_id;
+                    }
+                }
+            }
+
+            // 3. Cambiar el estado de TODAS las facturas afectadas
+            foreach ($facturasAfectadas as $factura_id) {
+                $factura = Factura::find($factura_id);
                 if ($factura) {
-                    $factura->estado_id = 5; // Cambiar estado a 5
+                    $factura->estado_id = 5; // Cambiar estado a 5 (con saldo pendiente)
                     $factura->save();
                 }
             }
 
-            // Si se usó nota, actualizar el estado de la nota
-            if ($cobro->valor_nota > 0) {
-                $factura = Factura::find($cobro->factura_id);
-                $nota = Nota::where('cliente_id', $factura->cliente_id)
+            // Si se usaron notas en cualquiera de los cobros, actualizar el estado de la nota
+            if ($totalNotasRevertidas > 0 && $cliente_id) {
+                $nota = Nota::where('cliente_id', $cliente_id)
                            ->where('estado_id', '!=', 7)
+                           ->orderBy('id', 'desc')
                            ->first();
                 
                 if ($nota) {
-                    $nota->gastado = $nota->gastado - $cobro->valor_nota;
-                    if ($nota->gastado <= 0) {
-                        $nota->estado_id = 4; // Estado activa
+                    $nota->gastado = $nota->gastado - $totalNotasRevertidas;
+                    
+                    // Asegurar que gastado no sea negativo
+                    if ($nota->gastado < 0) {
+                        $nota->gastado = 0;
+                    }
+                    
+                    if ($nota->gastado == 0) {
+                        $nota->estado_id = 4; // Estado activa (sin usar)
                     } else {
                         $nota->estado_id = 5; // Estado parcialmente usada
                     }
@@ -291,7 +315,12 @@ class CobroController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Recibo cancelado exitosamente y estado de factura actualizado'
+                'message' => 'Recibo cancelado exitosamente',
+                'detalles' => [
+                    'cobros_cancelados' => $cobros->count(),
+                    'facturas_afectadas' => count($facturasAfectadas),
+                    'valor_notas_revertido' => $totalNotasRevertidas
+                ]
             ]);
 
         } catch (\Exception $e) {

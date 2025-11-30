@@ -42,11 +42,11 @@
         "**/storage/framework": true,
         "**/storage/app/public": true,
         "**/bootstrap/cache": true,
-        "**/public/js": true,
-        "**/public/css": true,
-        "**/public/fonts": true,
+        // "**/public/js": true,           // Comentado para mostrar carpeta js
+        // "**/public/css": true,          // Comentado para mostrar carpeta css
+        // "**/public/fonts": true,        // Comentado para mostrar carpeta fonts
         "**/public/hot": true,
-        "**/public/mix-manifest.json": true,
+        // "**/public/mix-manifest.json": true,  // Comentado para mostrar mix-manifest
         "**/.phpunit.result.cache": true,
         "**/composer.lock": true,
         "**/package-lock.json": true,

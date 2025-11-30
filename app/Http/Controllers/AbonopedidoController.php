@@ -203,61 +203,85 @@ class AbonopedidoController extends Controller
 
     /**
      * Cancelar recibo de cliente directo
+     * Un número de recibo puede estar asociado a múltiples facturas
      */
     public function cancelarRecibo(Request $request, $numRecibo)
     {
         try {
             DB::beginTransaction();
 
-            // Obtener el abono
-            $abono = Abonopedido::where('num_recibo_caja', $numRecibo)->first();
+            // 1. Obtener TODOS los abonos asociados al número de recibo
+            $abonos = Abonopedido::where('num_recibo_caja', $numRecibo)->get();
             
-            if (!$abono) {
+            if ($abonos->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Recibo no encontrado'
                 ], 404);
             }
 
-            // Verificar si ya está cancelado
-            if ($abono->estado_id == 3) {
+            // Verificar si alguno ya está cancelado
+            $yaCancelado = $abonos->where('estado_id', 3)->first();
+            if ($yaCancelado) {
                 return response()->json([
                     'success' => false,
                     'message' => 'El recibo ya se encuentra cancelado'
                 ], 400);
             }
 
-            // Actualizar estado del abono a cancelado (estado_id = 3)
-            $abono->estado_id = 3;
-            $abono->save();
+            $ventasAfectadas = [];
+            $totalNotasRevertidas = 0;
+            $cliente_id = null;
 
-            // Cambiar el estado de la venta a 5 si se proporciona venta_id
-            if ($request->has('venta_id') && $request->venta_id) {
-                $estadoVenta = Estadoventa::where('venta_id', $request->venta_id)->first();
-                if ($estadoVenta) {
-                    $estadoVenta->estado_id = 5; // Cambiar estado a 5
-                    $estadoVenta->save();
+            // 2. Actualizar estado de CADA uno de los registros encontrados
+            foreach ($abonos as $abono) {
+                // Actualizar estado del abono a cancelado (estado_id = 3)
+                $abono->estado_id = 3;
+                $abono->save();
+
+                // Guardar las ventas afectadas para actualizarlas después
+                if (!in_array($abono->venta_id, $ventasAfectadas)) {
+                    $ventasAfectadas[] = $abono->venta_id;
                 }
-            } else {
-                // Si no se proporciona venta_id, usar el del abono
-                $estadoVenta = Estadoventa::where('venta_id', $abono->venta_id)->first();
+
+                // Sumar el total de notas usadas para revertir
+                if ($abono->valor_nota > 0) {
+                    $totalNotasRevertidas += $abono->valor_nota;
+                    
+                    // Obtener el cliente_id si aún no lo tenemos
+                    if (!$cliente_id) {
+                        $venta = Venta::find($abono->venta_id);
+                        $cliente_id = $venta->cliente_id;
+                    }
+                }
+            }
+
+            // 3. Cambiar el estado de TODAS las ventas afectadas
+            foreach ($ventasAfectadas as $venta_id) {
+                $estadoVenta = Estadoventa::where('venta_id', $venta_id)->first();
                 if ($estadoVenta) {
-                    $estadoVenta->estado_id = 5; // Cambiar estado a 5
+                    $estadoVenta->estado_id = 5; // Cambiar estado a 5 (con saldo pendiente)
                     $estadoVenta->save();
                 }
             }
 
-            // Si se usó nota, actualizar el estado de la nota
-            if ($abono->valor_nota > 0) {
-                $venta = Venta::find($abono->venta_id);
-                $nota = Nota::where('cliente_id', $venta->cliente_id)
+            // Si se usaron notas en cualquiera de los abonos, actualizar el estado de la nota
+            if ($totalNotasRevertidas > 0 && $cliente_id) {
+                $nota = Nota::where('cliente_id', $cliente_id)
                            ->where('estado_id', '!=', 7)
+                           ->orderBy('id', 'desc')
                            ->first();
                 
                 if ($nota) {
-                    $nota->gastado = $nota->gastado - $abono->valor_nota;
-                    if ($nota->gastado <= 0) {
-                        $nota->estado_id = 4; // Estado activa
+                    $nota->gastado = $nota->gastado - $totalNotasRevertidas;
+                    
+                    // Asegurar que gastado no sea negativo
+                    if ($nota->gastado < 0) {
+                        $nota->gastado = 0;
+                    }
+                    
+                    if ($nota->gastado == 0) {
+                        $nota->estado_id = 4; // Estado activa (sin usar)
                     } else {
                         $nota->estado_id = 5; // Estado parcialmente usada
                     }
@@ -269,7 +293,12 @@ class AbonopedidoController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Recibo cancelado exitosamente y estado de venta actualizado'
+                'message' => 'Recibo cancelado exitosamente',
+                'detalles' => [
+                    'abonos_cancelados' => $abonos->count(),
+                    'ventas_afectadas' => count($ventasAfectadas),
+                    'valor_notas_revertido' => $totalNotasRevertidas
+                ]
             ]);
 
         } catch (\Exception $e) {
