@@ -48,7 +48,7 @@ class ListaprecioController extends Controller
         $validator = Validator::make($request->all(), [
             'producto_id' => 'required',
             'presentacione_id' => 'required',
-            'codigo' => 'required|unique:detalleproductos',
+            'codigo' => 'required',
             'precio' => 'required',
             'stock' => 'required',
             'tipolista_id' => 'required'
@@ -58,14 +58,18 @@ class ListaprecioController extends Controller
             return response()->json($validator->messages(), 200);
         }
 
-        $producto = new Detalleproducto();
-        $producto->producto_id = $request->producto_id;
-        $producto->presentacione_id = $request->presentacione_id;
-        $producto->codigo = $request->codigo;
-        $producto->precio = $request->precio;
-        $producto->stock = $request->stock;
-        $producto->fecha_vence = $request->fecha_vence;
-        $producto->save();
+        $productoExists = Listaprecio::where('codigo', $request->codigo)->first();
+        if(!$productoExists){            
+            $producto = new Detalleproducto();
+            $producto->producto_id = $request->producto_id;
+            $producto->presentacione_id = $request->presentacione_id;
+            $producto->codigo = $request->codigo;
+            $producto->precio = $request->precio;
+            $producto->stock = $request->stock;
+            $producto->fecha_vence = $request->fecha_vence;
+            $producto->save();
+        }
+
 
         $listaprecio = new Listaprecio();
         $listaprecio->codigo = $request->codigo;

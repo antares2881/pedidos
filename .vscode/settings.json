@@ -63,7 +63,7 @@
     "breadcrumbs.enabled": false,
     "editor.codeLens": false,
     "editor.lightbulb.enabled": "off",
-    "editor.hover.enabled": false,
+    "editor.hover.enabled": "off",
     "editor.occurrencesHighlight": "off",
     "editor.selectionHighlight": false,
     "editor.wordHighlight": false,
