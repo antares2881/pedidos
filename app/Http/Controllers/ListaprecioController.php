@@ -18,7 +18,7 @@ class ListaprecioController extends Controller
             ->join('presentaciones as pr', 'dp.presentacione_id', '=', 'pr.id')
             ->join('clientes as c', 'v.cliente_id', '=', 'c.id')
             ->select('c.razon_social', 'p.producto', 'pr.presentacion', 'v.num_pedido', 'f.precio_entrada', 'f.cantidad', 'f.adicionales', 'f.created_at')
-            ->where('c.nit', 6866196)
+            ->whereIn('c.nit', [6866196, 901882948])
             ->where('dp.codigo', $codigo)
             ->orderBy('p.producto', 'ASC')
             ->orderBy('v.num_pedido', 'DESC')

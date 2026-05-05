@@ -7,7 +7,7 @@
         <modalfacturas-pendientes ref="facturas" @seleccionar="llenarReferencia" />
         <div class="row" >           
             
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-5 col-sm-12">
                 <div class="row p-2 mb-1">
                     <div class="col-12 col-md-8">
                         <input type="text" class="form-control form-control-sm" placeholder="Buscar productos" @keyup="filterItems" v-model="nombreProducto">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-7 col-sm-12">
                 <div class="card order-card">
                     <div class="card-header bg-light">
                         <h5 class="card-title mb-0 text-center">
@@ -137,7 +137,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item, index in pedidos" :key="index" class="compact-row">
+                                        <tr v-for="item, index in pedidos" :key="index" :id="'row-' + item.codigo" class="compact-row">
                                             <td class="compact-cell product-cell">
                                                 <span class="product-name">{{ item.producto.toLowerCase() }}</span>
                                             </td>
@@ -306,24 +306,25 @@
             addProducto(item, index){
                 // console.log(item)
                 // this.productos[index].selected = true;
-                const i = this.pedidos.findIndex(el => el.codigo == item.codigo);
+                
+                this.pedidos.unshift({
+                    id: item.id,
+                    codigo: item.codigo,
+                    producto: item.producto + ' - ' + item.presentacion,
+                    cantidad: 1,
+                    bonificacion: 0,
+                    precio: item.precio,
+                    total: item.precio * 1
+                })
 
-                if(i >= 0){               
-                    this.pedidos[i].cantidad += 1; 
-                    this.pedidos[i].total = this.pedidos[i].cantidad * this.pedidos[i].precio
-                }else{
-
-                    this.pedidos.unshift({
-                        id: item.id,
-                        codigo: item.codigo,
-                        producto: item.producto + ' - ' + item.presentacion,
-                        cantidad: 1,
-                        bonificacion: 0,
-                        precio: item.precio,
-                        total: item.precio * 1
-                    })
-                }                
                 this.calculaTotalPedido();
+
+                this.pedidos.sort((a, b) => a.producto.localeCompare(b.producto));
+
+                this.$nextTick(() => {
+                    const row = document.getElementById('row-' + item.codigo);
+                    if (row) row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
 
             },  
             
