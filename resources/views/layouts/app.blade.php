@@ -10,13 +10,11 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ asset('js/variableSession.js') }}" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.8.1"></script>
 
         <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 
         {{-- Estilos admin --}}
@@ -24,17 +22,13 @@
         <link href="{{asset('assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="{{asset('assets/libs/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/vendor/fonts/fontawesome/css/fontawesome-all.css')}}">
-        <!-- FontAwesome CDN como fallback -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{{asset('assets/vendor/vector-map/jqvmap.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/vendor/fonts/flag-icon-css/flag-icon.min.css')}}">
 
         <!-- Styles -->
         <link href="{{ asset('css/newStyles.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/icon-fixes.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sidebar-fixes.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/responsive-performance.css') }}" rel="stylesheet">
         
     </head>
     <body>

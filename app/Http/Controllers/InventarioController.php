@@ -101,6 +101,70 @@ class InventarioController extends Controller
     public function stocks(){
         return view('inventarios.stocks.index');
     }
+
+    public function movimientosProducto($detalleproducto, $tipo)
+    {
+        $productoExiste = Detalleproducto::where('id', $detalleproducto)->exists();
+
+        if (!$productoExiste) {
+            return response()->json(['message' => 'El producto solicitado no existe.'], 404);
+        }
+
+        if ($tipo === 'entradas') {
+            return DB::table('fechaentradas as fe')
+                ->join('ventas as v', 'fe.venta_id', '=', 'v.id')
+                ->join('detalleproductos as dp', 'fe.detalleproducto_id', '=', 'dp.id')
+                ->join('productos as p', 'dp.producto_id', '=', 'p.id')
+                ->join('presentaciones as pr', 'dp.presentacione_id', '=', 'pr.id')
+                ->where('fe.detalleproducto_id', $detalleproducto)
+                ->whereIn('v.cliente_id', [3, 205])
+                ->select([
+                    'fe.id',
+                    'fe.created_at',
+                    'p.producto',
+                    'pr.presentacion',
+                    'v.id as venta_id',
+                    'v.numero_factura',
+                    'v.fecha as fecha_documento',
+                    'fe.cantidad',
+                    'fe.precio_entrada as precio',
+                    'fe.adicionales',
+                ])
+                ->orderByDesc('fe.created_at')
+                ->paginate(10);
+        }
+
+        if ($tipo === 'salidas') {
+            return DB::table('facturaproductos as fp')
+                ->join('facturas as f', 'fp.factura_id', '=', 'f.id')
+                ->join('clientes as c', 'f.cliente_id', '=', 'c.id')
+                ->join('detalleproductos as dp', 'fp.detalleproducto_id', '=', 'dp.id')
+                ->join('productos as p', 'dp.producto_id', '=', 'p.id')
+                ->join('presentaciones as pr', 'dp.presentacione_id', '=', 'pr.id')
+                ->where('fp.detalleproducto_id', $detalleproducto)
+                ->select([
+                    'fp.id',
+                    'fp.created_at',
+                    'p.producto',
+                    'pr.presentacion',
+                    'f.id as factura_id',
+                    'f.numero_factura',
+                    'f.fecha_factura as fecha_documento',
+                    'fp.cantidad',
+                    'fp.precio_factura as precio',
+                    'fp.bonificacion as adicionales',
+                    'fp.iva',
+                    'c.id as cliente_id',
+                    'c.nit',
+                    'c.dv',
+                    'c.razon_social',
+                ])
+                ->orderByDesc('fp.created_at')
+                ->paginate(10);
+        }
+
+        return response()->json(['message' => 'Tipo de movimiento no válido.'], 422);
+    }
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [

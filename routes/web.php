@@ -98,6 +98,8 @@ Route::get('/imprimir-pedido-calox/{tipo}/{id}', 'InventarioController@imprimirP
 Route::get('/productos-ventas/{id}', 'InventarioController@showProductosVenta');
 
 Route::get('/inventario-productos', 'InventarioController@stocks');
+Route::get('/inventario-productos/{detalleproducto}/movimientos/{tipo}', 'InventarioController@movimientosProducto')
+    ->where('tipo', 'entradas|salidas');
 
 // Listado de precios
 Route::get('/listas-precios/{id}', 'ListaprecioController@show');

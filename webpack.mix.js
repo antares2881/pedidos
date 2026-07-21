@@ -23,4 +23,14 @@ mix.webpackConfig( webpackConfig );
  */
 
 mix.js('resources/js/app.js', 'public/js').vue()
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .options({ processCssUrls: false })
+    .version();
+
+if (mix.inProduction()) {
+    mix.webpackConfig({
+        optimization: {
+            splitChunks: { chunks: 'all' }
+        }
+    });
+}

@@ -180,6 +180,13 @@
                                                 >
                                                     <i class="fas fa-edit"></i>
                                                 </button>
+                                                <button
+                                                    class="action-btn btn-movements"
+                                                    @click="abrirMovimientos(producto)"
+                                                    title="Ver movimientos"
+                                                >
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -230,6 +237,10 @@
                                 <button class="mobile-action-btn edit-btn" @click="editarItemProducto(producto)">
                                     <i class="fas fa-edit"></i>
                                     Editar Producto
+                                </button>
+                                <button class="mobile-action-btn movements-btn" @click="abrirMovimientos(producto)">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    Movimientos
                                 </button>
                             </div>
                         </div>
@@ -284,6 +295,82 @@
                     </div>
                 </div>
             </div>
+
+            <div v-if="movimientosModal" class="movements-overlay" @click.self="cerrarMovimientos">
+                <section class="movements-modal" role="dialog" aria-modal="true" aria-labelledby="movements-title">
+                    <header class="movements-header">
+                        <div>
+                            <h3 id="movements-title">Movimientos del producto</h3>
+                            <p v-if="productoMovimiento">
+                                {{ productoMovimiento.producto }} {{ productoMovimiento.presentacion }}
+                            </p>
+                        </div>
+                        <button class="movements-close" @click="cerrarMovimientos" aria-label="Cerrar movimientos">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </header>
+
+                    <nav class="movements-tabs" aria-label="Tipos de movimientos">
+                        <button :class="{ active: movimientoTab === 'entradas' }" @click="cambiarTabMovimiento('entradas')">
+                            <i class="fas fa-arrow-down"></i> Entradas
+                        </button>
+                        <button :class="{ active: movimientoTab === 'salidas' }" @click="cambiarTabMovimiento('salidas')">
+                            <i class="fas fa-arrow-up"></i> Salidas
+                        </button>
+                    </nav>
+
+                    <div class="movements-body">
+                        <div v-if="movimientosCargando" class="movements-state">
+                            <i class="fas fa-spinner fa-spin"></i> Cargando movimientos...
+                        </div>
+                        <div v-else-if="movimientosError" class="movements-state movements-error">
+                            {{ movimientosError }}
+                        </div>
+                        <div v-else-if="movimientos.data.length === 0" class="movements-state">
+                            No hay {{ movimientoTab }} registradas para este producto.
+                        </div>
+                        <div v-else class="movements-table-wrapper">
+                            <table class="movements-table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>{{ movimientoTab === 'entradas' ? 'Venta / factura' : 'Factura' }}</th>
+                                        <th v-if="movimientoTab === 'salidas'">Cliente</th>
+                                        <th>Fecha</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Adicionales</th>
+                                        <th v-if="movimientoTab === 'salidas'">IVA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="movimiento in movimientos.data" :key="movimiento.id">
+                                        <td data-label="Producto"><strong>{{ movimiento.producto }} {{ movimiento.presentacion }}</strong></td>
+                                        <td :data-label="movimientoTab === 'entradas' ? 'Venta / factura' : 'Factura'">#{{ movimiento.numero_factura || 'Sin número' }}</td>
+                                        <td v-if="movimientoTab === 'salidas'" data-label="Cliente">
+                                            <strong>{{ movimiento.razon_social }}</strong><br>
+                                            <small>NIT {{ movimiento.nit }}-{{ movimiento.dv }}</small>
+                                        </td>
+                                        <td data-label="Fecha">{{ formatearFecha(movimiento.fecha_documento) }}</td>
+                                        <td data-label="Cantidad" class="movement-number">{{ movimiento.cantidad }}</td>
+                                        <td data-label="Precio" class="movement-number">{{ formatearMoneda(movimiento.precio) }}</td>
+                                        <td data-label="Adicionales" class="movement-number">{{ movimiento.adicionales || 0 }}</td>
+                                        <td v-if="movimientoTab === 'salidas'" data-label="IVA" class="movement-number">{{ formatearMoneda(movimiento.iva || 0) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <footer v-if="movimientos.last_page > 1" class="movements-pagination">
+                        <span>Página {{ movimientos.current_page }} de {{ movimientos.last_page }} · {{ movimientos.total }} registros</span>
+                        <div>
+                            <button @click="cargarMovimientos(movimientos.current_page - 1)" :disabled="movimientos.current_page <= 1">Anterior</button>
+                            <button @click="cargarMovimientos(movimientos.current_page + 1)" :disabled="movimientos.current_page >= movimientos.last_page">Siguiente</button>
+                        </div>
+                    </footer>
+                </section>
+            </div>
         </div>
     </v-app>
 </template>
@@ -311,7 +398,18 @@
                 // Paginación
                 currentPage: 1,
                 itemsPerPage: 15,
-                itemsPerPageOptions: [10, 15, 25, 50]
+                itemsPerPageOptions: [10, 15, 25, 50],
+                movimientosModal: false,
+                productoMovimiento: null,
+                movimientoTab: 'entradas',
+                movimientosCargando: false,
+                movimientosError: '',
+                movimientos: {
+                    data: [],
+                    current_page: 1,
+                    last_page: 1,
+                    total: 0
+                }
             }
         },  
         computed: {
@@ -463,6 +561,50 @@
                 this.productos.splice(index, 1)
                 this.productos.unshift(item);
                 // console.log(this.productos[index])
+            },
+            abrirMovimientos(producto) {
+                this.productoMovimiento = producto;
+                this.movimientoTab = 'entradas';
+                this.movimientosModal = true;
+                this.cargarMovimientos(1);
+            },
+            cerrarMovimientos() {
+                this.movimientosModal = false;
+                this.productoMovimiento = null;
+            },
+            cambiarTabMovimiento(tab) {
+                if (this.movimientoTab === tab) return;
+                this.movimientoTab = tab;
+                this.cargarMovimientos(1);
+            },
+            cargarMovimientos(page = 1) {
+                if (!this.productoMovimiento || page < 1) return;
+
+                this.movimientosCargando = true;
+                this.movimientosError = '';
+
+                axios.get(`/inventario-productos/${this.productoMovimiento.id}/movimientos/${this.movimientoTab}`, {
+                    params: { page }
+                }).then(response => {
+                    this.movimientos = response.data;
+                }).catch(() => {
+                    this.movimientosError = 'No fue posible consultar los movimientos. Intenta nuevamente.';
+                    this.movimientos = { data: [], current_page: 1, last_page: 1, total: 0 };
+                }).finally(() => {
+                    this.movimientosCargando = false;
+                });
+            },
+            formatearMoneda(valor) {
+                return new Intl.NumberFormat('es-CO', {
+                    style: 'currency',
+                    currency: 'COP',
+                    maximumFractionDigits: 0
+                }).format(Number(valor) || 0);
+            },
+            formatearFecha(fecha) {
+                if (!fecha) return 'Sin fecha';
+                const partes = fecha.substring(0, 10).split('-');
+                return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : fecha;
             }
         },
     }
@@ -1648,6 +1790,203 @@
         order: 3;
         align-self: stretch;
         justify-content: center;
+    }
+}
+
+.btn-movements {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.btn-movements:hover {
+    background: #0369a1;
+    color: #fff;
+}
+
+.movements-btn {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.movements-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, .7);
+}
+
+.movements-modal {
+    display: flex;
+    flex-direction: column;
+    width: min(1180px, 96vw);
+    max-height: 90vh;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 25px 70px rgba(15, 23, 42, .35);
+}
+
+.movements-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    color: #fff;
+    background: linear-gradient(135deg, #0e7490, #0369a1);
+}
+
+.movements-header h3,
+.movements-header p {
+    margin: 0;
+}
+
+.movements-header p {
+    margin-top: .35rem;
+    color: rgba(255, 255, 255, .85);
+}
+
+.movements-close {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255, 255, 255, .16);
+}
+
+.movements-tabs {
+    display: flex;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.movements-tabs button {
+    min-width: 150px;
+    padding: 1rem 1.25rem;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    color: #64748b;
+    font-weight: 700;
+    background: transparent;
+}
+
+.movements-tabs button.active {
+    color: #0369a1;
+    border-bottom-color: #0284c7;
+}
+
+.movements-body {
+    min-height: 260px;
+    overflow: auto;
+    padding: 1.25rem 1.5rem;
+}
+
+.movements-state {
+    display: flex;
+    min-height: 230px;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    color: #64748b;
+    text-align: center;
+}
+
+.movements-error { color: #b91c1c; }
+.movements-table-wrapper { overflow-x: auto; }
+
+.movements-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+.movements-table th,
+.movements-table td {
+    padding: .8rem .75rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.movements-table th {
+    position: sticky;
+    top: 0;
+    color: #334155;
+    font-size: .78rem;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    background: #f8fafc;
+}
+
+.movement-number { white-space: nowrap; text-align: right !important; }
+
+.movements-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.movements-pagination button {
+    margin-left: .5rem;
+    padding: .55rem .9rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #0369a1;
+    background: #fff;
+}
+
+.movements-pagination button:disabled { color: #94a3b8; opacity: .6; }
+
+@media (max-width: 768px) {
+    .movements-overlay { padding: .35rem; }
+    .movements-modal { width: 100%; max-height: 96vh; border-radius: 12px; }
+    .movements-header, .movements-body { padding: 1rem; }
+    .movements-tabs { padding: 0; }
+    .movements-tabs button { min-width: 0; flex: 1; }
+    .movements-pagination { align-items: stretch; flex-direction: column; padding: 1rem; }
+    .movements-pagination > div { display: flex; }
+    .movements-pagination button { flex: 1; margin: 0 .25rem 0 0; min-height: 44px; }
+    .movements-table { min-width: 0; }
+    .movements-table thead { display: none; }
+    .movements-table,
+    .movements-table tbody,
+    .movements-table tr,
+    .movements-table td { display: block; width: 100%; }
+    .movements-table tr {
+        margin-bottom: 1rem;
+        padding: .55rem .8rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, .05);
+    }
+    .movements-table td {
+        display: grid;
+        grid-template-columns: minmax(105px, 38%) 1fr;
+        gap: .65rem;
+        padding: .55rem 0;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: left !important;
+        white-space: normal;
+    }
+    .movements-table td:last-child { border-bottom: 0; }
+    .movements-table td::before {
+        content: attr(data-label);
+        color: #64748b;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .03em;
+        text-transform: uppercase;
     }
 }
 </style>
