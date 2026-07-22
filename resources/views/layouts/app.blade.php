@@ -14,8 +14,7 @@
         <script src="{{ asset('js/variableSession.js') }}" defer></script>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}" rel="stylesheet">
 
         {{-- Estilos admin --}}
         <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
