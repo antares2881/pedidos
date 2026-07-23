@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="reports-container">
             <!-- Professional Header -->
             <div class="professional-header">
@@ -56,7 +56,7 @@
                     </button>
                     <button 
                         class="professional-btn btn-success" 
-                        @click="exportTableToExcel('tabla')" 
+                        @click="exportTableToExcel"
                         v-if="facturas.length > 0"
                     >
                         <i class="fas fa-file-excel"></i>
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import { BasicSelect, ModelSelect } from 'vue-search-select'
@@ -307,35 +307,110 @@
                         console.log(err);
                     })
             },
-            exportTableToExcel(tableID){
-                var downloadLink;
-                var dataType = 'application/vnd.ms-excel';
-                var tableSelect = document.getElementById(tableID);
-                var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-                
-                // Specify file name
-                let filename = this.cliente+'_cartera.xls';
-                
-                // Create download link element
-                downloadLink = document.createElement("a");
-                
-                document.body.appendChild(downloadLink);
-                
-                if(navigator.msSaveOrOpenBlob){
-                    var blob = new Blob(['ufeff', tableHTML], {
-                        type: dataType
+            async exportTableToExcel(){
+                try {
+                    const XLSX = await import(
+                        /* webpackChunkName: "vendor-xlsx" */ 'xlsx'
+                    );
+                    const workbook = XLSX.utils.book_new();
+                    const rows = [
+                        ['Factura', 'Fecha', 'Valor', 'Abono', 'Retención', 'NC', 'Saldo']
+                    ];
+
+                    this.facturas.forEach(factura => {
+                        rows.push([
+                            String(factura.numero_factura ?? ''),
+                            this.excelDate(factura.fecha_factura),
+                            Number(factura.total_factura) || 0,
+                            Number(factura.total_abono) || 0,
+                            Number(factura.retencion) || 0,
+                            Number(factura.total_nota) || 0,
+                            Number(factura.saldo) || 0
+                        ]);
                     });
-                    navigator.msSaveOrOpenBlob( blob, filename);
-                }else{
-                    // Create a link to the file
-                    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-                
-                    // Setting the file name
-                    downloadLink.download = filename;
-                    
-                    //triggering the function
-                    downloadLink.click();
+
+                    if (this.nota_credito > 0) {
+                        rows.push([
+                            '', '', '', '', '',
+                            'Nota de crédito disponible',
+                            Number(this.nota_credito) || 0
+                        ]);
+                    }
+
+                    rows.push([
+                        '', '', '', '', '',
+                        'Saldo total',
+                        Number(this.totalCartera - this.nota_credito) || 0
+                    ]);
+
+                    const worksheet = XLSX.utils.aoa_to_sheet(rows, {
+                        cellDates: true
+                    });
+                    const lastRow = rows.length;
+
+                    worksheet['!cols'] = [
+                        { wch: 18 },
+                        { wch: 14 },
+                        { wch: 18 },
+                        { wch: 18 },
+                        { wch: 18 },
+                        { wch: 28 },
+                        { wch: 18 }
+                    ];
+                    worksheet['!autofilter'] = {
+                        ref: `A1:G${Math.max(1, this.facturas.length + 1)}`
+                    };
+
+                    for (let row = 2; row <= lastRow; row++) {
+                        const dateCell = worksheet[`B${row}`];
+                        if (dateCell && dateCell.v instanceof Date) {
+                            dateCell.z = 'yyyy-mm-dd';
+                        }
+
+                        ['C', 'D', 'E', 'F', 'G'].forEach(column => {
+                            const cell = worksheet[`${column}${row}`];
+                            if (cell && typeof cell.v === 'number') {
+                                cell.z = '$#,##0';
+                            }
+                        });
+                    }
+
+                    XLSX.utils.book_append_sheet(workbook, worksheet, 'Estado de cuenta');
+
+                    const safeClientName = (this.cliente || 'cliente')
+                        .split(' - ')[0]
+                        .replace(/[<>:"/\\|?*\u0000-\u001F]/g, '')
+                        .trim()
+                        .slice(0, 80) || 'cliente';
+                    const filename = `${safeClientName}_cartera.xlsx`;
+
+                    XLSX.writeFile(workbook, filename, {
+                        bookType: 'xlsx',
+                        compression: true,
+                        cellDates: true
+                    });
+                } catch (error) {
+                    console.error('Error al exportar el archivo XLSX:', error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'No fue posible generar el archivo Excel.',
+                        icon: 'error'
+                    });
                 }
+            },
+            excelDate(value){
+                if (!value) {
+                    return null;
+                }
+
+                const normalized = String(value).slice(0, 10);
+                const parts = normalized.split('-').map(Number);
+                if (parts.length === 3 && parts.every(Number.isFinite)) {
+                    return new Date(parts[0], parts[1] - 1, parts[2]);
+                }
+
+                const date = new Date(value);
+                return Number.isNaN(date.getTime()) ? null : date;
             },
             operacionesFacturas(item){
                 this.facturas = [];

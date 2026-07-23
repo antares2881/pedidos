@@ -1,5 +1,5 @@
 <template>
-    <v-app>       
+    <div>
         <div class="container-fluid mt-5">
             <div class="row" v-if="errores">
                 <div class="col-12">
@@ -10,7 +10,7 @@
                 <template #title>Nueva transferencia</template>
             </items-component>            
         </div>
-    </v-app>
+    </div>
 </template>
 <script>    
     export default {

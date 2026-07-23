@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="products-container">
             <modalitem-component ref="modalItemProducto" @updateItems="updateListItems"/>
             <modalproducto-component ref="modalProducto"/>
@@ -372,7 +372,7 @@
                 </section>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     export default {

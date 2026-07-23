@@ -45,9 +45,6 @@ Route::post('/armar-combo', 'ComboController@armarCombo');
 Route::post('/dividir-combo', 'ComboController@dividirCombo');
 Route::get('/prueba-combos', 'ComboController@prueba');
 
-// Composiciones
-Route::get('/composiciones', 'ComposicioneController@index');
-
 // Consecutivos
 Route::get('/consecutivo-pedidos-calox', 'VentaController@consecutivoPedido');
 Route::get('/consecutivo-transferencias', 'TransferenciaController@consecutivoTransferencia');
@@ -192,7 +189,7 @@ Route::get('/nueva-transferencia/{num?}', 'TransferenciaController@nueva_vista')
 // Users
 Route::get('/usuarios', 'UserController@index');
 Route::get('/updatePassword', 'UserController@update_password')->name('updatePassword');
-Route::post('/updatePassword', 'UserController@reset_password')->name('updatePassword');
+Route::post('/updatePassword', 'UserController@reset_password')->name('updatePassword.store');
 Route::put('/usuarios/{id}', 'UserController@update');
 Route::get('/getUser', 'UserController@getUser');
 Route::post('/usuarios', 'UserController@store');

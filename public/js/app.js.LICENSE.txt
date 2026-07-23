@@ -41,12 +41,6 @@
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
 
-/**
- * Vue Currency Input 1.22.6
- * (c) 2018-2021 Matthias Stiller
- * @license MIT
- */
-
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
  * @version 1.16.1

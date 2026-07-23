@@ -13,9 +13,6 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ asset('js/variableSession.js') }}" defer></script>
 
-        <!-- Fonts -->
-        <link href="{{ asset('assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}" rel="stylesheet">
-
         {{-- Estilos admin --}}
         <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
         <link href="{{asset('assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
@@ -24,9 +21,8 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/newStyles.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/icon-fixes.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/sidebar-fixes.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/sidebar-fixes.css') }}?v={{ filemtime(public_path('css/sidebar-fixes.css')) }}" rel="stylesheet">
         <link href="{{ asset('css/responsive-performance.css') }}" rel="stylesheet">
         
     </head>
@@ -39,7 +35,7 @@
                     </button>
                     <a class="navbar-brand" href="/">Pedidos App</a>
                     
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" id="mobileSidebarToggle" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
                         <span class="estilo-texto">{{ Auth::user()->name }}</span> <i class="fas fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -240,7 +236,7 @@
                 padding: 8px 12px;
                 margin-right: 15px;
                 border-radius: 4px;
-                transition: all 0.3s ease;
+                transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
             }
 
             .mostrar-movil {
@@ -261,10 +257,10 @@
                 padding: 8px 12px;
                 margin-right: 15px;
                 border-radius: 4px;
-                transition: all 0.3s ease;
+                transition: color 0.15s ease, background-color 0.15s ease;
             }
 
-            @media (max-width: 992px) {
+            @media (max-width: 991.98px) {
                 .mostrar-movil {
                     display: block;
                 }
@@ -283,21 +279,20 @@
             /* Estados del sidebar */
             .sidebar-hidden .nav-left-sidebar {
                 transform: translateX(-100%);
-                transition: transform 0.3s ease;
             }
 
             .nav-left-sidebar {
-                transition: transform 0.3s ease;
+                will-change: transform;
+                transition: transform 0.16s ease-out;
             }
 
             /* Ajustar el contenido principal cuando se oculta el sidebar */
             .sidebar-hidden .dashboard-wrapper {
                 margin-left: 0;
-                transition: margin-left 0.3s ease;
             }
 
             .dashboard-wrapper {
-                transition: margin-left 0.3s ease;
+                transition: none;
             }
 
             /* Mejoras adicionales para el sidebar oculto */
@@ -306,9 +301,8 @@
             }
 
             /* Transición suave para los elementos del menú */
-            .nav-left-sidebar .nav-link,
-            .nav-left-sidebar .submenu {
-                transition: all 0.3s ease;
+            .nav-left-sidebar .nav-link {
+                transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
             }
 
             /* Responsive adjustments */
@@ -319,7 +313,7 @@
             }
             
             /* Ajustes específicos para móviles */
-            @media (max-width: 992px) {
+            @media (max-width: 991.98px) {
                 /* Ocultar SOLO el botón hamburguesa de la izquierda */
                 .sidebar-toggle-btn {
                     display: none !important;
@@ -328,7 +322,7 @@
 
             /* Animation for the toggle icon */
             .sidebar-toggle-btn i {
-                transition: transform 0.3s ease;
+                transition: transform 0.16s ease-out;
             }
 
             .sidebar-hidden .sidebar-toggle-btn i {
@@ -351,7 +345,11 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const toggleBtn = document.getElementById('sidebarToggle');
+                const mobileToggleBtn = document.getElementById('mobileSidebarToggle');
+                const mobileMenu = document.getElementById('navbarNav');
                 const mainWrapper = document.querySelector('.dashboard-main-wrapper');
+                const mobileBreakpoint = window.matchMedia('(max-width: 991.98px)');
+                const collapseLinks = document.querySelectorAll('.nav-left-sidebar .nav-link[data-toggle="collapse"]');
                 
                 // Recuperar el estado del sidebar desde localStorage
                 const sidebarHidden = localStorage.getItem('sidebarHidden') === 'true';
@@ -359,9 +357,22 @@
                     mainWrapper.classList.add('sidebar-hidden');
                 }
 
+                // En móvil el menú comienza cerrado y se superpone al contenido.
+                if (mobileBreakpoint.matches) {
+                    mainWrapper.classList.add('sidebar-hidden');
+                    mobileMenu.classList.remove('show');
+                }
+
+                function setMobileSidebar(open) {
+                    mainWrapper.classList.toggle('sidebar-hidden', !open);
+                    mobileMenu.classList.toggle('show', open);
+                    mobileToggleBtn.setAttribute('aria-expanded', String(open));
+                    mobileToggleBtn.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+                    handleArrowsVisibility(!open);
+                }
+
                 // Función para manejar las flechas del menú
                 function handleArrowsVisibility(isHidden) {
-                    const collapseLinks = document.querySelectorAll('.nav-left-sidebar .nav-link[data-toggle="collapse"]');
                     collapseLinks.forEach(link => {
                         if (isHidden) {
                             // Cuando está oculto, cerrar todos los submenús
@@ -385,14 +396,47 @@
                     // Manejar la visibilidad de las flechas
                     handleArrowsVisibility(isHidden);
                     
-                    // Trigger resize event para que los componentes Vue se ajusten
-                    setTimeout(() => {
+                    // Ajustar los componentes Vue en el siguiente frame.
+                    requestAnimationFrame(() => {
                         window.dispatchEvent(new Event('resize'));
-                    }, 300);
+                    });
+                });
+
+                if (mobileToggleBtn) {
+                    mobileToggleBtn.addEventListener('click', function(event) {
+                        if (!mobileBreakpoint.matches) {
+                            return;
+                        }
+
+                        event.preventDefault();
+                        setMobileSidebar(mainWrapper.classList.contains('sidebar-hidden'));
+                    });
+                }
+
+                // Bootstrap bloquea el fondo mientras un modal está abierto.
+                // Cerrar el sidebar evita que quede visualmente sobre el modal
+                // mientras su backdrop intercepta los clics.
+                const modalStateObserver = new MutationObserver(function() {
+                    if (mobileBreakpoint.matches && document.body.classList.contains('modal-open')) {
+                        setMobileSidebar(false);
+                    }
+                });
+                modalStateObserver.observe(document.body, {
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+
+                // Tras navegar desde el drawer, cerrarlo inmediatamente.
+                document.querySelectorAll('#navbarNav a[href]:not([href="#"])').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        if (mobileBreakpoint.matches) {
+                            setMobileSidebar(false);
+                        }
+                    });
                 });
 
                 // Manejar estado inicial
-                handleArrowsVisibility(sidebarHidden);
+                handleArrowsVisibility(mainWrapper.classList.contains('sidebar-hidden'));
 
                 // También agregar la funcionalidad con tecla de acceso rápido (Shift + S)
                 document.addEventListener('keydown', function(e) {
@@ -403,7 +447,7 @@
                 });
 
                 // Prevenir que se abran submenús cuando el sidebar está oculto
-                document.querySelectorAll('.nav-left-sidebar .nav-link[data-toggle="collapse"]').forEach(link => {
+                collapseLinks.forEach(link => {
                     link.addEventListener('click', function(e) {
                         if (mainWrapper.classList.contains('sidebar-hidden')) {
                             e.preventDefault();

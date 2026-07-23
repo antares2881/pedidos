@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="nota-container">     
             <div v-if="errores.length > 0" class="alert-container">
                 <div class="alert alert-danger professional-alert">
@@ -13,8 +13,8 @@
                 <template #opcionesExtras>
                     
                         <div class="fields-container">
-                            <div class="row">
-                                <div class="col-12 col-md-4 mb-4">
+                            <div class="row note-fields">
+                                <div class="col-12 col-md-4 note-field">
                                     <div class="form-group-modern">
                                         <label for="tipofactura_id" class="form-label-modern">Tipo</label>
                                         <div class="input-group-modern">
@@ -28,9 +28,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4 mb-4">
+                                <div class="col-12 col-md-4 note-field">
                                     <div class="form-group-modern">
-                                        <label for="numero" class="form-label-modern">No. Nota</label>
+                                        <label for="numero" class="form-label-modern">No. nota</label>
                                         <div class="input-group-modern">
                                             <input 
                                                 type="number" 
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4 mb-4">
+                                <div class="col-12 col-md-4 note-field">
                                     <div class="form-group-modern">
                                         <label for="fecha" class="form-label-modern">Fecha</label>
                                         <div class="input-group-modern">
@@ -67,7 +67,7 @@
             </items-component>
             
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     export default {
@@ -177,7 +177,7 @@
 
 /* Contenedor de campos con margen superior */
 .fields-container {
-    margin-top: 20px;
+    margin: 0 0 14px;
 }
 
 .nota-options-card::before {
@@ -196,13 +196,14 @@
 }
 
 .form-label-modern {
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 12px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     display: block;
+    margin-bottom: 6px;
+    color: #475569;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.025em;
 }
 
 .input-group-modern {
@@ -213,57 +214,57 @@
 
 /* Inputs modernos */
 .modern-input {
-    border-radius: 8px;
-    border: 2px solid #e9ecef;
-    padding: 14px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-    height: 48px;
     width: 100%;
+    height: 46px;
+    padding: 0.75rem 0.9rem;
+    color: #334155;
+    background: #fff;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .modern-input:focus {
     border-color: #17a2b8;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), inset 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);
     outline: none;
-    background: #ffffff;
-}
-
-.modern-input:hover {
-    border-color: #ced4da;
 }
 
 /* Select moderno */
 .modern-select {
-    border-radius: 8px;
-    border: 2px solid #e9ecef;
-    padding: 14px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
     width: 100%;
-    height: 48px;
+    height: 46px;
+    padding: 0.75rem 2.5rem 0.75rem 0.9rem;
+    color: #334155;
+    background: #fff;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .modern-select:focus {
     border-color: #17a2b8;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), inset 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);
     outline: none;
-    background: #ffffff;
 }
 
-/* Espaciado personalizado */
-.row {
-    margin-left: -15px;
-    margin-right: -15px;
+.note-fields {
+    margin-right: -7px;
+    margin-left: -7px;
+    row-gap: 14px;
 }
 
-.row > [class*="col-"] {
-    padding-left: 15px;
-    padding-right: 15px;
+.note-field {
+    padding-right: 7px;
+    padding-left: 7px;
 }
 
 /* Responsive adjustments */
@@ -277,43 +278,9 @@
         margin-bottom: 20px;
     }
     
-    .fields-container {
-        margin-top: 15px;
-    }
-    
-    .form-group-modern {
-        margin-bottom: 0;
-    }
-    
-    .modern-input,
-    .modern-select {
-        padding: 12px;
-        font-size: 0.85rem;
-        height: 44px;
-    }
-    
-    .col-12.col-md-4.mb-4 {
-        margin-bottom: 20px !important;
+    .note-fields {
+        row-gap: 12px;
     }
 }
 
-/* Animation for form elements */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.form-group-modern {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.form-group-modern:nth-child(1) { animation-delay: 0.1s; }
-.form-group-modern:nth-child(2) { animation-delay: 0.2s; }
-.form-group-modern:nth-child(3) { animation-delay: 0.3s; }
 </style>

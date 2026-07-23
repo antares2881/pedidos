@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="invoices-container">
             <aplicar-filtros ref="filtros" @aplicarFiltros="filtrar" />
             <historial-pagos ref="historialPagos" />
@@ -292,7 +292,7 @@
             <!-- <abonofactura-component ref="abonoFactura" /> -->
             <!-- <notas-component ref="notas" /> -->
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     export default {

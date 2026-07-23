@@ -17,6 +17,14 @@ class ClienteController extends Controller
     public function index(Request $request){
 
         if($request->ajax()){
+            if ($request->boolean('selector')) {
+                return Cliente::query()
+                    ->join('municipios', 'municipios.id', '=', 'clientes.municipio_id')
+                    ->select('clientes.id', 'clientes.razon_social', 'municipios.mcpio')
+                    ->orderBy('clientes.razon_social')
+                    ->get();
+            }
+
             $clientes = Cliente::with(['estado', 'municipios'])->get();
             return $clientes;
         }

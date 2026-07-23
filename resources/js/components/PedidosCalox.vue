@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="container-fluid mt-5">
             <div class="row" v-if="errores">
                 <div class="col-12">
@@ -9,27 +9,29 @@
             <items-component tipo_cliente="2" v-if="showComponent" @guardar="savePedido" ref="items">
                 <template #title>Agregar compra</template>
                 <template #opcionesExtras>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="laboratorio_id">Laboratorio</label>
-                            <model-select
-                                id="laboratorio_id"
-                                :options="laboratorios"
-                                v-model="entrada.laboratorio_id"
-                            ></model-select>
+                    <div class="row purchase-fields">
+                        <div class="col-md-6 purchase-field">
+                            <label class="purchase-label" for="laboratorio_id">Laboratorio</label>
+                            <div class="purchase-select">
+                                <model-select
+                                    id="laboratorio_id"
+                                    :options="laboratorios"
+                                    v-model="entrada.laboratorio_id"
+                                ></model-select>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="num_pedido">Numero de pedido</label>
-                            <input type="number" id="num_pedido" class="form-control" @keypress.enter="buscarPedidoCalox" v-if="!esFacturaDirecto">
-                            <input type="number" id="num_pedido" v-model="entrada.num_pedido" class="form-control" @keypress.enter="buscarPedidoCalox" v-else>
+                        <div class="col-md-6 purchase-field">
+                            <label class="purchase-label" for="num_pedido">Número de pedido</label>
+                            <input type="number" id="num_pedido" class="form-control purchase-input" @keypress.enter="buscarPedidoCalox" v-if="!esFacturaDirecto">
+                            <input type="number" id="num_pedido" v-model="entrada.num_pedido" class="form-control purchase-input" @keypress.enter="buscarPedidoCalox" v-else>
                         </div>
-                        <div class="col-md-6">
-                            <label for="num_factura">No. factura</label>
-                            <input type="text" id="num_factura" class="form-control" v-model="entrada.num_factura">
+                        <div class="col-md-6 purchase-field">
+                            <label class="purchase-label" for="num_factura">No. factura</label>
+                            <input type="text" id="num_factura" class="form-control purchase-input" v-model="entrada.num_factura">
                         </div>
-                        <div class="col-md-6">
-                            <label for="fecha_factura">Fecha</label>
-                            <input type="date" id="fecha_factura" class="form-control" v-model="entrada.fecha">
+                        <div class="col-md-6 purchase-field">
+                            <label class="purchase-label" for="fecha_factura">Fecha</label>
+                            <input type="date" id="fecha_factura" class="form-control purchase-input" v-model="entrada.fecha">
                         </div>
                     </div>
                 </template>
@@ -46,7 +48,7 @@
                 </template>
             </items-component>      
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import { BasicSelect, ModelSelect } from 'vue-search-select';
@@ -280,7 +282,85 @@
     }
 </script>
 <style scoped>
-    .fondo{
-        background-color: #C3C3C3;
+.fondo {
+    background-color: #c3c3c3;
+}
+
+.purchase-fields {
+    margin-right: -7px;
+    margin-bottom: 14px;
+    margin-left: -7px;
+    row-gap: 14px;
+}
+
+.purchase-field {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+.purchase-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #475569;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.025em;
+}
+
+.purchase-input {
+    width: 100%;
+    height: 46px;
+    padding: 0.75rem 0.9rem;
+    color: #334155;
+    background-color: #fff;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.purchase-input:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);
+}
+
+.purchase-select >>> .ui.selection.dropdown {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 0.75rem 2.5rem 0.75rem 0.9rem;
+    color: #334155;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.purchase-select >>> .ui.selection.dropdown:focus,
+.purchase-select >>> .ui.selection.active.dropdown {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);
+}
+
+.purchase-select >>> .ui.selection.dropdown > .text,
+.purchase-select >>> .ui.search.dropdown > input.search {
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 767.98px) {
+    .purchase-fields {
+        row-gap: 12px;
     }
+}
 </style>

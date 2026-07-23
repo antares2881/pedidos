@@ -1,1 +1,819 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8654],{160:(e,a,t)=>{t.d(a,{A:()=>r});var i=t(6798),n=t.n(i)()(function(e){return e[1]});n.push([e.id,".theme--light.v-application{background:#fff;color:rgba(0,0,0,.87)}.theme--light.v-application .text--primary{color:rgba(0,0,0,.87)!important}.theme--light.v-application .text--secondary{color:rgba(0,0,0,.6)!important}.theme--light.v-application .text--disabled{color:rgba(0,0,0,.38)!important}.theme--dark.v-application{background:#121212;color:#fff}.theme--dark.v-application .text--primary{color:#fff!important}.theme--dark.v-application .text--secondary{color:hsla(0,0%,100%,.7)!important}.theme--dark.v-application .text--disabled{color:hsla(0,0%,100%,.5)!important}.v-application{display:flex;position:relative}.v-application a{cursor:pointer}.v-application--is-rtl{direction:rtl}.v-application--wrap{backface-visibility:hidden;display:flex;flex:1 1 auto;flex-direction:column;max-width:100%;min-height:100vh;position:relative}@-moz-document url-prefix(){@media print{.v-application,.v-application--wrap{display:block}}}",""]);const r=n},1582:(e,a,t)=>{t.d(a,{A:()=>n,H:()=>r});const i=t(2893).default.extend().extend({name:"themeable",provide(){return{theme:this.themeableProvide}},inject:{theme:{default:{isDark:!1}}},props:{dark:{type:Boolean,default:null},light:{type:Boolean,default:null}},data:()=>({themeableProvide:{isDark:!1}}),computed:{appIsDark(){return this.$vuetify.theme.dark||!1},isDark(){return!0===this.dark||!0!==this.light&&this.theme.isDark},themeClasses(){return{"theme--dark":this.isDark,"theme--light":!this.isDark}},rootIsDark(){return!0===this.dark||!0!==this.light&&this.appIsDark},rootThemeClasses(){return{"theme--dark":this.rootIsDark,"theme--light":!this.rootIsDark}}},watch:{isDark:{handler(e,a){e!==a&&(this.themeableProvide.isDark=this.isDark)},immediate:!0}}}),n=i;function r(e){const a={...e.props,...e.injections},t=i.options.computed.isDark.call(a);return i.options.computed.themeClasses.call({isDark:t})}},2006:(e,a,t)=>{t.d(a,{A:()=>n});var i=t(2893);function n(...e){return i.default.extend({mixins:e})}},4486:(e,a,t)=>{function i(e,a,t,i,n,r,s,o){var d,c="function"==typeof e?e.options:e;if(a&&(c.render=a,c.staticRenderFns=t,c._compiled=!0),i&&(c.functional=!0),r&&(c._scopeId="data-v-"+r),s?(d=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),n&&n.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(s)},c._ssrRegister=d):n&&(d=o?function(){n.call(this,(c.functional?this.parent:this).$root.$options.shadowRoot)}:n),d)if(c.functional){c._injectStyles=d;var l=c.render;c.render=function(e,a){return d.call(a),l(e,a)}}else{var p=c.beforeCreate;c.beforeCreate=p?[].concat(p,d):[d]}return{exports:e,options:c}}t.d(a,{A:()=>i})},7405:(e,a,t)=>{t.d(a,{A:()=>r});var i=t(6798),n=t.n(i)()(function(e){return e[1]});n.push([e.id,".transfers-container[data-v-24a47ee6]{background:#f8f9fa;min-height:100vh;padding:2rem}.header-section[data-v-24a47ee6]{align-items:center;backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;margin-bottom:2rem;padding:2rem}.page-header h2[data-v-24a47ee6]{align-items:center;display:flex;font-size:2.2rem;font-weight:700;margin:0 0 .5rem}.custom-icon[data-v-24a47ee6]{display:inline-block;font-size:1.2em;font-style:normal;font-weight:400;line-height:1;margin-right:.5rem;vertical-align:middle}.custom-icon-document[data-v-24a47ee6]{color:#17a2b8;font-size:2rem;margin-right:1rem}.custom-icon-search[data-v-24a47ee6]{color:#64748b;font-size:1.2rem;left:1rem;margin-right:0;pointer-events:none;position:absolute;top:50%;transform:translateY(-50%);z-index:3}.custom-icon-filter[data-v-24a47ee6]{color:#fff;font-size:1rem;margin-right:.5rem}.professional-table thead th .custom-icon[data-v-24a47ee6]{color:#17a2b8;font-size:1.1rem;margin-right:.5rem}.client-icon.custom-icon[data-v-24a47ee6]{background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border-radius:10px;color:#0277bd;font-size:1.3rem;height:40px;margin-right:.75rem;width:40px}.client-icon.custom-icon[data-v-24a47ee6],.info-icon.custom-icon[data-v-24a47ee6]{align-items:center;display:flex;justify-content:center}.info-icon.custom-icon[data-v-24a47ee6]{background:linear-gradient(135deg,#ddd6fe,#c4b5fd);border-radius:8px;color:#17a2b8;font-size:1.1rem;height:35px;margin-right:0;width:35px}.status-flag.custom-icon[data-v-24a47ee6]{color:#64748b;font-size:1.5rem;margin-right:1rem}.action-btn .custom-icon[data-v-24a47ee6]{font-size:1.2rem;margin:0}.mobile-action-btn .custom-icon[data-v-24a47ee6]{font-size:1.1rem;margin-right:.5rem}.pagination-btn .custom-icon[data-v-24a47ee6]{font-size:1rem;margin:0 .25rem}.status-badge .custom-icon[data-v-24a47ee6],.status-badge-mobile .custom-icon[data-v-24a47ee6]{font-size:1rem;margin-right:.5rem}.custom-icon[data-v-24a47ee6]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Android Emoji,EmojiSymbols,serif}.page-title[data-v-24a47ee6]{-webkit-text-fill-color:transparent;background:linear-gradient(135deg,#17a2b8,#17a2b8);background-clip:text;-webkit-background-clip:text;font-weight:700}.page-description[data-v-24a47ee6]{color:#64748b;font-size:1.1rem;font-weight:400;margin:0}.header-actions[data-v-24a47ee6]{align-items:center;display:flex;flex-wrap:wrap;gap:1rem}.search-box[data-v-24a47ee6]{min-width:300px;position:relative}.search-input[data-v-24a47ee6]{backdrop-filter:blur(10px);background:hsla(0,0%,100%,.9);border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;height:50px;padding:0 1rem 0 3rem!important;transition:all .3s ease;width:100%}.search-input[data-v-24a47ee6]::-moz-placeholder{color:#9ca3af;padding-left:0}.search-input[data-v-24a47ee6]::placeholder{color:#9ca3af;padding-left:0}.search-input[data-v-24a47ee6]:focus{background:#fff;border-color:#17a2b8;box-shadow:0 0 0 4px rgba(139,92,246,.1);outline:none}.new-lab-btn[data-v-24a47ee6]{align-items:center;background:linear-gradient(135deg,#17a2b8,#17a2b8);border:none;border-radius:12px;box-shadow:0 5px 15px rgba(139,92,246,.3);color:#fff;cursor:pointer;display:flex;font-size:1rem;font-weight:600;gap:.5rem;height:50px;padding:0 2rem;transition:all .3s ease}.new-lab-btn[data-v-24a47ee6]:hover{box-shadow:0 8px 25px rgba(139,92,246,.4);color:#fff;transform:translateY(-2px)}.loading-section[data-v-24a47ee6]{margin-top:2rem;width:100%}.professional-report-container[data-v-24a47ee6]{backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1);box-sizing:border-box;overflow:hidden;width:100%}.loader-container[data-v-24a47ee6]{padding:4rem 2rem;text-align:center}.spinner-professional[data-v-24a47ee6]{animation:spin-24a47ee6 1s linear infinite;border:4px solid #e5e7eb;border-radius:50%;border-top-color:#17a2b8;height:60px;margin:0 auto 2rem;width:60px}.loader-title[data-v-24a47ee6]{color:#1e293b;font-size:1.5rem;font-weight:700;margin:0 0 .75rem}.loader-subtitle[data-v-24a47ee6]{color:#64748b;font-size:1rem;font-weight:500;line-height:1.5;margin:0 0 2rem}.loading-progress[data-v-24a47ee6]{background:#e5e7eb;border-radius:2px;height:4px;margin:0 auto;max-width:300px;overflow:hidden;width:100%}.progress-bar[data-v-24a47ee6]{animation:progress-24a47ee6 2s ease-in-out infinite;background:linear-gradient(90deg,#17a2b8,#17a2b8);border-radius:2px;height:100%}.transfers-content[data-v-24a47ee6]{margin-top:2rem}.mobile-cards-container[data-v-24a47ee6]{display:none}.desktop-table[data-v-24a47ee6]{display:block}.professional-table-wrapper[data-v-24a47ee6]{-webkit-overflow-scrolling:touch;overflow-x:auto}.professional-table[data-v-24a47ee6]{background:#fff;border-collapse:separate;border-spacing:0;font-size:.95rem;min-width:900px;width:100%}.professional-table thead th[data-v-24a47ee6]{background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-bottom:2px solid #17a2b8;color:#374151;font-size:.9rem;font-weight:700;padding:1.25rem 1rem;position:sticky;top:0;white-space:nowrap;z-index:10}.professional-table tbody tr[data-v-24a47ee6]{border-bottom:1px solid #f1f5f9;transition:all .3s ease}.professional-table tbody tr[data-v-24a47ee6]:hover{background:rgba(139,92,246,.05);box-shadow:0 5px 15px rgba(0,0,0,.1);transform:translateX(5px)}.professional-table tbody td[data-v-24a47ee6]{border-bottom:1px solid #f1f5f9;padding:1rem;vertical-align:middle}.client-cell[data-v-24a47ee6]{color:#1e293b;font-weight:600}.client-name[data-v-24a47ee6]{background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border:1px solid #81d4fa;border-radius:8px;color:#0277bd;font-weight:700;padding:.4rem .8rem}.transfer-cell[data-v-24a47ee6]{color:#1e293b;font-weight:600}.transfer-number[data-v-24a47ee6]{background:linear-gradient(135deg,#f3e8ff,#e9d5ff);border:1px solid #c4b5fd;border-radius:8px;color:#17a2b8;font-weight:700;padding:.4rem .8rem}.date-cell[data-v-24a47ee6]{color:#64748b;font-weight:500}.date-value[data-v-24a47ee6]{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:.4rem .8rem}.amount-cell[data-v-24a47ee6]{font-family:Courier New,monospace;font-weight:600}.amount-value[data-v-24a47ee6]{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:1px solid #93c5fd;border-radius:6px;color:#1e293b;font-weight:700;padding:.4rem .8rem}.status-badge[data-v-24a47ee6]{align-items:center;border-radius:8px;display:inline-flex;font-size:.85rem;font-weight:700;gap:.5rem;padding:.5rem 1rem}.status-pending[data-v-24a47ee6]{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fbbf24;color:#d97706}.status-completed[data-v-24a47ee6]{background:linear-gradient(135deg,#bbf7d0,#86efac);border:1px solid #4ade80;color:#059669}.status-cancelled[data-v-24a47ee6]{background:linear-gradient(135deg,#fecaca,#fca5a5);border:1px solid #f87171;color:#dc2626}.action-buttons[data-v-24a47ee6]{gap:.5rem}.action-btn[data-v-24a47ee6],.action-buttons[data-v-24a47ee6]{display:flex;justify-content:center}.action-btn[data-v-24a47ee6]{align-items:center;border:none;border-radius:10px;cursor:pointer;font-size:1rem;height:40px;text-decoration:none;transition:all .3s ease;width:40px}.view-btn[data-v-24a47ee6]{background:linear-gradient(135deg,#3b82f6,#2563eb);box-shadow:0 5px 15px rgba(59,130,246,.3);color:#fff}.view-btn[data-v-24a47ee6]:hover{box-shadow:0 8px 25px rgba(59,130,246,.4);transform:translateY(-2px)}.transfer-card[data-v-24a47ee6]{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.1);margin-bottom:1rem;padding:1.5rem;transition:all .3s ease}.transfer-card[data-v-24a47ee6]:hover{box-shadow:0 15px 35px rgba(0,0,0,.15);transform:translateY(-5px)}.card-header[data-v-24a47ee6]{border-bottom:2px solid #f1f5f9;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem}.card-header[data-v-24a47ee6],.client-info[data-v-24a47ee6]{align-items:center;display:flex}.client-info[data-v-24a47ee6]{flex:1;gap:.75rem}.client-icon[data-v-24a47ee6]{align-items:center;background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border-radius:10px;color:#0277bd;display:flex;font-size:1.1rem;height:40px;justify-content:center;width:40px}.client-name-mobile[data-v-24a47ee6]{color:#1e293b;font-size:1.1rem;font-weight:700;line-height:1.2}.transfer-badge[data-v-24a47ee6]{align-items:center;background:linear-gradient(135deg,#f3e8ff,#e9d5ff);border:1px solid #c4b5fd;border-radius:10px;color:#17a2b8;display:flex;font-size:.9rem;font-weight:700;gap:.5rem;padding:.5rem 1rem}.card-body[data-v-24a47ee6]{display:flex;flex-direction:column;gap:1.5rem}.info-row[data-v-24a47ee6]{display:grid;gap:1rem;grid-template-columns:1fr 1fr}.info-item[data-v-24a47ee6]{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;gap:.75rem;padding:1rem}.info-icon[data-v-24a47ee6],.info-item[data-v-24a47ee6]{align-items:center;display:flex}.info-icon[data-v-24a47ee6]{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:8px;color:#2563eb;font-size:.9rem;height:35px;justify-content:center;width:35px}.info-content[data-v-24a47ee6]{display:flex;flex:1;flex-direction:column;gap:.25rem}.info-label[data-v-24a47ee6]{color:#64748b;font-size:.8rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase}.info-value[data-v-24a47ee6]{color:#1e293b;font-size:1rem;font-weight:700}.status-section[data-v-24a47ee6]{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem}.status-container[data-v-24a47ee6]{align-items:center;display:flex;gap:1rem;justify-content:center}.status-flag[data-v-24a47ee6]{color:#64748b;font-size:1.5rem}.status-badge-mobile[data-v-24a47ee6]{align-items:center;border-radius:12px;display:inline-flex;flex:1;font-size:1rem;font-weight:700;gap:.5rem;justify-content:center;padding:.75rem 1.25rem}.actions-section[data-v-24a47ee6]{display:flex;gap:1rem}.mobile-action-btn[data-v-24a47ee6]{align-items:center;border:none;border-radius:12px;cursor:pointer;display:flex;flex:1;font-size:1rem;font-weight:600;gap:.75rem;justify-content:center;padding:1rem;text-decoration:none;transition:all .3s ease}.pagination-section[data-v-24a47ee6]{background:#fff;border-top:2px solid #f1f5f9;gap:1rem;justify-content:space-between;padding:1.5rem 2rem}.pagination-info[data-v-24a47ee6],.pagination-section[data-v-24a47ee6]{align-items:center;display:flex;flex-wrap:wrap}.pagination-info[data-v-24a47ee6]{gap:2rem}.items-per-page[data-v-24a47ee6]{align-items:center;display:flex;gap:.5rem}.items-select[data-v-24a47ee6],.pagination-label[data-v-24a47ee6]{color:#374151;font-size:.9rem;font-weight:600}.items-select[data-v-24a47ee6]{background:#fff;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;outline:none;padding:.5rem .75rem;transition:all .3s ease}.items-select[data-v-24a47ee6]:focus{border-color:#17a2b8;box-shadow:0 0 0 3px rgba(139,92,246,.1)}.page-info-text[data-v-24a47ee6]{color:#64748b;font-size:.9rem;font-weight:500}.pagination-btn[data-v-24a47ee6],.pagination-controls[data-v-24a47ee6]{align-items:center;display:flex;gap:.5rem}.pagination-btn[data-v-24a47ee6]{background:#fff;border:2px solid #e5e7eb;border-radius:8px;color:#374151;cursor:pointer;font-size:.9rem;font-weight:600;padding:.75rem 1rem;transition:all .3s ease}.pagination-btn[data-v-24a47ee6]:hover:not(:disabled){background:rgba(139,92,246,.05);border-color:#17a2b8;color:#17a2b8}.pagination-btn[data-v-24a47ee6]:disabled{color:#9ca3af;cursor:not-allowed;opacity:.5}.page-numbers[data-v-24a47ee6]{display:flex;gap:.25rem;margin:0 1rem}.page-btn[data-v-24a47ee6]{align-items:center;background:#fff;border:2px solid #e5e7eb;border-radius:8px;color:#374151;cursor:pointer;display:flex;font-size:.9rem;font-weight:600;height:40px;justify-content:center;transition:all .3s ease;width:40px}.page-btn[data-v-24a47ee6]:hover:not(:disabled):not(.ellipsis){background:rgba(139,92,246,.05);border-color:#17a2b8;color:#17a2b8}.page-btn.active[data-v-24a47ee6]{background:linear-gradient(135deg,#17a2b8,#17a2b8);border-color:#17a2b8;box-shadow:0 5px 15px rgba(139,92,246,.3);color:#fff}.page-btn.ellipsis[data-v-24a47ee6]{color:#9ca3af;cursor:default}.page-btn.ellipsis[data-v-24a47ee6],.page-btn.ellipsis[data-v-24a47ee6]:hover{background:transparent;border:none}@keyframes spin-24a47ee6{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes progress-24a47ee6{0%{transform:translateX(-100%)}50%{transform:translateX(0)}to{transform:translateX(100%)}}@media (max-width:1024px){.header-section[data-v-24a47ee6]{align-items:stretch;flex-direction:column;text-align:center}.header-actions[data-v-24a47ee6]{justify-content:center}.search-box[data-v-24a47ee6]{min-width:100%}.page-header h2[data-v-24a47ee6]{font-size:2rem;justify-content:center}}@media (max-width:900px){.desktop-table[data-v-24a47ee6]{display:none}.mobile-cards-container[data-v-24a47ee6]{display:block;padding:0 .5rem}}@media (max-width:768px){.transfers-container[data-v-24a47ee6]{padding:1rem}.header-section[data-v-24a47ee6]{padding:1.5rem}.header-section[data-v-24a47ee6],.professional-report-container[data-v-24a47ee6]{border-radius:16px}.page-header h2[data-v-24a47ee6]{flex-direction:column;font-size:1.8rem;gap:.5rem;text-align:center}.transfer-card[data-v-24a47ee6]{border-radius:14px;margin-bottom:1rem;padding:1.25rem}.card-header[data-v-24a47ee6]{align-items:stretch;flex-direction:column;gap:1rem;margin-bottom:1.25rem}.client-info[data-v-24a47ee6]{justify-content:center;text-align:center}.client-name-mobile[data-v-24a47ee6]{font-size:1rem;text-align:center}.transfer-badge[data-v-24a47ee6]{align-self:center;font-size:.85rem}.info-row[data-v-24a47ee6]{gap:.75rem;grid-template-columns:1fr}.pagination-section[data-v-24a47ee6]{align-items:stretch;flex-direction:column;gap:1rem;padding:1rem}.pagination-info[data-v-24a47ee6]{flex-direction:column;gap:1rem;text-align:center}.items-per-page[data-v-24a47ee6],.pagination-info[data-v-24a47ee6]{justify-content:center}.page-numbers[data-v-24a47ee6],.pagination-controls[data-v-24a47ee6]{flex-wrap:wrap;justify-content:center}.page-numbers[data-v-24a47ee6]{margin:0 .5rem}}@media (max-width:480px){.transfers-container[data-v-24a47ee6]{padding:.75rem}.header-section[data-v-24a47ee6]{padding:1.25rem}.page-header h2[data-v-24a47ee6]{font-size:1.6rem}.transfer-card[data-v-24a47ee6]{margin-bottom:.875rem;padding:1rem}.client-name-mobile[data-v-24a47ee6]{font-size:.95rem}.pagination-controls[data-v-24a47ee6]{flex-direction:column;gap:1rem}.page-numbers[data-v-24a47ee6]{margin:0;order:2}.prev-btn[data-v-24a47ee6]{order:1}.next-btn[data-v-24a47ee6],.prev-btn[data-v-24a47ee6]{align-self:stretch;justify-content:center}.next-btn[data-v-24a47ee6]{order:3}}",""]);const r=n},8122:(e,a,t)=>{t.d(a,{A:()=>d});var i=t(5072),n=t.n(i),r=t(160),s={insert:"head",singleton:!1};n()(r.A,s);r.A.locals;var o=t(1582);const d=(0,t(2006).A)(o.A).extend({name:"v-app",props:{dark:{type:Boolean,default:void 0},id:{type:String,default:"app"},light:{type:Boolean,default:void 0}},computed:{isDark(){return this.$vuetify.theme.dark}},beforeCreate(){if(!this.$vuetify||this.$vuetify===this.$root)throw new Error("Vuetify is not properly initialized, see https://vuetifyjs.com/getting-started/quick-start#bootstrapping-the-vuetify-object")},render(e){const a=e("div",{staticClass:"v-application--wrap"},this.$slots.default);return e("div",{staticClass:"v-application",class:{"v-application--is-rtl":this.$vuetify.rtl,"v-application--is-ltr":!this.$vuetify.rtl,...this.themeClasses},attrs:{"data-app":!0},domProps:{id:this.id}},[a])}})},9872:(e,a,t)=>{t.r(a),t.d(a,{default:()=>c});var i=t(8122);const n={data:function(){return{detalleProductos:[],loader:!0,filterLoading:!1,search:"",title:"Transferencias Pendientes",todosPedidos:[],transferencia:{},transferencias:[],currentPage:1,itemsPerPage:10,itemsPerPageOptions:[10,25,50,100]}},computed:{filteredTransferencias:function(){var e=this,a=this.transferencias;return this.search&&(a=a.filter(function(a){return a.cliente.toLowerCase().includes(e.search.toLowerCase())||a.numero.toString().toLowerCase().includes(e.search.toLowerCase())})),a},paginatedTransferencias:function(){var e=(this.currentPage-1)*this.itemsPerPage,a=e+this.itemsPerPage;return this.filteredTransferencias.slice(e,a)},totalPages:function(){return Math.ceil(this.filteredTransferencias.length/this.itemsPerPage)},paginationInfo:function(){return{start:(this.currentPage-1)*this.itemsPerPage+1,end:Math.min(this.currentPage*this.itemsPerPage,this.filteredTransferencias.length),total:this.filteredTransferencias.length}}},watch:{search:function(){this.currentPage=1}},mounted:function(){this.getTransferencias()},methods:{filtrar:function(e){var a=this;this.loader=!0,setTimeout(function(){a.aplicarFiltro(e),a.currentPage=1,a.loader=!1},800)},getLoaderTitle:function(){return this.filterLoading?"Aplicando filtros":"Cargando transferencias"},getLoaderSubtitle:function(){return this.filterLoading?"Filtrando transferencias según criterios seleccionados...":"Procesando información de transferencias y estados..."},aplicarFiltroInicial:function(){this.aplicarFiltro({canceladas:!1,pagadas:!1,pendientes:!0})},aplicarFiltro:function(e){var a=[];e.canceladas?(this.title="Transferencias Canceladas",this.todosPedidos.forEach(function(e){3===e.estado_id&&a.push(Object.assign({},e))})):e.pagadas?(this.title="Transferencias Completadas",this.todosPedidos.forEach(function(e){2===e.estado_id&&a.push(Object.assign({},e))})):e.pendientes&&(this.title="Transferencias Pendientes",this.todosPedidos.forEach(function(e){1===e.estado_id&&a.push(Object.assign({},e))})),this.setTransferencias(a)},getColor:function(e){return 1===e?"info":2===e?"success":"red"},getStatusClass:function(e){return 1===e?"status-pending":2===e?"status-completed":"status-cancelled"},getStatusIcon:function(e){return 1===e?"fas fa-clock":2===e?"fas fa-check-circle":"fas fa-times-circle"},getStatusEmoji:function(e){return 1===e?"⏰":2===e?"✅":"❌"},nextPage:function(){this.currentPage<this.totalPages&&this.currentPage++},prevPage:function(){this.currentPage>1&&this.currentPage--},goToPage:function(e){e>=1&&e<=this.totalPages&&(this.currentPage=e)},changeItemsPerPage:function(e){this.itemsPerPage=e,this.currentPage=1},getVisiblePages:function(){var e=this.totalPages,a=this.currentPage;if(e<=7)return Array.from({length:e},function(e,a){return a+1});var t=[];t.push(1),a-2>2&&t.push("...");for(var i=Math.max(2,a-2),n=Math.min(e-1,a+2),r=i;r<=n;r++)t.push(r);return a+2<e-1&&t.push("..."),e>1&&t.push(e),t},getTransferencias:function(){var e=this;axios.get("/historial-transferencias").then(function(a){e.todosPedidos=a.data,e.aplicarFiltroInicial(),e.loader=!1}).catch(function(a){console.log(a),e.loader=!1})},opcionesFiltrado:function(){console.log("Abriendo modal de filtros"),this.$refs.filtros.showFiltros(3)},setTransferencias:function(e){this.transferencias=e.map(function(e){return{id:e.id,nit:e.clientes.nit,dv:e.clientes.dv,cliente:e.clientes.razon_social,estado:e.estados.estado,estado_id:e.estado_id,numero:e.numero,fecha:e.fecha,valor:e.valor,factura:e.factura}})},showTransfer:function(e){this.$refs.imprimir.showTransferencia(e)}}};var r=t(5072),s=t.n(r),o=t(7405),d={insert:"head",singleton:!1};s()(o.A,d);o.A.locals;const c=(0,t(4486).A)(n,function(){var e=this,a=e._self._c;return a(i.A,[a("div",{staticClass:"transfers-container"},[a("aplicar-filtros",{ref:"filtros",on:{aplicarFiltros:e.filtrar}}),e._v(" "),a("printransfer-component",{ref:"imprimir"}),e._v(" "),a("div",{staticClass:"header-section"},[a("div",{staticClass:"page-header"},[a("h2",[a("span",{staticClass:"custom-icon custom-icon-document"},[e._v("🔄")]),e._v(" "),a("span",{staticClass:"page-title"},[e._v(e._s(e.title||"Transferencias"))])]),e._v(" "),a("p",{staticClass:"page-description"},[e._v("\n                    Gestión y seguimiento completo de transferencias entre almacenes\n                ")])]),e._v(" "),a("div",{staticClass:"header-actions"},[a("div",{staticClass:"search-box"},[a("span",{staticClass:"custom-icon custom-icon-search"},[e._v("🔍")]),e._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.search,expression:"search"}],staticClass:"form-control search-input",attrs:{type:"text",placeholder:"Buscar por cliente..."},domProps:{value:e.search},on:{input:function(a){a.target.composing||(e.search=a.target.value)}}})]),e._v(" "),a("button",{staticClass:"btn btn-primary new-lab-btn",on:{click:e.opcionesFiltrado}},[a("span",{staticClass:"custom-icon custom-icon-filter"},[e._v("🔽")]),e._v("\n                    Filtrar Transferencias\n                ")])])]),e._v(" "),e.loader?a("div",{staticClass:"loading-section"},[a("div",{staticClass:"professional-report-container"},[a("div",{staticClass:"loader-container"},[a("div",{staticClass:"spinner-professional"}),e._v(" "),a("h3",{staticClass:"loader-title"},[e._v(e._s(e.getLoaderTitle()))]),e._v(" "),a("p",{staticClass:"loader-subtitle"},[e._v(e._s(e.getLoaderSubtitle()))]),e._v(" "),a("div",{staticClass:"loading-progress"},[a("div",{staticClass:"progress-bar"})])])])]):e._e(),e._v(" "),e.loader?e._e():a("div",{staticClass:"transfers-content"},[a("div",{staticClass:"professional-report-container"},[a("div",{staticClass:"desktop-table"},[a("div",{staticClass:"table-responsive professional-table-wrapper",class:{filtering:e.filterLoading}},[a("table",{staticClass:"professional-table"},[a("thead",[a("tr",[a("th",{staticClass:"text-left"},[a("span",{staticClass:"custom-icon"},[e._v("👤")]),e._v("\n                                        Cliente\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("#️⃣")]),e._v("\n                                        No. Transferencia\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("📅")]),e._v("\n                                        Fecha\n                                    ")]),e._v(" "),a("th",{staticClass:"text-right"},[a("span",{staticClass:"custom-icon"},[e._v("💰")]),e._v("\n                                        Valor\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("🏃‍♂️")]),e._v("\n                                        Estado\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("⚙️")]),e._v("\n                                        Acciones\n                                    ")])])]),e._v(" "),a("tbody",e._l(e.paginatedTransferencias,function(t,i){return a("tr",{key:i,staticClass:"data-row"},[a("td",{staticClass:"text-left client-cell"},[a("span",{staticClass:"client-name"},[e._v(e._s(t.cliente))])]),e._v(" "),a("td",{staticClass:"text-center transfer-cell"},[a("span",{staticClass:"transfer-number"},[e._v(e._s(t.numero))])]),e._v(" "),a("td",{staticClass:"text-center date-cell"},[a("span",{staticClass:"date-value"},[e._v(e._s(t.fecha))])]),e._v(" "),a("td",{staticClass:"text-right amount-cell"},[a("span",{staticClass:"amount-value"},[e._v(e._s(e._f("currency")(t.valor)))])]),e._v(" "),a("td",{staticClass:"text-center status-cell"},[a("span",{staticClass:"status-badge",class:e.getStatusClass(t.estado_id)},[a("span",{staticClass:"custom-icon"},[e._v(e._s(e.getStatusEmoji(t.estado_id)))]),e._v("\n                                            "+e._s(t.estado)+"\n                                        ")])]),e._v(" "),a("td",{staticClass:"text-center actions-cell"},[a("div",{staticClass:"action-buttons"},[a("button",{staticClass:"action-btn view-btn",attrs:{title:"Ver detalles"},on:{click:function(a){return e.showTransfer(t)}}},[a("span",{staticClass:"custom-icon"},[e._v("👁️")])])])])])}),0)])])]),e._v(" "),a("div",{staticClass:"mobile-cards-container",class:{filtering:e.filterLoading}},e._l(e.paginatedTransferencias,function(t,i){return a("div",{key:i,staticClass:"transfer-card"},[a("div",{staticClass:"card-header"},[a("div",{staticClass:"client-info"},[a("span",{staticClass:"custom-icon client-icon"},[e._v("👤")]),e._v(" "),a("span",{staticClass:"client-name-mobile"},[e._v(e._s(t.cliente))])]),e._v(" "),a("div",{staticClass:"transfer-badge"},[a("span",{staticClass:"custom-icon"},[e._v("#️⃣")]),e._v("\n                                "+e._s(t.numero)+"\n                            ")])]),e._v(" "),a("div",{staticClass:"card-body"},[a("div",{staticClass:"info-row"},[a("div",{staticClass:"info-item"},[a("span",{staticClass:"custom-icon info-icon"},[e._v("📅")]),e._v(" "),a("div",{staticClass:"info-content"},[a("span",{staticClass:"info-label"},[e._v("Fecha")]),e._v(" "),a("span",{staticClass:"info-value"},[e._v(e._s(t.fecha))])])]),e._v(" "),a("div",{staticClass:"info-item"},[a("span",{staticClass:"custom-icon info-icon"},[e._v("💰")]),e._v(" "),a("div",{staticClass:"info-content"},[a("span",{staticClass:"info-label"},[e._v("Valor")]),e._v(" "),a("span",{staticClass:"info-value"},[e._v(e._s(e._f("currency")(t.valor)))])])])]),e._v(" "),a("div",{staticClass:"status-section"},[a("div",{staticClass:"status-container"},[a("span",{staticClass:"custom-icon status-flag"},[e._v("🏃‍♂️")]),e._v(" "),a("span",{staticClass:"status-badge-mobile",class:e.getStatusClass(t.estado_id)},[a("span",{staticClass:"custom-icon"},[e._v(e._s(e.getStatusEmoji(t.estado_id)))]),e._v("\n                                        "+e._s(t.estado)+"\n                                    ")])])]),e._v(" "),a("div",{staticClass:"actions-section"},[a("button",{staticClass:"mobile-action-btn view-btn",on:{click:function(a){return e.showTransfer(t)}}},[a("span",{staticClass:"custom-icon"},[e._v("👁️")]),e._v("\n                                    Ver Detalles\n                                ")])])])])}),0),e._v(" "),e.filteredTransferencias.length>0?a("div",{staticClass:"pagination-section"},[a("div",{staticClass:"pagination-info"},[a("div",{staticClass:"items-per-page"},[a("span",{staticClass:"pagination-label"},[e._v("Mostrar:")]),e._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:e.itemsPerPage,expression:"itemsPerPage"}],staticClass:"items-select",on:{change:[function(a){var t=Array.prototype.filter.call(a.target.options,function(e){return e.selected}).map(function(e){return"_value"in e?e._value:e.value});e.itemsPerPage=a.target.multiple?t:t[0]},function(a){return e.changeItemsPerPage(e.itemsPerPage)}]}},e._l(e.itemsPerPageOptions,function(t){return a("option",{key:t,domProps:{value:t}},[e._v("\n                                    "+e._s(t)+"\n                                ")])}),0),e._v(" "),a("span",{staticClass:"pagination-label"},[e._v("registros")])]),e._v(" "),a("div",{staticClass:"page-info"},[a("span",{staticClass:"page-info-text"},[e._v("\n                                Mostrando "+e._s(e.paginationInfo.start)+" - "+e._s(e.paginationInfo.end)+" de "+e._s(e.paginationInfo.total)+" registros\n                            ")])])]),e._v(" "),a("div",{staticClass:"pagination-controls"},[a("button",{staticClass:"pagination-btn prev-btn",attrs:{disabled:1===e.currentPage},on:{click:e.prevPage}},[a("span",{staticClass:"custom-icon"},[e._v("◀️")]),e._v("\n                            Anterior\n                        ")]),e._v(" "),a("div",{staticClass:"page-numbers"},e._l(e.getVisiblePages(),function(t){return a("button",{key:t,class:["page-btn",{active:t===e.currentPage,ellipsis:"..."===t}],attrs:{disabled:"..."===t},on:{click:function(a){return e.goToPage(t)}}},[e._v("\n                                "+e._s(t)+"\n                            ")])}),0),e._v(" "),a("button",{staticClass:"pagination-btn next-btn",attrs:{disabled:e.currentPage===e.totalPages},on:{click:e.nextPage}},[e._v("\n                            Siguiente\n                            "),a("span",{staticClass:"custom-icon"},[e._v("▶️")])])])]):e._e()])])],1)])},[],!1,null,"24a47ee6",null).exports}}]);
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["screen-Transferencia-vue"],{
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      detalleProductos: [],
+      loader: true,
+      filterLoading: false,
+      search: '',
+      title: 'Transferencias Pendientes',
+      todosPedidos: [],
+      transferencia: {},
+      transferencias: [],
+      // Paginación
+      currentPage: 1,
+      itemsPerPage: 10,
+      itemsPerPageOptions: [10, 25, 50, 100]
+    };
+  },
+  computed: {
+    filteredTransferencias: function filteredTransferencias() {
+      var _this = this;
+      var filtered = this.transferencias;
+
+      // Aplicar filtro de búsqueda
+      if (this.search) {
+        filtered = filtered.filter(function (transfer) {
+          return transfer.cliente.toLowerCase().includes(_this.search.toLowerCase()) || transfer.numero.toString().toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
+      return filtered;
+    },
+    paginatedTransferencias: function paginatedTransferencias() {
+      var start = (this.currentPage - 1) * this.itemsPerPage;
+      var end = start + this.itemsPerPage;
+      return this.filteredTransferencias.slice(start, end);
+    },
+    totalPages: function totalPages() {
+      return Math.ceil(this.filteredTransferencias.length / this.itemsPerPage);
+    },
+    paginationInfo: function paginationInfo() {
+      var start = (this.currentPage - 1) * this.itemsPerPage + 1;
+      var end = Math.min(this.currentPage * this.itemsPerPage, this.filteredTransferencias.length);
+      return {
+        start: start,
+        end: end,
+        total: this.filteredTransferencias.length
+      };
+    }
+  },
+  watch: {
+    search: function search() {
+      // Resetear página cuando cambie la búsqueda
+      this.currentPage = 1;
+    }
+  },
+  mounted: function mounted() {
+    this.getTransferencias();
+  },
+  methods: {
+    filtrar: function filtrar(opcion) {
+      var _this2 = this;
+      // Mostrar loader completo al aplicar filtros
+      this.loader = true;
+
+      // Simular tiempo de procesamiento para mostrar el loader
+      setTimeout(function () {
+        _this2.aplicarFiltro(opcion);
+        // Resetear página actual al aplicar filtros
+        _this2.currentPage = 1;
+        _this2.loader = false;
+      }, 800); // 800ms para mostrar el loader como en HistorialFacturas
+    },
+    getLoaderTitle: function getLoaderTitle() {
+      if (this.filterLoading) {
+        return 'Aplicando filtros';
+      }
+      return 'Cargando transferencias';
+    },
+    getLoaderSubtitle: function getLoaderSubtitle() {
+      if (this.filterLoading) {
+        return 'Filtrando transferencias según criterios seleccionados...';
+      }
+      return 'Procesando información de transferencias y estados...';
+    },
+    aplicarFiltroInicial: function aplicarFiltroInicial() {
+      // Aplicar filtro inicial inmediatamente sin delay
+      var opcion = {
+        canceladas: false,
+        pagadas: false,
+        pendientes: true
+      };
+      this.aplicarFiltro(opcion);
+    },
+    aplicarFiltro: function aplicarFiltro(opcion) {
+      var pedidos = [];
+      if (opcion.canceladas) {
+        this.title = 'Transferencias Canceladas';
+        this.todosPedidos.forEach(function (el) {
+          if (el.estado_id === 3) {
+            pedidos.push(Object.assign({}, el));
+          }
+        });
+      } else if (opcion.pagadas) {
+        this.title = 'Transferencias Completadas';
+        this.todosPedidos.forEach(function (el) {
+          if (el.estado_id === 2) {
+            pedidos.push(Object.assign({}, el));
+          }
+        });
+      } else if (opcion.pendientes) {
+        this.title = 'Transferencias Pendientes';
+        this.todosPedidos.forEach(function (el) {
+          if (el.estado_id === 1) {
+            pedidos.push(Object.assign({}, el));
+          }
+        });
+      }
+      this.setTransferencias(pedidos);
+    },
+    getColor: function getColor(estado) {
+      if (estado === 1) return 'info';else if (estado === 2) return 'success';else return 'red';
+    },
+    getStatusClass: function getStatusClass(estadoId) {
+      if (estadoId === 1) return 'status-pending';else if (estadoId === 2) return 'status-completed';else return 'status-cancelled';
+    },
+    getStatusIcon: function getStatusIcon(estadoId) {
+      if (estadoId === 1) return 'fas fa-clock';else if (estadoId === 2) return 'fas fa-check-circle';else return 'fas fa-times-circle';
+    },
+    getStatusEmoji: function getStatusEmoji(estadoId) {
+      if (estadoId === 1) return '⏰';else if (estadoId === 2) return '✅';else return '❌';
+    },
+    // Métodos de paginación
+    nextPage: function nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage: function prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    goToPage: function goToPage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+      }
+    },
+    changeItemsPerPage: function changeItemsPerPage(newValue) {
+      this.itemsPerPage = newValue;
+      this.currentPage = 1; // Reset to first page
+    },
+    getVisiblePages: function getVisiblePages() {
+      var totalPages = this.totalPages;
+      var current = this.currentPage;
+      var delta = 2; // Número de páginas a mostrar a cada lado de la actual
+
+      if (totalPages <= 7) {
+        // Si hay 7 páginas o menos, mostrar todas
+        return Array.from({
+          length: totalPages
+        }, function (_, i) {
+          return i + 1;
+        });
+      }
+      var pages = [];
+
+      // Siempre mostrar la primera página
+      pages.push(1);
+      if (current - delta > 2) {
+        pages.push('...');
+      }
+
+      // Páginas alrededor de la actual
+      var start = Math.max(2, current - delta);
+      var end = Math.min(totalPages - 1, current + delta);
+      for (var i = start; i <= end; i++) {
+        pages.push(i);
+      }
+      if (current + delta < totalPages - 1) {
+        pages.push('...');
+      }
+
+      // Siempre mostrar la última página
+      if (totalPages > 1) {
+        pages.push(totalPages);
+      }
+      return pages;
+    },
+    getTransferencias: function getTransferencias() {
+      var _this3 = this;
+      axios.get('/historial-transferencias').then(function (res) {
+        // console.log(res.data)
+        _this3.todosPedidos = res.data;
+        // Aplicar filtro inicial inmediatamente
+        _this3.aplicarFiltroInicial();
+        _this3.loader = false;
+      })["catch"](function (err) {
+        console.log(err);
+        _this3.loader = false;
+      });
+    },
+    opcionesFiltrado: function opcionesFiltrado() {
+      console.log('Abriendo modal de filtros');
+      this.$refs.filtros.showFiltros(3);
+    },
+    setTransferencias: function setTransferencias(pedidos) {
+      // Optimización: usar map para mejor rendimiento
+      this.transferencias = pedidos.map(function (pedido) {
+        return {
+          id: pedido.id,
+          nit: pedido.clientes.nit,
+          dv: pedido.clientes.dv,
+          cliente: pedido.clientes.razon_social,
+          estado: pedido.estados.estado,
+          estado_id: pedido.estado_id,
+          numero: pedido.numero,
+          fecha: pedido.fecha,
+          valor: pedido.valor,
+          factura: pedido.factura
+        };
+      });
+    },
+    showTransfer: function showTransfer(item) {
+      this.$refs.imprimir.showTransferencia(item);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Professional Container */\n.transfers-container[data-v-160fda8c] {\r\n    min-height: 100vh;\r\n    background: #f8f9fa;\r\n    padding: 2rem;\n}\r\n\r\n/* Header Section */\n.header-section[data-v-160fda8c] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    padding: 2rem;\r\n    margin-bottom: 2rem;\r\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    gap: 2rem;\n}\n.page-header h2[data-v-160fda8c] {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    margin: 0 0 0.5rem 0;\r\n    display: flex;\r\n    align-items: center;\n}\r\n\r\n/* Sistema de iconos personalizados con emojis */\n.custom-icon[data-v-160fda8c] {\r\n    display: inline-block;\r\n    font-size: 1.2em;\r\n    line-height: 1;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n    font-style: normal;\r\n    font-weight: normal;\n}\n.custom-icon-document[data-v-160fda8c] {\r\n    font-size: 2rem;\r\n    margin-right: 1rem;\r\n    color: #17a2b8;\n}\n.custom-icon-search[data-v-160fda8c] {\r\n    position: absolute;\r\n    left: 1rem;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    z-index: 3;\r\n    pointer-events: none;\r\n    font-size: 1.2rem;\r\n    margin-right: 0;\r\n    color: #64748b;\n}\n.custom-icon-filter[data-v-160fda8c] {\r\n    font-size: 1rem;\r\n    margin-right: 0.5rem;\r\n    color: white;\n}\r\n\r\n/* Iconos en headers de tabla */\n.professional-table thead th .custom-icon[data-v-160fda8c] {\r\n    color: #17a2b8;\r\n    margin-right: 0.5rem;\r\n    font-size: 1.1rem;\n}\r\n\r\n/* Iconos de cliente móvil */\n.client-icon.custom-icon[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 10px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.3rem;\r\n    margin-right: 0.75rem;\n}\r\n\r\n/* Iconos de información móvil */\n.info-icon.custom-icon[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);\r\n    color: #17a2b8;\r\n    width: 35px;\r\n    height: 35px;\r\n    border-radius: 8px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.1rem;\r\n    margin-right: 0;\n}\r\n\r\n/* Iconos de estado */\n.status-flag.custom-icon[data-v-160fda8c] {\r\n    font-size: 1.5rem;\r\n    color: #64748b;\r\n    margin-right: 1rem;\n}\r\n\r\n/* Botones de acción con iconos */\n.action-btn .custom-icon[data-v-160fda8c] {\r\n    font-size: 1.2rem;\r\n    margin: 0;\n}\n.mobile-action-btn .custom-icon[data-v-160fda8c] {\r\n    font-size: 1.1rem;\r\n    margin-right: 0.5rem;\n}\r\n\r\n/* Iconos de paginación */\n.pagination-btn .custom-icon[data-v-160fda8c] {\r\n    font-size: 1rem;\r\n    margin: 0 0.25rem;\n}\r\n\r\n/* Estados específicos de iconos */\n.status-badge .custom-icon[data-v-160fda8c],\r\n.status-badge-mobile .custom-icon[data-v-160fda8c] {\r\n    margin-right: 0.5rem;\r\n    font-size: 1rem;\n}\r\n\r\n/* Asegurar que los emojis se vean bien en todos los navegadores */\n.custom-icon[data-v-160fda8c] {\r\n    font-family: \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Noto Color Emoji\", \"Android Emoji\", \"EmojiSymbols\", serif;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\n}\n.page-title[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #17a2b8 0%, #17a2b8 100%);\r\n    background-clip: text;\r\n    -webkit-background-clip: text;\r\n    -webkit-text-fill-color: transparent;\r\n    font-weight: 700;\n}\n.page-description[data-v-160fda8c] {\r\n    color: #64748b;\r\n    font-size: 1.1rem;\r\n    margin: 0;\r\n    font-weight: 400;\n}\n.header-actions[data-v-160fda8c] {\r\n    display: flex;\r\n    gap: 1rem;\r\n    align-items: center;\r\n    flex-wrap: wrap;\n}\n.search-box[data-v-160fda8c] {\r\n    position: relative;\r\n    min-width: 300px;\n}\n.search-input[data-v-160fda8c] {\r\n    width: 100%;\r\n    height: 50px;\r\n    padding: 0 1rem 0 3rem !important;\r\n    border: 2px solid #e2e8f0;\r\n    border-radius: 12px;\r\n    font-size: 1rem;\r\n    background: rgba(255, 255, 255, 0.9);\r\n    backdrop-filter: blur(10px);\r\n    transition: all 0.3s ease;\n}\n.search-input[data-v-160fda8c]::-moz-placeholder {\r\n    color: #9ca3af;\r\n    padding-left: 0;\n}\n.search-input[data-v-160fda8c]::placeholder {\r\n    color: #9ca3af;\r\n    padding-left: 0;\n}\n.search-input[data-v-160fda8c]:focus {\r\n    outline: none;\r\n    border-color: #17a2b8;\r\n    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);\r\n    background: white;\n}\n.new-lab-btn[data-v-160fda8c] {\r\n    height: 50px;\r\n    padding: 0 2rem;\r\n    background: linear-gradient(135deg, #17a2b8 0%, #17a2b8 100%);\r\n    color: white;\r\n    border: none;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    font-size: 1rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);\n}\n.new-lab-btn[data-v-160fda8c]:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);\r\n    color: white;\n}\r\n\r\n\r\n\r\n/* Loading Section */\n.loading-section[data-v-160fda8c] {\r\n    margin-top: 2rem;\r\n    width: 100%;\n}\n.professional-report-container[data-v-160fda8c] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    overflow: hidden;\r\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\r\n    width: 100%;\r\n    box-sizing: border-box;\n}\n.loader-container[data-v-160fda8c] {\r\n    text-align: center;\r\n    padding: 4rem 2rem;\n}\n.spinner-professional[data-v-160fda8c] {\r\n    width: 60px;\r\n    height: 60px;\r\n    border: 4px solid #e5e7eb;\r\n    border-top: 4px solid #17a2b8;\r\n    border-radius: 50%;\r\n    animation: spin-160fda8c 1s linear infinite;\r\n    margin: 0 auto 2rem;\n}\n.loader-title[data-v-160fda8c] {\r\n    color: #1e293b;\r\n    font-size: 1.5rem;\r\n    font-weight: 700;\r\n    margin: 0 0 0.75rem 0;\n}\n.loader-subtitle[data-v-160fda8c] {\r\n    color: #64748b;\r\n    font-size: 1rem;\r\n    font-weight: 500;\r\n    margin: 0 0 2rem 0;\r\n    line-height: 1.5;\n}\n.loading-progress[data-v-160fda8c] {\r\n    width: 100%;\r\n    max-width: 300px;\r\n    height: 4px;\r\n    background: #e5e7eb;\r\n    border-radius: 2px;\r\n    margin: 0 auto;\r\n    overflow: hidden;\n}\n.progress-bar[data-v-160fda8c] {\r\n    height: 100%;\r\n    background: linear-gradient(90deg, #17a2b8, #17a2b8);\r\n    border-radius: 2px;\r\n    animation: progress-160fda8c 2s ease-in-out infinite;\n}\r\n\r\n/* Content */\n.transfers-content[data-v-160fda8c] {\r\n    margin-top: 2rem;\n}\r\n\r\n/* Mobile Cards - Hidden by default */\n.mobile-cards-container[data-v-160fda8c] {\r\n    display: none;\n}\n.desktop-table[data-v-160fda8c] {\r\n    display: block;\n}\r\n\r\n/* Professional Table */\n.professional-table-wrapper[data-v-160fda8c] {\r\n    overflow-x: auto;\r\n    -webkit-overflow-scrolling: touch;\n}\n.professional-table[data-v-160fda8c] {\r\n    width: 100%;\r\n    border-collapse: separate;\r\n    border-spacing: 0;\r\n    background: white;\r\n    font-size: 0.95rem;\r\n    min-width: 900px;\n}\r\n\r\n/* Table Header */\n.professional-table thead th[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);\r\n    color: #374151;\r\n    font-weight: 700;\r\n    font-size: 0.9rem;\r\n    padding: 1.25rem 1rem;\r\n    border-bottom: 2px solid #17a2b8;\r\n    position: sticky;\r\n    top: 0;\r\n    z-index: 10;\r\n    white-space: nowrap;\n}\r\n\r\n/* Table Body */\n.professional-table tbody tr[data-v-160fda8c] {\r\n    transition: all 0.3s ease;\r\n    border-bottom: 1px solid #f1f5f9;\n}\n.professional-table tbody tr[data-v-160fda8c]:hover {\r\n    background: rgba(139, 92, 246, 0.05);\r\n    transform: translateX(5px);\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\n}\n.professional-table tbody td[data-v-160fda8c] {\r\n    padding: 1rem;\r\n    vertical-align: middle;\r\n    border-bottom: 1px solid #f1f5f9;\n}\r\n\r\n/* Cell Styles */\n.client-cell[data-v-160fda8c] {\r\n    font-weight: 600;\r\n    color: #1e293b;\n}\n.client-name[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    border: 1px solid #81d4fa;\n}\n.transfer-cell[data-v-160fda8c] {\r\n    font-weight: 600;\r\n    color: #1e293b;\n}\n.transfer-number[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);\r\n    color: #17a2b8;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    border: 1px solid #c4b5fd;\n}\n.date-cell[data-v-160fda8c] {\r\n    color: #64748b;\r\n    font-weight: 500;\n}\n.date-value[data-v-160fda8c] {\r\n    background: #f8fafc;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 6px;\r\n    border: 1px solid #e2e8f0;\n}\n.amount-cell[data-v-160fda8c] {\r\n    font-weight: 600;\r\n    font-family: 'Courier New', monospace;\n}\n.amount-value[data-v-160fda8c] {\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 6px;\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\r\n    border: 1px solid #93c5fd;\n}\r\n\r\n/* Status Badges */\n.status-badge[data-v-160fda8c] {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    font-size: 0.85rem;\n}\n.status-pending[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);\r\n    color: #d97706;\r\n    border: 1px solid #fbbf24;\n}\n.status-completed[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);\r\n    color: #059669;\r\n    border: 1px solid #4ade80;\n}\n.status-cancelled[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);\r\n    color: #dc2626;\r\n    border: 1px solid #f87171;\n}\r\n\r\n/* Action Buttons */\n.action-buttons[data-v-160fda8c] {\r\n    display: flex;\r\n    gap: 0.5rem;\r\n    justify-content: center;\n}\n.action-btn[data-v-160fda8c] {\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 10px;\r\n    border: none;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    font-size: 1rem;\r\n    text-decoration: none;\n}\n.view-btn[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);\r\n    color: white;\r\n    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);\n}\n.view-btn[data-v-160fda8c]:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);\n}\r\n\r\n/* Mobile Cards Styles */\n.transfer-card[data-v-160fda8c] {\r\n    background: white;\r\n    border-radius: 16px;\r\n    padding: 1.5rem;\r\n    margin-bottom: 1rem;\r\n    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid #e5e7eb;\r\n    transition: all 0.3s ease;\n}\n.transfer-card[data-v-160fda8c]:hover {\r\n    transform: translateY(-5px);\r\n    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);\n}\n.card-header[data-v-160fda8c] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 1.5rem;\r\n    padding-bottom: 1rem;\r\n    border-bottom: 2px solid #f1f5f9;\n}\n.client-info[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.75rem;\r\n    flex: 1;\n}\n.client-icon[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 10px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.1rem;\n}\n.client-name-mobile[data-v-160fda8c] {\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    font-size: 1.1rem;\r\n    line-height: 1.2;\n}\n.transfer-badge[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);\r\n    color: #17a2b8;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 10px;\r\n    font-weight: 700;\r\n    border: 1px solid #c4b5fd;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    font-size: 0.9rem;\n}\n.card-body[data-v-160fda8c] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 1.5rem;\n}\n.info-row[data-v-160fda8c] {\r\n    display: grid;\r\n    grid-template-columns: 1fr 1fr;\r\n    gap: 1rem;\n}\n.info-item[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.75rem;\r\n    padding: 1rem;\r\n    background: #f8fafc;\r\n    border-radius: 12px;\r\n    border: 1px solid #e2e8f0;\n}\n.info-icon[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\r\n    color: #2563eb;\r\n    width: 35px;\r\n    height: 35px;\r\n    border-radius: 8px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 0.9rem;\n}\n.info-content[data-v-160fda8c] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 0.25rem;\r\n    flex: 1;\n}\n.info-label[data-v-160fda8c] {\r\n    font-size: 0.8rem;\r\n    font-weight: 600;\r\n    color: #64748b;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\n}\n.info-value[data-v-160fda8c] {\r\n    font-size: 1rem;\r\n    font-weight: 700;\r\n    color: #1e293b;\n}\r\n\r\n/* Status Section Mobile */\n.status-section[data-v-160fda8c] {\r\n    padding: 1.5rem;\r\n    background: #f8fafc;\r\n    border-radius: 12px;\r\n    border: 1px solid #e2e8f0;\n}\n.status-container[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 1rem;\r\n    justify-content: center;\n}\n.status-flag[data-v-160fda8c] {\r\n    font-size: 1.5rem;\r\n    color: #64748b;\n}\n.status-badge-mobile[data-v-160fda8c] {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.75rem 1.25rem;\r\n    border-radius: 12px;\r\n    font-weight: 700;\r\n    font-size: 1rem;\r\n    flex: 1;\r\n    justify-content: center;\n}\r\n\r\n/* Actions Section Mobile */\n.actions-section[data-v-160fda8c] {\r\n    display: flex;\r\n    gap: 1rem;\n}\n.mobile-action-btn[data-v-160fda8c] {\r\n    flex: 1;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    gap: 0.75rem;\r\n    padding: 1rem;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    font-size: 1rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    text-decoration: none;\r\n    border: none;\n}\r\n\r\n/* Pagination Styles (same as HistorialFacturas) */\n.pagination-section[data-v-160fda8c] {\r\n    background: white;\r\n    border-top: 2px solid #f1f5f9;\r\n    padding: 1.5rem 2rem;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    gap: 1rem;\n}\n.pagination-info[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 2rem;\r\n    flex-wrap: wrap;\n}\n.items-per-page[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\n}\n.pagination-label[data-v-160fda8c] {\r\n    font-weight: 600;\r\n    color: #374151;\r\n    font-size: 0.9rem;\n}\n.items-select[data-v-160fda8c] {\r\n    padding: 0.5rem 0.75rem;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 8px;\r\n    font-size: 0.9rem;\r\n    font-weight: 600;\r\n    color: #374151;\r\n    background: white;\r\n    cursor: pointer;\r\n    outline: none;\r\n    transition: all 0.3s ease;\n}\n.items-select[data-v-160fda8c]:focus {\r\n    border-color: #17a2b8;\r\n    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);\n}\n.page-info-text[data-v-160fda8c] {\r\n    font-size: 0.9rem;\r\n    color: #64748b;\r\n    font-weight: 500;\n}\n.pagination-controls[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\n}\n.pagination-btn[data-v-160fda8c] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.75rem 1rem;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 8px;\r\n    background: white;\r\n    color: #374151;\r\n    font-weight: 600;\r\n    font-size: 0.9rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\n}\n.pagination-btn[data-v-160fda8c]:hover:not(:disabled) {\r\n    border-color: #17a2b8;\r\n    color: #17a2b8;\r\n    background: rgba(139, 92, 246, 0.05);\n}\n.pagination-btn[data-v-160fda8c]:disabled {\r\n    opacity: 0.5;\r\n    cursor: not-allowed;\r\n    color: #9ca3af;\n}\n.page-numbers[data-v-160fda8c] {\r\n    display: flex;\r\n    gap: 0.25rem;\r\n    margin: 0 1rem;\n}\n.page-btn[data-v-160fda8c] {\r\n    width: 40px;\r\n    height: 40px;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 8px;\r\n    background: white;\r\n    color: #374151;\r\n    font-weight: 600;\r\n    font-size: 0.9rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\n}\n.page-btn[data-v-160fda8c]:hover:not(:disabled):not(.ellipsis) {\r\n    border-color: #17a2b8;\r\n    color: #17a2b8;\r\n    background: rgba(139, 92, 246, 0.05);\n}\n.page-btn.active[data-v-160fda8c] {\r\n    background: linear-gradient(135deg, #17a2b8 0%, #17a2b8 100%);\r\n    color: white;\r\n    border-color: #17a2b8;\r\n    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);\n}\n.page-btn.ellipsis[data-v-160fda8c] {\r\n    border: none;\r\n    background: transparent;\r\n    cursor: default;\r\n    color: #9ca3af;\n}\n.page-btn.ellipsis[data-v-160fda8c]:hover {\r\n    background: transparent;\r\n    border: none;\n}\r\n\r\n/* Animations */\n@keyframes spin-160fda8c {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n@keyframes progress-160fda8c {\n0% { transform: translateX(-100%);\n}\n50% { transform: translateX(0%);\n}\n100% { transform: translateX(100%);\n}\n}\r\n\r\n/* Responsive Design */\n@media (max-width: 1024px) {\n.header-section[data-v-160fda8c] {\r\n        flex-direction: column;\r\n        align-items: stretch;\r\n        text-align: center;\n}\n.header-actions[data-v-160fda8c] {\r\n        justify-content: center;\n}\n.search-box[data-v-160fda8c] {\r\n        min-width: 100%;\n}\n.page-header h2[data-v-160fda8c] {\r\n        font-size: 2rem;\r\n        justify-content: center;\n}\n}\n@media (max-width: 900px) {\r\n    /* Show mobile cards, hide desktop table */\n.desktop-table[data-v-160fda8c] {\r\n        display: none;\n}\n.mobile-cards-container[data-v-160fda8c] {\r\n        display: block;\r\n        padding: 0 0.5rem;\n}\n}\n@media (max-width: 768px) {\n.transfers-container[data-v-160fda8c] {\r\n        padding: 1rem;\n}\n.header-section[data-v-160fda8c] {\r\n        border-radius: 16px;\r\n        padding: 1.5rem;\n}\n.professional-report-container[data-v-160fda8c] {\r\n        border-radius: 16px;\n}\n.page-header h2[data-v-160fda8c] {\r\n        font-size: 1.8rem;\r\n        flex-direction: column;\r\n        text-align: center;\r\n        gap: 0.5rem;\n}\n.transfer-card[data-v-160fda8c] {\r\n        margin-bottom: 1rem;\r\n        padding: 1.25rem;\r\n        border-radius: 14px;\n}\n.card-header[data-v-160fda8c] {\r\n        flex-direction: column;\r\n        gap: 1rem;\r\n        align-items: stretch;\r\n        margin-bottom: 1.25rem;\n}\n.client-info[data-v-160fda8c] {\r\n        justify-content: center;\r\n        text-align: center;\n}\n.client-name-mobile[data-v-160fda8c] {\r\n        font-size: 1rem;\r\n        text-align: center;\n}\n.transfer-badge[data-v-160fda8c] {\r\n        align-self: center;\r\n        font-size: 0.85rem;\n}\n.info-row[data-v-160fda8c] {\r\n        grid-template-columns: 1fr;\r\n        gap: 0.75rem;\n}\n.pagination-section[data-v-160fda8c] {\r\n        padding: 1rem;\r\n        flex-direction: column;\r\n        align-items: stretch;\r\n        gap: 1rem;\n}\n.pagination-info[data-v-160fda8c] {\r\n        justify-content: center;\r\n        flex-direction: column;\r\n        gap: 1rem;\r\n        text-align: center;\n}\n.items-per-page[data-v-160fda8c] {\r\n        justify-content: center;\n}\n.pagination-controls[data-v-160fda8c] {\r\n        justify-content: center;\r\n        flex-wrap: wrap;\n}\n.page-numbers[data-v-160fda8c] {\r\n        margin: 0 0.5rem;\r\n        flex-wrap: wrap;\r\n        justify-content: center;\n}\n}\n@media (max-width: 480px) {\n.transfers-container[data-v-160fda8c] {\r\n        padding: 0.75rem;\n}\n.header-section[data-v-160fda8c] {\r\n        padding: 1.25rem;\n}\n.page-header h2[data-v-160fda8c] {\r\n        font-size: 1.6rem;\n}\n.transfer-card[data-v-160fda8c] {\r\n        padding: 1rem;\r\n        margin-bottom: 0.875rem;\n}\n.client-name-mobile[data-v-160fda8c] {\r\n        font-size: 0.95rem;\n}\n.pagination-controls[data-v-160fda8c] {\r\n        flex-direction: column;\r\n        gap: 1rem;\n}\n.page-numbers[data-v-160fda8c] {\r\n        margin: 0;\r\n        order: 2;\n}\n.prev-btn[data-v-160fda8c] {\r\n        order: 1;\r\n        align-self: stretch;\r\n        justify-content: center;\n}\n.next-btn[data-v-160fda8c] {\r\n        order: 3;\r\n        align-self: stretch;\r\n        justify-content: center;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_style_index_0_id_160fda8c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_style_index_0_id_160fda8c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_style_index_0_id_160fda8c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ normalizeComponent)
+/* harmony export */ });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent(
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */,
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=template&id=160fda8c&scoped=true":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=template&id=160fda8c&scoped=true ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("div", {
+    staticClass: "transfers-container"
+  }, [_c("aplicar-filtros", {
+    ref: "filtros",
+    on: {
+      aplicarFiltros: _vm.filtrar
+    }
+  }), _vm._v(" "), _c("printransfer-component", {
+    ref: "imprimir"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "header-section"
+  }, [_c("div", {
+    staticClass: "page-header"
+  }, [_c("h2", [_c("span", {
+    staticClass: "custom-icon custom-icon-document"
+  }, [_vm._v("🔄")]), _vm._v(" "), _c("span", {
+    staticClass: "page-title"
+  }, [_vm._v(_vm._s(_vm.title || "Transferencias"))])]), _vm._v(" "), _c("p", {
+    staticClass: "page-description"
+  }, [_vm._v("\n                    Gestión y seguimiento completo de transferencias entre almacenes\n                ")])]), _vm._v(" "), _c("div", {
+    staticClass: "header-actions"
+  }, [_c("div", {
+    staticClass: "search-box"
+  }, [_c("span", {
+    staticClass: "custom-icon custom-icon-search"
+  }, [_vm._v("🔍")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.search,
+      expression: "search"
+    }],
+    staticClass: "form-control search-input",
+    attrs: {
+      type: "text",
+      placeholder: "Buscar por cliente..."
+    },
+    domProps: {
+      value: _vm.search
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.search = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary new-lab-btn",
+    on: {
+      click: _vm.opcionesFiltrado
+    }
+  }, [_c("span", {
+    staticClass: "custom-icon custom-icon-filter"
+  }, [_vm._v("🔽")]), _vm._v("\n                    Filtrar Transferencias\n                ")])])]), _vm._v(" "), _vm.loader ? _c("div", {
+    staticClass: "loading-section"
+  }, [_c("div", {
+    staticClass: "professional-report-container"
+  }, [_c("div", {
+    staticClass: "loader-container"
+  }, [_c("div", {
+    staticClass: "spinner-professional"
+  }), _vm._v(" "), _c("h3", {
+    staticClass: "loader-title"
+  }, [_vm._v(_vm._s(_vm.getLoaderTitle()))]), _vm._v(" "), _c("p", {
+    staticClass: "loader-subtitle"
+  }, [_vm._v(_vm._s(_vm.getLoaderSubtitle()))]), _vm._v(" "), _vm._m(0)])])]) : _vm._e(), _vm._v(" "), !_vm.loader ? _c("div", {
+    staticClass: "transfers-content"
+  }, [_c("div", {
+    staticClass: "professional-report-container"
+  }, [_c("div", {
+    staticClass: "desktop-table"
+  }, [_c("div", {
+    staticClass: "table-responsive professional-table-wrapper",
+    "class": {
+      filtering: _vm.filterLoading
+    }
+  }, [_c("table", {
+    staticClass: "professional-table"
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.paginatedTransferencias, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "data-row"
+    }, [_c("td", {
+      staticClass: "text-left client-cell"
+    }, [_c("span", {
+      staticClass: "client-name"
+    }, [_vm._v(_vm._s(item.cliente))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center transfer-cell"
+    }, [_c("span", {
+      staticClass: "transfer-number"
+    }, [_vm._v(_vm._s(item.numero))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center date-cell"
+    }, [_c("span", {
+      staticClass: "date-value"
+    }, [_vm._v(_vm._s(item.fecha))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-right amount-cell"
+    }, [_c("span", {
+      staticClass: "amount-value"
+    }, [_vm._v(_vm._s(_vm._f("currency")(item.valor)))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center status-cell"
+    }, [_c("span", {
+      staticClass: "status-badge",
+      "class": _vm.getStatusClass(item.estado_id)
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v(_vm._s(_vm.getStatusEmoji(item.estado_id)))]), _vm._v("\n                                            " + _vm._s(item.estado) + "\n                                        ")])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center actions-cell"
+    }, [_c("div", {
+      staticClass: "action-buttons"
+    }, [_c("button", {
+      staticClass: "action-btn view-btn",
+      attrs: {
+        title: "Ver detalles"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.showTransfer(item);
+        }
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("👁️")])])])])]);
+  }), 0)])])]), _vm._v(" "), _c("div", {
+    staticClass: "mobile-cards-container",
+    "class": {
+      filtering: _vm.filterLoading
+    }
+  }, _vm._l(_vm.paginatedTransferencias, function (item, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "transfer-card"
+    }, [_c("div", {
+      staticClass: "card-header"
+    }, [_c("div", {
+      staticClass: "client-info"
+    }, [_c("span", {
+      staticClass: "custom-icon client-icon"
+    }, [_vm._v("👤")]), _vm._v(" "), _c("span", {
+      staticClass: "client-name-mobile"
+    }, [_vm._v(_vm._s(item.cliente))])]), _vm._v(" "), _c("div", {
+      staticClass: "transfer-badge"
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("#️⃣")]), _vm._v("\n                                " + _vm._s(item.numero) + "\n                            ")])]), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("div", {
+      staticClass: "info-row"
+    }, [_c("div", {
+      staticClass: "info-item"
+    }, [_c("span", {
+      staticClass: "custom-icon info-icon"
+    }, [_vm._v("📅")]), _vm._v(" "), _c("div", {
+      staticClass: "info-content"
+    }, [_c("span", {
+      staticClass: "info-label"
+    }, [_vm._v("Fecha")]), _vm._v(" "), _c("span", {
+      staticClass: "info-value"
+    }, [_vm._v(_vm._s(item.fecha))])])]), _vm._v(" "), _c("div", {
+      staticClass: "info-item"
+    }, [_c("span", {
+      staticClass: "custom-icon info-icon"
+    }, [_vm._v("💰")]), _vm._v(" "), _c("div", {
+      staticClass: "info-content"
+    }, [_c("span", {
+      staticClass: "info-label"
+    }, [_vm._v("Valor")]), _vm._v(" "), _c("span", {
+      staticClass: "info-value"
+    }, [_vm._v(_vm._s(_vm._f("currency")(item.valor)))])])])]), _vm._v(" "), _c("div", {
+      staticClass: "status-section"
+    }, [_c("div", {
+      staticClass: "status-container"
+    }, [_c("span", {
+      staticClass: "custom-icon status-flag"
+    }, [_vm._v("🏃‍♂️")]), _vm._v(" "), _c("span", {
+      staticClass: "status-badge-mobile",
+      "class": _vm.getStatusClass(item.estado_id)
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v(_vm._s(_vm.getStatusEmoji(item.estado_id)))]), _vm._v("\n                                        " + _vm._s(item.estado) + "\n                                    ")])])]), _vm._v(" "), _c("div", {
+      staticClass: "actions-section"
+    }, [_c("button", {
+      staticClass: "mobile-action-btn view-btn",
+      on: {
+        click: function click($event) {
+          return _vm.showTransfer(item);
+        }
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("👁️")]), _vm._v("\n                                    Ver Detalles\n                                ")])])])]);
+  }), 0), _vm._v(" "), _vm.filteredTransferencias.length > 0 ? _c("div", {
+    staticClass: "pagination-section"
+  }, [_c("div", {
+    staticClass: "pagination-info"
+  }, [_c("div", {
+    staticClass: "items-per-page"
+  }, [_c("span", {
+    staticClass: "pagination-label"
+  }, [_vm._v("Mostrar:")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.itemsPerPage,
+      expression: "itemsPerPage"
+    }],
+    staticClass: "items-select",
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.itemsPerPage = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }, function ($event) {
+        return _vm.changeItemsPerPage(_vm.itemsPerPage);
+      }]
+    }
+  }, _vm._l(_vm.itemsPerPageOptions, function (option) {
+    return _c("option", {
+      key: option,
+      domProps: {
+        value: option
+      }
+    }, [_vm._v("\n                                    " + _vm._s(option) + "\n                                ")]);
+  }), 0), _vm._v(" "), _c("span", {
+    staticClass: "pagination-label"
+  }, [_vm._v("registros")])]), _vm._v(" "), _c("div", {
+    staticClass: "page-info"
+  }, [_c("span", {
+    staticClass: "page-info-text"
+  }, [_vm._v("\n                                Mostrando " + _vm._s(_vm.paginationInfo.start) + " - " + _vm._s(_vm.paginationInfo.end) + " de " + _vm._s(_vm.paginationInfo.total) + " registros\n                            ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "pagination-controls"
+  }, [_c("button", {
+    staticClass: "pagination-btn prev-btn",
+    attrs: {
+      disabled: _vm.currentPage === 1
+    },
+    on: {
+      click: _vm.prevPage
+    }
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("◀️")]), _vm._v("\n                            Anterior\n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "page-numbers"
+  }, _vm._l(_vm.getVisiblePages(), function (page) {
+    return _c("button", {
+      key: page,
+      "class": ["page-btn", {
+        active: page === _vm.currentPage,
+        ellipsis: page === "..."
+      }],
+      attrs: {
+        disabled: page === "..."
+      },
+      on: {
+        click: function click($event) {
+          return _vm.goToPage(page);
+        }
+      }
+    }, [_vm._v("\n                                " + _vm._s(page) + "\n                            ")]);
+  }), 0), _vm._v(" "), _c("button", {
+    staticClass: "pagination-btn next-btn",
+    attrs: {
+      disabled: _vm.currentPage === _vm.totalPages
+    },
+    on: {
+      click: _vm.nextPage
+    }
+  }, [_vm._v("\n                            Siguiente\n                            "), _c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("▶️")])])])]) : _vm._e()])]) : _vm._e()], 1)]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "loading-progress"
+  }, [_c("div", {
+    staticClass: "progress-bar"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", {
+    staticClass: "text-left"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("👤")]), _vm._v("\n                                        Cliente\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("#️⃣")]), _vm._v("\n                                        No. Transferencia\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("📅")]), _vm._v("\n                                        Fecha\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-right"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("💰")]), _vm._v("\n                                        Valor\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("🏃‍♂️")]), _vm._v("\n                                        Estado\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("⚙️")]), _vm._v("\n                                        Acciones\n                                    ")])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Transferencia.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Transferencia.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Transferencia_vue_vue_type_template_id_160fda8c_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Transferencia.vue?vue&type=template&id=160fda8c&scoped=true */ "./resources/js/components/Transferencia.vue?vue&type=template&id=160fda8c&scoped=true");
+/* harmony import */ var _Transferencia_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Transferencia.vue?vue&type=script&lang=js */ "./resources/js/components/Transferencia.vue?vue&type=script&lang=js");
+/* harmony import */ var _Transferencia_vue_vue_type_style_index_0_id_160fda8c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css */ "./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Transferencia_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Transferencia_vue_vue_type_template_id_160fda8c_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Transferencia_vue_vue_type_template_id_160fda8c_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "160fda8c",
+  null
+  
+)
+
+/* hot reload */
+if (false) // removed by dead control flow
+{ var api; }
+component.options.__file = "resources/js/components/Transferencia.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Transferencia.vue?vue&type=script&lang=js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Transferencia.vue?vue&type=script&lang=js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Transferencia.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_style_index_0_id_160fda8c_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=style&index=0&id=160fda8c&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Transferencia.vue?vue&type=template&id=160fda8c&scoped=true":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/Transferencia.vue?vue&type=template&id=160fda8c&scoped=true ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_template_id_160fda8c_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_template_id_160fda8c_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Transferencia_vue_vue_type_template_id_160fda8c_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Transferencia.vue?vue&type=template&id=160fda8c&scoped=true */ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Transferencia.vue?vue&type=template&id=160fda8c&scoped=true");
+
+
+/***/ })
+
+}]);

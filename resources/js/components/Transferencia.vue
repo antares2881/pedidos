@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="transfers-container">
             <aplicar-filtros ref="filtros" @aplicarFiltros="filtrar" />
             <printransfer-component ref="imprimir"/>
@@ -241,7 +241,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     export default {

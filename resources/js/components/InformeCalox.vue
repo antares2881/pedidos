@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="informe-container">
             <!-- Header Section -->
             <div class="header-card">
@@ -293,7 +293,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import Swal from 'sweetalert2';

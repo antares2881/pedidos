@@ -1,1 +1,671 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8085],{160:(a,e,t)=>{t.d(e,{A:()=>s});var r=t(6798),i=t.n(r)()(function(a){return a[1]});i.push([a.id,".theme--light.v-application{background:#fff;color:rgba(0,0,0,.87)}.theme--light.v-application .text--primary{color:rgba(0,0,0,.87)!important}.theme--light.v-application .text--secondary{color:rgba(0,0,0,.6)!important}.theme--light.v-application .text--disabled{color:rgba(0,0,0,.38)!important}.theme--dark.v-application{background:#121212;color:#fff}.theme--dark.v-application .text--primary{color:#fff!important}.theme--dark.v-application .text--secondary{color:hsla(0,0%,100%,.7)!important}.theme--dark.v-application .text--disabled{color:hsla(0,0%,100%,.5)!important}.v-application{display:flex;position:relative}.v-application a{cursor:pointer}.v-application--is-rtl{direction:rtl}.v-application--wrap{backface-visibility:hidden;display:flex;flex:1 1 auto;flex-direction:column;max-width:100%;min-height:100vh;position:relative}@-moz-document url-prefix(){@media print{.v-application,.v-application--wrap{display:block}}}",""]);const s=i},1582:(a,e,t)=>{t.d(e,{A:()=>i,H:()=>s});const r=t(2893).default.extend().extend({name:"themeable",provide(){return{theme:this.themeableProvide}},inject:{theme:{default:{isDark:!1}}},props:{dark:{type:Boolean,default:null},light:{type:Boolean,default:null}},data:()=>({themeableProvide:{isDark:!1}}),computed:{appIsDark(){return this.$vuetify.theme.dark||!1},isDark(){return!0===this.dark||!0!==this.light&&this.theme.isDark},themeClasses(){return{"theme--dark":this.isDark,"theme--light":!this.isDark}},rootIsDark(){return!0===this.dark||!0!==this.light&&this.appIsDark},rootThemeClasses(){return{"theme--dark":this.rootIsDark,"theme--light":!this.rootIsDark}}},watch:{isDark:{handler(a,e){a!==e&&(this.themeableProvide.isDark=this.isDark)},immediate:!0}}}),i=r;function s(a){const e={...a.props,...a.injections},t=r.options.computed.isDark.call(e);return r.options.computed.themeClasses.call({isDark:t})}},2006:(a,e,t)=>{t.d(e,{A:()=>i});var r=t(2893);function i(...a){return r.default.extend({mixins:a})}},2523:(a,e,t)=>{t.d(e,{A:()=>s});var r=t(6798),i=t.n(r)()(function(a){return a[1]});i.push([a.id,'.reporte-ventas-container[data-v-e6c31bbc]{background:linear-gradient(135deg,#f5f7fa,#c3cfe2);min-height:100vh;padding:2rem}.loading-container[data-v-e6c31bbc]{align-items:center;backdrop-filter:blur(10px);background:linear-gradient(135deg,#17a2b820,#13849620);border:1px solid hsla(0,0%,100%,.3);border-radius:12px;display:flex;justify-content:center;min-height:400px;padding:40px 20px}.loading-content[data-v-e6c31bbc]{max-width:300px;text-align:center}.professional-loader[data-v-e6c31bbc]{display:inline-block;margin-bottom:30px;position:relative}.loader-spinner[data-v-e6c31bbc]{animation:spin-e6c31bbc 1s linear infinite;border:4px solid rgba(102,126,234,.1);border-left-color:#17a2b8;border-radius:50%;height:60px;position:relative;width:60px;z-index:2}.loader-pulse[data-v-e6c31bbc]{animation:pulse-e6c31bbc 2s ease-in-out infinite;border:2px solid rgba(102,126,234,.3);border-radius:50%;height:80px;left:-10px;position:absolute;top:-10px;width:80px;z-index:1}@keyframes spin-e6c31bbc{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes pulse-e6c31bbc{0%{opacity:1;transform:scale(.8)}50%{opacity:.5;transform:scale(1.2)}to{opacity:1;transform:scale(.8)}}.loading-title[data-v-e6c31bbc]{-webkit-text-fill-color:transparent;background:linear-gradient(135deg,#17a2b8,#138496);background-clip:text;-webkit-background-clip:text;color:#2c3e50;font-size:1.4rem;font-weight:700;margin-bottom:8px}.loading-subtitle[data-v-e6c31bbc]{color:#6c757d;font-size:.95rem;font-weight:400;line-height:1.4;margin:0 0 2rem}.loading-progress[data-v-e6c31bbc]{background:#e5e7eb;border-radius:2px;height:4px;margin:0 auto;max-width:300px;overflow:hidden;width:100%}.progress-bar[data-v-e6c31bbc]{animation:progress-e6c31bbc 2s ease-in-out infinite;background:linear-gradient(90deg,#17a2b8,#138496);border-radius:2px;height:100%}@keyframes progress-e6c31bbc{0%{transform:translateX(-100%)}50%{transform:translateX(0)}to{transform:translateX(100%)}}.reporte-content[data-v-e6c31bbc]{margin:0 auto;max-width:1400px}.header-section[data-v-e6c31bbc]{backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1);margin-bottom:2rem;padding:2.5rem}.page-header h2[data-v-e6c31bbc]{align-items:center;color:#2c3e50;display:flex;font-size:2.5rem;font-weight:700;margin:0 0 .5rem}.page-header h2 i[data-v-e6c31bbc]{color:#17a2b8}.page-description[data-v-e6c31bbc]{color:#64748b;font-size:1.1rem;line-height:1.6;margin:0}.filters-section[data-v-e6c31bbc]{backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,.1);margin-bottom:2rem;overflow:hidden}.filters-header[data-v-e6c31bbc]{background:linear-gradient(135deg,#f8f9fa,#e9ecef);border-bottom:1px solid #e9ecef;padding:20px 30px}.filters-title[data-v-e6c31bbc]{color:#2c3e50;font-size:1.1rem;font-weight:600;margin-bottom:0}.filters-content[data-v-e6c31bbc]{padding:2rem}.date-filters[data-v-e6c31bbc]{display:grid;gap:2rem;grid-template-columns:1fr 1fr;margin-bottom:2rem}.date-group[data-v-e6c31bbc]{display:flex;flex-direction:column;gap:.75rem}.filter-label[data-v-e6c31bbc]{align-items:center;color:#2c3e50;display:flex;font-size:.9rem;font-weight:600;margin-bottom:10px}.filter-label i[data-v-e6c31bbc]{color:#17a2b8}.date-input[data-v-e6c31bbc]{background:linear-gradient(145deg,#fff,#f8f9fa);border:2px solid #e5e7eb;border-radius:12px;box-shadow:inset 0 2px 4px rgba(0,0,0,.05);box-sizing:border-box;color:#374151;cursor:pointer;font-size:1rem;font-weight:500;height:56px;outline:none;padding:1rem 1.25rem;transition:all .3s ease}.date-input[data-v-e6c31bbc]:focus{background:#fff;border-color:#17a2b8;box-shadow:0 0 0 3px rgba(102,126,234,.1),inset 0 2px 4px rgba(0,0,0,.05)}.date-input.is-invalid[data-v-e6c31bbc]{background:linear-gradient(145deg,#fff5f5,#ffeaea);border-color:#dc3545;box-shadow:0 0 0 3px rgba(220,53,69,.1)}.date-input.is-invalid[data-v-e6c31bbc]:focus{border-color:#dc3545;box-shadow:0 0 0 3px rgba(220,53,69,.15)}.invalid-feedback[data-v-e6c31bbc]{align-items:center;background:linear-gradient(135deg,#f8d7da,#f5c6cb);border:1px solid rgba(220,53,69,.2);border-radius:10px;box-shadow:0 4px 12px rgba(220,53,69,.15);color:#dc3545;display:block;display:flex;font-size:.85rem;font-weight:600;margin-top:8px;padding:10px 15px;width:100%}.invalid-feedback[data-v-e6c31bbc]:before{content:"⚠️";font-size:1rem;margin-right:10px}.actions-section[data-v-e6c31bbc]{display:flex;gap:1rem;justify-content:flex-start}.professional-btn[data-v-e6c31bbc]{align-items:center;border:none;border-radius:12px;cursor:pointer;display:flex;font-size:1rem;font-weight:600;gap:.75rem;overflow:hidden;padding:1rem 2rem;position:relative;text-decoration:none;transition:all .3s ease}.professional-btn[data-v-e6c31bbc]:disabled{cursor:not-allowed;opacity:.7}.btn-primary[data-v-e6c31bbc]{background:linear-gradient(135deg,#17a2b8,#138496);box-shadow:0 8px 25px rgba(102,126,234,.3);color:#fff}.btn-primary[data-v-e6c31bbc]:hover:not(:disabled){box-shadow:0 12px 35px rgba(102,126,234,.4);color:#fff;transform:translateY(-2px)}.results-section[data-v-e6c31bbc]{animation:fadeInUp-e6c31bbc .6s ease-out}.professional-report-container[data-v-e6c31bbc]{backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden}.report-header[data-v-e6c31bbc]{background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-bottom:2px solid #e5e7eb;padding:2rem 2.5rem}.report-info[data-v-e6c31bbc]{width:100%}.report-title[data-v-e6c31bbc]{align-items:center;color:#1e293b;display:flex;font-size:1.8rem;font-weight:700;margin:0 0 1.5rem}.report-title i[data-v-e6c31bbc]{color:#17a2b8}.report-summary[data-v-e6c31bbc]{display:grid;gap:2rem;grid-template-columns:1fr 1fr}.summary-card[data-v-e6c31bbc]{align-items:center;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.1);display:flex;gap:1rem;padding:1.5rem;transition:all .3s ease}.summary-card[data-v-e6c31bbc]:hover{box-shadow:0 15px 35px rgba(0,0,0,.15);transform:translateY(-5px)}.summary-card:first-child .summary-icon[data-v-e6c31bbc]{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}.summary-card:last-child .summary-icon[data-v-e6c31bbc]{background:linear-gradient(135deg,#10b981,#059669);color:#fff}.summary-icon[data-v-e6c31bbc]{align-items:center;border-radius:12px;display:flex;font-size:1.5rem;height:60px;justify-content:center;width:60px}.summary-content[data-v-e6c31bbc]{flex:1}.summary-title[data-v-e6c31bbc]{color:#64748b;font-size:.9rem;font-weight:600;letter-spacing:.5px;margin:0 0 .5rem;text-transform:uppercase}.summary-value[data-v-e6c31bbc]{color:#1e293b;font-size:1.8rem;font-weight:700;margin:0}.professional-table-wrapper[data-v-e6c31bbc]{-webkit-overflow-scrolling:touch;overflow-x:auto}.professional-table[data-v-e6c31bbc]{background:#fff;border-collapse:separate;border-spacing:0;font-size:.95rem;min-width:800px;width:100%}.professional-table thead th[data-v-e6c31bbc]{background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-bottom:2px solid #17a2b8;color:#374151;font-size:.9rem;font-weight:700;letter-spacing:.5px;padding:1.25rem 1rem;position:sticky;text-transform:uppercase;top:0;white-space:nowrap;z-index:10}.professional-table thead th i[data-v-e6c31bbc]{color:#17a2b8}.professional-table tbody tr[data-v-e6c31bbc]{backdrop-filter:blur(10px);background:hsla(0,0%,100%,.8);border-bottom:1px solid #f1f5f9;transition:all .3s ease}.professional-table tbody tr[data-v-e6c31bbc]:hover{background:rgba(102,126,234,.05);box-shadow:0 5px 15px rgba(0,0,0,.1);transform:translateX(5px)}.professional-table tbody td[data-v-e6c31bbc]{border-bottom:1px solid #f1f5f9;padding:1rem;vertical-align:middle}.client-cell[data-v-e6c31bbc]{color:#1e293b;font-weight:600}.client-info[data-v-e6c31bbc]{align-items:center;display:flex;gap:.75rem}.client-icon[data-v-e6c31bbc]{color:#17a2b8;font-size:1rem;text-align:center;width:20px}.client-name[data-v-e6c31bbc]{background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border:1px solid #81d4fa;border-radius:8px;color:#374151;color:#0277bd;font-size:1rem;font-weight:600;font-weight:700;padding:.4rem .8rem}.date-cell[data-v-e6c31bbc]{color:#64748b;font-weight:500}.date-badge[data-v-e6c31bbc]{background:linear-gradient(135deg,#fff3e0,#ffcc02 20%);border:1px solid rgba(245,124,0,.2);border-radius:12px;color:#f57c00;font-weight:600;padding:.4rem .8rem}.amount-cell[data-v-e6c31bbc]{font-family:Courier New,monospace;font-weight:600}.amount-value[data-v-e6c31bbc]{background:linear-gradient(135deg,#dbeafe,#bfdbfe);background:rgba(16,185,129,.1);border:2px solid #10b981;border-radius:6px;color:#1e293b;color:#059669;font-size:1.05rem;font-weight:700;padding:.4rem .8rem}.status-cell[data-v-e6c31bbc]{color:#64748b;font-weight:500}.status-badge[data-v-e6c31bbc]{border-radius:12px;font-size:.8rem;font-weight:700;letter-spacing:.5px;padding:.4rem .8rem;text-transform:uppercase}.status-success[data-v-e6c31bbc]{background:linear-gradient(135deg,#d4edda,#c3e6cb);border:1px solid rgba(40,167,69,.2);color:#155724}.status-warning[data-v-e6c31bbc]{background:linear-gradient(135deg,#fff3cd,#ffeaa7);border:1px solid rgba(255,193,7,.2);color:#856404}.status-danger[data-v-e6c31bbc]{background:linear-gradient(135deg,#f8d7da,#f5c6cb);border:1px solid rgba(220,53,69,.2);color:#721c24}.status-default[data-v-e6c31bbc]{background:linear-gradient(135deg,#f8f9fa,#e9ecef);border:1px solid hsla(208,7%,46%,.2);color:#495057}.professional-table tfoot[data-v-e6c31bbc]{background:linear-gradient(135deg,#1e293b,#334155);color:#fff}.professional-table tfoot th[data-v-e6c31bbc]{color:#fff;font-size:1.1rem;font-weight:700;padding:1.5rem 1rem}.total-label[data-v-e6c31bbc]{text-align:center}.total-label i[data-v-e6c31bbc]{color:#fbbf24;margin-right:.5rem}.final-total[data-v-e6c31bbc]{background:linear-gradient(135deg,#fbbf24,#f59e0b);border:2px solid #fbbf24;border-radius:10px;box-shadow:0 5px 15px rgba(251,191,36,.4);color:#1e293b;font-family:Courier New,monospace;font-size:1.25rem}.count-badge[data-v-e6c31bbc],.final-total[data-v-e6c31bbc]{font-weight:800;padding:.75rem 1.25rem}.count-badge[data-v-e6c31bbc]{background:linear-gradient(135deg,#3b82f6,#2563eb);border:2px solid #3b82f6;border-radius:10px;box-shadow:0 5px 15px rgba(59,130,246,.4);color:#fff;font-size:1rem}.no-data-section[data-v-e6c31bbc]{align-items:center;display:flex;justify-content:center;min-height:300px;padding:3rem 2rem}.no-data-container[data-v-e6c31bbc]{max-width:400px;text-align:center}.no-data-icon[data-v-e6c31bbc]{align-items:center;background:linear-gradient(135deg,#e5e7eb,#d1d5db);border-radius:50%;color:#9ca3af;display:flex;font-size:2rem;height:80px;justify-content:center;margin:0 auto 1.5rem;width:80px}.no-data-title[data-v-e6c31bbc]{color:#374151;font-size:1.5rem;font-weight:700;margin:0 0 1rem}.no-data-description[data-v-e6c31bbc]{color:#6b7280;font-size:1rem;line-height:1.5;margin:0}@keyframes fadeInUp-e6c31bbc{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media (max-width:1024px){.date-filters[data-v-e6c31bbc]{gap:1.5rem;grid-template-columns:1fr}.report-summary[data-v-e6c31bbc]{gap:1rem;grid-template-columns:1fr}.page-header h2[data-v-e6c31bbc]{font-size:2rem}.actions-section[data-v-e6c31bbc]{justify-content:stretch}.professional-btn[data-v-e6c31bbc]{flex:1;justify-content:center}}@media (max-width:768px){.reporte-ventas-container[data-v-e6c31bbc]{padding:1rem}.filters-section[data-v-e6c31bbc],.header-section[data-v-e6c31bbc]{border-radius:16px;padding:1.5rem}.professional-report-container[data-v-e6c31bbc]{border-radius:16px}.page-header h2[data-v-e6c31bbc]{flex-direction:column;font-size:1.8rem;gap:.5rem;text-align:center}.report-header[data-v-e6c31bbc]{padding:1.5rem 1rem}.report-title[data-v-e6c31bbc]{flex-direction:column;font-size:1.5rem;gap:.5rem}.professional-table[data-v-e6c31bbc]{font-size:.85rem;min-width:700px}.professional-table tbody td[data-v-e6c31bbc],.professional-table tfoot th[data-v-e6c31bbc],.professional-table thead th[data-v-e6c31bbc]{padding:.875rem .5rem}}@media (max-width:480px){.reporte-ventas-container[data-v-e6c31bbc]{padding:.75rem}.filters-section[data-v-e6c31bbc],.header-section[data-v-e6c31bbc]{padding:1.25rem}.page-header h2[data-v-e6c31bbc]{font-size:1.6rem}.report-title[data-v-e6c31bbc]{font-size:1.3rem}.summary-card[data-v-e6c31bbc]{padding:1.25rem}.summary-icon[data-v-e6c31bbc]{font-size:1.25rem;height:50px;width:50px}.summary-value[data-v-e6c31bbc]{font-size:1.6rem}.professional-table[data-v-e6c31bbc]{font-size:.8rem;min-width:600px}.professional-table tbody td[data-v-e6c31bbc],.professional-table tfoot th[data-v-e6c31bbc],.professional-table thead th[data-v-e6c31bbc]{padding:.75rem .25rem}}',""]);const s=i},3575:(a,e,t)=>{t.r(e),t.d(e,{default:()=>b});var r=t(8122),i=t(8465),s=t.n(i);const o={data:function(){return{clientes:[],headers:[{text:"Cliente",value:"cliente"},{text:"Fecha",value:"fecha"},{text:"Valor",value:"valor"},{text:"Estado",value:"estado"}],reporte:{fecha_i:null,fecha_f:null},ventas:[],loader:!1,fechaFinalInvalida:!1}},mounted:function(){},watch:{"reporte.fecha_i":function(){this.validarFechas()},"reporte.fecha_f":function(){this.validarFechas()}},methods:{validarFechas:function(){if(this.reporte.fecha_i&&this.reporte.fecha_f){var a=new Date(this.reporte.fecha_i),e=new Date(this.reporte.fecha_f);this.fechaFinalInvalida=e<a}else this.fechaFinalInvalida=!1},generarReporteVentas:function(){var a=this;this.reporte.fecha_i&&this.reporte.fecha_f?this.fechaFinalInvalida?s().fire({icon:"error",title:"Error en las fechas",text:"La fecha final no puede ser menor a la fecha inicial"}):(this.ventas=[],this.loader=!0,axios.post("/reportes-ventas",this.reporte).then(function(e){console.log(e.data),e.data.length>0?e.data.map(function(e){a.ventas.push({cliente:e.clientes.razon_social,fecha:e.fecha_factura,valor:e.valor,estado:e.estado.estado})}):a.ventas=[]}).catch(function(a){console.log(a),s().fire({icon:"error",title:"Error",text:"No se pudo generar el reporte. Intenta nuevamente."})}).finally(function(){a.loader=!1})):s().fire({icon:"error",title:"Campos requeridos",text:"Debe seleccionar las fechas inicial y final"})},calcularTotalVentas:function(){return this.ventas.reduce(function(a,e){return a+parseFloat(e.valor||0)},0)},formatearFecha:function(a){return a?new Date(a).toLocaleDateString("es-ES"):""},getStatusClass:function(a){return{PAGADO:"status-success",PENDIENTE:"status-warning",CANCELADO:"status-danger",ANULADO:"status-danger"}[null==a?void 0:a.toUpperCase()]||"status-default"}}};var n=t(5072),c=t.n(n),d=t(2523),l={insert:"head",singleton:!1};c()(d.A,l);d.A.locals;const b=(0,t(4486).A)(o,function(){var a=this,e=a._self._c;return e(r.A,[e("div",{staticClass:"reporte-ventas-container"},[a.loader?e("div",{staticClass:"loading-container"},[e("div",{staticClass:"loading-content"},[e("div",{staticClass:"professional-loader"},[e("div",{staticClass:"loader-spinner"}),a._v(" "),e("div",{staticClass:"loader-pulse"})]),a._v(" "),e("h3",{staticClass:"loading-title"},[a._v("Generando Reporte de Ventas")]),a._v(" "),e("p",{staticClass:"loading-subtitle"},[a._v("Procesando información de ventas del período seleccionado...")]),a._v(" "),e("div",{staticClass:"loading-progress"},[e("div",{staticClass:"progress-bar"})])])]):e("div",{staticClass:"reporte-content"},[e("div",{staticClass:"header-section"},[e("div",{staticClass:"page-header"},[e("h2",[e("i",{staticClass:"fas fa-chart-line mr-3"}),a._v("\n                        Reporte de Ventas\n                    ")]),a._v(" "),e("p",{staticClass:"page-description"},[a._v("\n                        Consulta y analiza las ventas realizadas por período de fechas\n                    ")])])]),a._v(" "),e("div",{staticClass:"filters-section"},[e("div",{staticClass:"filters-header"},[e("h5",{staticClass:"filters-title"},[e("i",{staticClass:"fas fa-filter mr-2"}),a._v("\n                        Filtros de búsqueda\n                    ")])]),a._v(" "),e("div",{staticClass:"filters-content"},[e("div",{staticClass:"date-filters"},[e("div",{staticClass:"date-group"},[e("label",{staticClass:"filter-label"},[e("i",{staticClass:"fas fa-calendar-alt mr-2"}),a._v("\n                                Fecha Inicial\n                            ")]),a._v(" "),e("input",{directives:[{name:"model",rawName:"v-model",value:a.reporte.fecha_i,expression:"reporte.fecha_i"}],staticClass:"date-input",class:{"is-invalid":a.fechaFinalInvalida&&a.reporte.fecha_i},attrs:{type:"date"},domProps:{value:a.reporte.fecha_i},on:{input:function(e){e.target.composing||a.$set(a.reporte,"fecha_i",e.target.value)}}})]),a._v(" "),e("div",{staticClass:"date-group"},[e("label",{staticClass:"filter-label"},[e("i",{staticClass:"fas fa-calendar-alt mr-2"}),a._v("\n                                Fecha Final\n                            ")]),a._v(" "),e("input",{directives:[{name:"model",rawName:"v-model",value:a.reporte.fecha_f,expression:"reporte.fecha_f"}],staticClass:"date-input",class:{"is-invalid":a.fechaFinalInvalida},attrs:{type:"date"},domProps:{value:a.reporte.fecha_f},on:{input:function(e){e.target.composing||a.$set(a.reporte,"fecha_f",e.target.value)}}}),a._v(" "),a.fechaFinalInvalida?e("div",{staticClass:"invalid-feedback"},[a._v("\n                                La fecha final no puede ser menor a la fecha inicial\n                            ")]):a._e()])]),a._v(" "),e("div",{staticClass:"actions-section"},[e("button",{staticClass:"professional-btn btn-primary",attrs:{disabled:a.fechaFinalInvalida},on:{click:a.generarReporteVentas}},[e("i",{staticClass:"fas fa-search mr-2"}),a._v("\n                            Generar Reporte\n                        ")])])])]),a._v(" "),a.ventas.length>0?e("div",{staticClass:"results-section"},[e("div",{staticClass:"professional-report-container"},[e("div",{staticClass:"report-header"},[e("div",{staticClass:"report-info"},[e("h3",{staticClass:"report-title"},[e("i",{staticClass:"fas fa-table mr-2"}),a._v("\n                                Resultados del Reporte\n                            ")]),a._v(" "),e("div",{staticClass:"report-summary"},[e("div",{staticClass:"summary-card"},[e("div",{staticClass:"summary-icon"},[e("i",{staticClass:"fas fa-list-ol"})]),a._v(" "),e("div",{staticClass:"summary-content"},[e("h4",{staticClass:"summary-title"},[a._v("Total Registros")]),a._v(" "),e("p",{staticClass:"summary-value"},[a._v(a._s(a.ventas.length))])])]),a._v(" "),e("div",{staticClass:"summary-card"},[e("div",{staticClass:"summary-icon"},[e("i",{staticClass:"fas fa-dollar-sign"})]),a._v(" "),e("div",{staticClass:"summary-content"},[e("h4",{staticClass:"summary-title"},[a._v("Total Ventas")]),a._v(" "),e("p",{staticClass:"summary-value"},[a._v(a._s(a._f("currency")(a.calcularTotalVentas())))])])])])])]),a._v(" "),e("div",{staticClass:"table-responsive professional-table-wrapper"},[e("table",{staticClass:"professional-table"},[e("thead",[e("tr",[e("th",{staticClass:"text-left"},[e("i",{staticClass:"fas fa-user mr-2"}),a._v("\n                                        Cliente\n                                    ")]),a._v(" "),e("th",{staticClass:"text-center"},[e("i",{staticClass:"fas fa-calendar-alt mr-2"}),a._v("\n                                        Fecha\n                                    ")]),a._v(" "),e("th",{staticClass:"text-right"},[e("i",{staticClass:"fas fa-dollar-sign mr-2"}),a._v("\n                                        Valor\n                                    ")]),a._v(" "),e("th",{staticClass:"text-center"},[e("i",{staticClass:"fas fa-info-circle mr-2"}),a._v("\n                                        Estado\n                                    ")])])]),a._v(" "),e("tbody",a._l(a.ventas,function(t,r){return e("tr",{key:r,staticClass:"data-row"},[e("td",{staticClass:"text-left client-cell"},[e("div",{staticClass:"client-info"},[e("i",{staticClass:"fas fa-user client-icon"}),a._v(" "),e("span",{staticClass:"client-name"},[a._v(a._s(t.cliente))])])]),a._v(" "),e("td",{staticClass:"text-center date-cell"},[e("span",{staticClass:"date-badge"},[a._v(a._s(a.formatearFecha(t.fecha)))])]),a._v(" "),e("td",{staticClass:"text-right amount-cell"},[e("span",{staticClass:"amount-value"},[a._v(a._s(a._f("currency")(t.valor)))])]),a._v(" "),e("td",{staticClass:"text-center status-cell"},[e("span",{staticClass:"status-badge",class:a.getStatusClass(t.estado)},[a._v("\n                                            "+a._s(t.estado)+"\n                                        ")])])])}),0),a._v(" "),e("tfoot",[e("tr",{staticClass:"total-row"},[e("th",{staticClass:"total-label",attrs:{colspan:"2"}},[e("i",{staticClass:"fas fa-calculator mr-2"}),a._v(" "),e("strong",[a._v("Total General:")])]),a._v(" "),e("th",{staticClass:"total-amount"},[e("span",{staticClass:"final-total"},[a._v(a._s(a._f("currency")(a.calcularTotalVentas())))])]),a._v(" "),e("th",{staticClass:"total-count"},[e("span",{staticClass:"count-badge"},[a._v(a._s(a.ventas.length)+" registros")])])])])])])])]):a.loader?a._e():e("div",{staticClass:"no-data-section"},[e("div",{staticClass:"no-data-container"},[e("div",{staticClass:"no-data-icon"},[e("i",{staticClass:"fas fa-search"})]),a._v(" "),e("h3",{staticClass:"no-data-title"},[a._v("No hay información para mostrar")]),a._v(" "),e("p",{staticClass:"no-data-description"},[a._v("\n                        Selecciona un rango de fechas y genera el reporte para ver los resultados\n                    ")])])])])])])},[],!1,null,"e6c31bbc",null).exports},4486:(a,e,t)=>{function r(a,e,t,r,i,s,o,n){var c,d="function"==typeof a?a.options:a;if(e&&(d.render=e,d.staticRenderFns=t,d._compiled=!0),r&&(d.functional=!0),s&&(d._scopeId="data-v-"+s),o?(c=function(a){(a=a||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(a=__VUE_SSR_CONTEXT__),i&&i.call(this,a),a&&a._registeredComponents&&a._registeredComponents.add(o)},d._ssrRegister=c):i&&(c=n?function(){i.call(this,(d.functional?this.parent:this).$root.$options.shadowRoot)}:i),c)if(d.functional){d._injectStyles=c;var l=d.render;d.render=function(a,e){return c.call(e),l(a,e)}}else{var b=d.beforeCreate;d.beforeCreate=b?[].concat(b,c):[c]}return{exports:a,options:d}}t.d(e,{A:()=>r})},8122:(a,e,t)=>{t.d(e,{A:()=>c});var r=t(5072),i=t.n(r),s=t(160),o={insert:"head",singleton:!1};i()(s.A,o);s.A.locals;var n=t(1582);const c=(0,t(2006).A)(n.A).extend({name:"v-app",props:{dark:{type:Boolean,default:void 0},id:{type:String,default:"app"},light:{type:Boolean,default:void 0}},computed:{isDark(){return this.$vuetify.theme.dark}},beforeCreate(){if(!this.$vuetify||this.$vuetify===this.$root)throw new Error("Vuetify is not properly initialized, see https://vuetifyjs.com/getting-started/quick-start#bootstrapping-the-vuetify-object")},render(a){const e=a("div",{staticClass:"v-application--wrap"},this.$slots.default);return a("div",{staticClass:"v-application",class:{"v-application--is-rtl":this.$vuetify.rtl,"v-application--is-ltr":!this.$vuetify.rtl,...this.themeClasses},attrs:{"data-app":!0},domProps:{id:this.id}},[e])}})}}]);
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["screen-ReporteVentas-vue"],{
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      clientes: [],
+      headers: [{
+        text: 'Cliente',
+        value: 'cliente'
+      }, {
+        text: 'Fecha',
+        value: 'fecha'
+      }, {
+        text: 'Valor',
+        value: 'valor'
+      }, {
+        text: 'Estado',
+        value: 'estado'
+      }],
+      reporte: {
+        fecha_i: null,
+        fecha_f: null
+      },
+      ventas: [],
+      loader: false,
+      fechaFinalInvalida: false
+    };
+  },
+  mounted: function mounted() {},
+  watch: {
+    'reporte.fecha_i': function reporteFecha_i() {
+      this.validarFechas();
+    },
+    'reporte.fecha_f': function reporteFecha_f() {
+      this.validarFechas();
+    }
+  },
+  methods: {
+    validarFechas: function validarFechas() {
+      if (this.reporte.fecha_i && this.reporte.fecha_f) {
+        var fechaInicial = new Date(this.reporte.fecha_i);
+        var fechaFinal = new Date(this.reporte.fecha_f);
+        this.fechaFinalInvalida = fechaFinal < fechaInicial;
+      } else {
+        this.fechaFinalInvalida = false;
+      }
+    },
+    generarReporteVentas: function generarReporteVentas() {
+      var _this = this;
+      // Validaciones
+      if (!this.reporte.fecha_i || !this.reporte.fecha_f) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'error',
+          title: 'Campos requeridos',
+          text: 'Debe seleccionar las fechas inicial y final'
+        });
+        return;
+      }
+      if (this.fechaFinalInvalida) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'error',
+          title: 'Error en las fechas',
+          text: 'La fecha final no puede ser menor a la fecha inicial'
+        });
+        return;
+      }
+      this.ventas = [];
+      this.loader = true;
+      axios.post('/reportes-ventas', this.reporte).then(function (res) {
+        console.log(res.data);
+        if (res.data.length > 0) {
+          res.data.map(function (el) {
+            _this.ventas.push({
+              cliente: el.clientes.razon_social,
+              fecha: el.fecha_factura,
+              valor: el.valor,
+              estado: el.estado.estado
+            });
+          });
+        } else {
+          _this.ventas = [];
+        }
+      })["catch"](function (err) {
+        console.log(err);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo generar el reporte. Intenta nuevamente.'
+        });
+      })["finally"](function () {
+        _this.loader = false;
+      });
+    },
+    calcularTotalVentas: function calcularTotalVentas() {
+      return this.ventas.reduce(function (total, venta) {
+        return total + parseFloat(venta.valor || 0);
+      }, 0);
+    },
+    formatearFecha: function formatearFecha(fecha) {
+      if (!fecha) return '';
+      var date = new Date(fecha);
+      return date.toLocaleDateString('es-ES');
+    },
+    getStatusClass: function getStatusClass(estado) {
+      var estados = {
+        'PAGADO': 'status-success',
+        'PENDIENTE': 'status-warning',
+        'CANCELADO': 'status-danger',
+        'ANULADO': 'status-danger'
+      };
+      return estados[estado === null || estado === void 0 ? void 0 : estado.toUpperCase()] || 'status-default';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Professional Container */\n.reporte-ventas-container[data-v-61d9545d] {\r\n    min-height: 100vh;\r\n    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);\r\n    padding: 2rem;\n}\r\n\r\n/* Professional Loading */\n.loading-container[data-v-61d9545d] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    min-height: 400px;\r\n    padding: 40px 20px;\r\n    background: linear-gradient(135deg, #17a2b820 0%, #13849620 100%);\r\n    border-radius: 12px;\r\n    backdrop-filter: blur(10px);\r\n    border: 1px solid rgba(255, 255, 255, 0.3);\n}\n.loading-content[data-v-61d9545d] {\r\n    text-align: center;\r\n    max-width: 300px;\n}\n.professional-loader[data-v-61d9545d] {\r\n    position: relative;\r\n    display: inline-block;\r\n    margin-bottom: 30px;\n}\n.loader-spinner[data-v-61d9545d] {\r\n    width: 60px;\r\n    height: 60px;\r\n    border: 4px solid rgba(102, 126, 234, 0.1);\r\n    border-left: 4px solid #17a2b8;\r\n    border-radius: 50%;\r\n    animation: spin-61d9545d 1s linear infinite;\r\n    position: relative;\r\n    z-index: 2;\n}\n.loader-pulse[data-v-61d9545d] {\r\n    position: absolute;\r\n    top: -10px;\r\n    left: -10px;\r\n    width: 80px;\r\n    height: 80px;\r\n    border: 2px solid rgba(102, 126, 234, 0.3);\r\n    border-radius: 50%;\r\n    animation: pulse-61d9545d 2s ease-in-out infinite;\r\n    z-index: 1;\n}\n@keyframes spin-61d9545d {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n@keyframes pulse-61d9545d {\n0% { transform: scale(0.8); opacity: 1;\n}\n50% { transform: scale(1.2); opacity: 0.5;\n}\n100% { transform: scale(0.8); opacity: 1;\n}\n}\n.loading-title[data-v-61d9545d] {\r\n    color: #2c3e50;\r\n    font-size: 1.4rem;\r\n    font-weight: 700;\r\n    margin-bottom: 8px;\r\n    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);\r\n    background-clip: text;\r\n    -webkit-background-clip: text;\r\n    -webkit-text-fill-color: transparent;\n}\n.loading-subtitle[data-v-61d9545d] {\r\n    color: #6c757d;\r\n    font-size: 0.95rem;\r\n    font-weight: 400;\r\n    margin: 0 0 2rem 0;\r\n    line-height: 1.4;\n}\n.loading-progress[data-v-61d9545d] {\r\n    width: 100%;\r\n    max-width: 300px;\r\n    height: 4px;\r\n    background: #e5e7eb;\r\n    border-radius: 2px;\r\n    margin: 0 auto;\r\n    overflow: hidden;\n}\n.progress-bar[data-v-61d9545d] {\r\n    height: 100%;\r\n    background: linear-gradient(90deg, #17a2b8, #138496);\r\n    border-radius: 2px;\r\n    animation: progress-61d9545d 2s ease-in-out infinite;\n}\n@keyframes progress-61d9545d {\n0% { transform: translateX(-100%);\n}\n50% { transform: translateX(0%);\n}\n100% { transform: translateX(100%);\n}\n}\r\n\r\n/* Header Section */\n.reporte-content[data-v-61d9545d] {\r\n    max-width: 1400px;\r\n    margin: 0 auto;\n}\n.header-section[data-v-61d9545d] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    padding: 2.5rem;\r\n    margin-bottom: 2rem;\r\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\n}\n.page-header h2[data-v-61d9545d] {\r\n    color: #2c3e50;\r\n    font-size: 2.5rem;\r\n    font-weight: 700;\r\n    margin: 0 0 0.5rem 0;\r\n    display: flex;\r\n    align-items: center;\n}\n.page-header h2 i[data-v-61d9545d] {\r\n    color: #17a2b8;\n}\n.page-description[data-v-61d9545d] {\r\n    color: #64748b;\r\n    font-size: 1.1rem;\r\n    margin: 0;\r\n    line-height: 1.6;\n}\r\n\r\n/* Filters Section */\n.filters-section[data-v-61d9545d] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    margin-bottom: 2rem;\r\n    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\r\n    overflow: hidden;\n}\n.filters-header[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);\r\n    padding: 20px 30px;\r\n    border-bottom: 1px solid #e9ecef;\n}\n.filters-title[data-v-61d9545d] {\r\n    color: #2c3e50;\r\n    font-weight: 600;\r\n    margin-bottom: 0;\r\n    font-size: 1.1rem;\n}\n.filters-content[data-v-61d9545d] {\r\n    padding: 2rem;\n}\n.date-filters[data-v-61d9545d] {\r\n    display: grid;\r\n    grid-template-columns: 1fr 1fr;\r\n    gap: 2rem;\r\n    margin-bottom: 2rem;\n}\n.date-group[data-v-61d9545d] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 0.75rem;\n}\n.filter-label[data-v-61d9545d] {\r\n    font-weight: 600;\r\n    color: #2c3e50;\r\n    margin-bottom: 10px;\r\n    font-size: 0.9rem;\r\n    display: flex;\r\n    align-items: center;\n}\n.filter-label i[data-v-61d9545d] {\r\n    color: #17a2b8;\n}\n.date-input[data-v-61d9545d] {\r\n    height: 56px;\r\n    padding: 1rem 1.25rem;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 12px;\r\n    font-size: 1rem;\r\n    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);\r\n    color: #374151;\r\n    font-weight: 500;\r\n    outline: none;\r\n    cursor: pointer;\r\n    box-sizing: border-box;\r\n    transition: all 0.3s ease;\r\n    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);\n}\n.date-input[data-v-61d9545d]:focus {\r\n    border-color: #17a2b8;\r\n    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), inset 0 2px 4px rgba(0,0,0,0.05);\r\n    background: #ffffff;\n}\n.date-input.is-invalid[data-v-61d9545d] {\r\n    border-color: #dc3545;\r\n    background: linear-gradient(145deg, #fff5f5 0%, #ffeaea 100%);\r\n    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);\n}\n.date-input.is-invalid[data-v-61d9545d]:focus {\r\n    border-color: #dc3545;\r\n    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);\n}\n.invalid-feedback[data-v-61d9545d] {\r\n    display: block;\r\n    width: 100%;\r\n    margin-top: 8px;\r\n    font-size: 0.85rem;\r\n    color: #dc3545;\r\n    font-weight: 600;\r\n    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);\r\n    padding: 10px 15px;\r\n    border-radius: 10px;\r\n    border: 1px solid rgba(220, 53, 69, 0.2);\r\n    display: flex;\r\n    align-items: center;\r\n    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);\n}\n.invalid-feedback[data-v-61d9545d]::before {\r\n    content: '⚠️';\r\n    margin-right: 10px;\r\n    font-size: 1rem;\n}\r\n\r\n/* Actions Section */\n.actions-section[data-v-61d9545d] {\r\n    display: flex;\r\n    gap: 1rem;\r\n    justify-content: flex-start;\n}\n.professional-btn[data-v-61d9545d] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.75rem;\r\n    padding: 1rem 2rem;\r\n    border: none;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    font-size: 1rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    text-decoration: none;\r\n    position: relative;\r\n    overflow: hidden;\n}\n.professional-btn[data-v-61d9545d]:disabled {\r\n    opacity: 0.7;\r\n    cursor: not-allowed;\n}\n.btn-primary[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);\r\n    color: white;\r\n    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);\n}\n.btn-primary[data-v-61d9545d]:hover:not(:disabled) {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);\r\n    color: white;\n}\r\n\r\n/* Results Section */\n.results-section[data-v-61d9545d] {\r\n    animation: fadeInUp-61d9545d 0.6s ease-out;\n}\n.professional-report-container[data-v-61d9545d] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    overflow: hidden;\r\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\n}\n.report-header[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);\r\n    padding: 2rem 2.5rem;\r\n    border-bottom: 2px solid #e5e7eb;\n}\n.report-info[data-v-61d9545d] {\r\n    width: 100%;\n}\n.report-title[data-v-61d9545d] {\r\n    font-size: 1.8rem;\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    margin: 0 0 1.5rem 0;\r\n    display: flex;\r\n    align-items: center;\n}\n.report-title i[data-v-61d9545d] {\r\n    color: #17a2b8;\n}\n.report-summary[data-v-61d9545d] {\r\n    display: grid;\r\n    grid-template-columns: 1fr 1fr;\r\n    gap: 2rem;\n}\n.summary-card[data-v-61d9545d] {\r\n    background: white;\r\n    border-radius: 16px;\r\n    padding: 1.5rem;\r\n    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid #e5e7eb;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 1rem;\r\n    transition: all 0.3s ease;\n}\n.summary-card[data-v-61d9545d]:hover {\r\n    transform: translateY(-5px);\r\n    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);\n}\n.summary-card:first-child .summary-icon[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);\r\n    color: white;\n}\n.summary-card:last-child .summary-icon[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #10b981 0%, #059669 100%);\r\n    color: white;\n}\n.summary-icon[data-v-61d9545d] {\r\n    width: 60px;\r\n    height: 60px;\r\n    border-radius: 12px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.5rem;\n}\n.summary-content[data-v-61d9545d] {\r\n    flex: 1;\n}\n.summary-title[data-v-61d9545d] {\r\n    font-size: 0.9rem;\r\n    font-weight: 600;\r\n    color: #64748b;\r\n    margin: 0 0 0.5rem 0;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\n}\n.summary-value[data-v-61d9545d] {\r\n    font-size: 1.8rem;\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    margin: 0;\n}\r\n\r\n/* Professional Table */\n.professional-table-wrapper[data-v-61d9545d] {\r\n    overflow-x: auto;\r\n    -webkit-overflow-scrolling: touch;\n}\n.professional-table[data-v-61d9545d] {\r\n    width: 100%;\r\n    border-collapse: separate;\r\n    border-spacing: 0;\r\n    background: white;\r\n    font-size: 0.95rem;\r\n    min-width: 800px;\n}\r\n\r\n/* Table Header */\n.professional-table thead th[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);\r\n    color: #374151;\r\n    font-weight: 700;\r\n    font-size: 0.9rem;\r\n    padding: 1.25rem 1rem;\r\n    border-bottom: 2px solid #17a2b8;\r\n    position: sticky;\r\n    top: 0;\r\n    z-index: 10;\r\n    white-space: nowrap;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\n}\n.professional-table thead th i[data-v-61d9545d] {\r\n    color: #17a2b8;\n}\r\n\r\n/* Table Body */\n.professional-table tbody tr[data-v-61d9545d] {\r\n    transition: all 0.3s ease;\r\n    border-bottom: 1px solid #f1f5f9;\r\n    background: rgba(255, 255, 255, 0.8);\r\n    backdrop-filter: blur(10px);\n}\n.professional-table tbody tr[data-v-61d9545d]:hover {\r\n    background: rgba(102, 126, 234, 0.05);\r\n    transform: translateX(5px);\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\n}\n.professional-table tbody td[data-v-61d9545d] {\r\n    padding: 1rem;\r\n    vertical-align: middle;\r\n    border-bottom: 1px solid #f1f5f9;\n}\r\n\r\n/* Cell Styles */\n.client-cell[data-v-61d9545d] {\r\n    font-weight: 600;\r\n    color: #1e293b;\n}\n.client-info[data-v-61d9545d] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.75rem;\n}\n.client-icon[data-v-61d9545d] {\r\n    color: #17a2b8;\r\n    font-size: 1rem;\r\n    width: 20px;\r\n    text-align: center;\n}\n.client-name[data-v-61d9545d] {\r\n    font-weight: 600;\r\n    color: #374151;\r\n    font-size: 1rem;\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    border: 1px solid #81d4fa;\n}\n.date-cell[data-v-61d9545d] {\r\n    color: #64748b;\r\n    font-weight: 500;\n}\n.date-badge[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 20%);\r\n    color: #f57c00;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    border: 1px solid rgba(245, 124, 0, 0.2);\n}\n.amount-cell[data-v-61d9545d] {\r\n    font-weight: 600;\r\n    font-family: 'Courier New', monospace;\n}\n.amount-value[data-v-61d9545d] {\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 6px;\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\r\n    border: 1px solid #93c5fd;\r\n    font-size: 1.05rem;\r\n    color: #059669;\r\n    background: rgba(16, 185, 129, 0.1);\r\n    border: 2px solid #10b981;\n}\n.status-cell[data-v-61d9545d] {\r\n    color: #64748b;\r\n    font-weight: 500;\n}\n.status-badge[data-v-61d9545d] {\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 12px;\r\n    font-weight: 700;\r\n    font-size: 0.8rem;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\n}\n.status-success[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);\r\n    color: #155724;\r\n    border: 1px solid rgba(40, 167, 69, 0.2);\n}\n.status-warning[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);\r\n    color: #856404;\r\n    border: 1px solid rgba(255, 193, 7, 0.2);\n}\n.status-danger[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);\r\n    color: #721c24;\r\n    border: 1px solid rgba(220, 53, 69, 0.2);\n}\n.status-default[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);\r\n    color: #495057;\r\n    border: 1px solid rgba(108, 117, 125, 0.2);\n}\r\n\r\n/* Table Footer */\n.professional-table tfoot[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);\r\n    color: white;\n}\n.professional-table tfoot th[data-v-61d9545d] {\r\n    padding: 1.5rem 1rem;\r\n    color: white;\r\n    font-weight: 700;\r\n    font-size: 1.1rem;\n}\n.total-label[data-v-61d9545d] {\r\n    text-align: center;\n}\n.total-label i[data-v-61d9545d] {\r\n    margin-right: 0.5rem;\r\n    color: #fbbf24;\n}\n.final-total[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);\r\n    color: #1e293b;\r\n    padding: 0.75rem 1.25rem;\r\n    border-radius: 10px;\r\n    font-weight: 800;\r\n    font-size: 1.25rem;\r\n    box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);\r\n    border: 2px solid #fbbf24;\r\n    font-family: 'Courier New', monospace;\n}\n.count-badge[data-v-61d9545d] {\r\n    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);\r\n    color: white;\r\n    padding: 0.75rem 1.25rem;\r\n    border-radius: 10px;\r\n    font-weight: 800;\r\n    font-size: 1rem;\r\n    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);\r\n    border: 2px solid #3b82f6;\n}\r\n\r\n/* No Data State */\n.no-data-section[data-v-61d9545d] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    min-height: 300px;\r\n    padding: 3rem 2rem;\n}\n.no-data-container[data-v-61d9545d] {\r\n    text-align: center;\r\n    max-width: 400px;\n}\n.no-data-icon[data-v-61d9545d] {\r\n    width: 80px;\r\n    height: 80px;\r\n    border-radius: 50%;\r\n    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin: 0 auto 1.5rem;\r\n    color: #9ca3af;\r\n    font-size: 2rem;\n}\n.no-data-title[data-v-61d9545d] {\r\n    color: #374151;\r\n    font-size: 1.5rem;\r\n    font-weight: 700;\r\n    margin: 0 0 1rem 0;\n}\n.no-data-description[data-v-61d9545d] {\r\n    color: #6b7280;\r\n    font-size: 1rem;\r\n    margin: 0;\r\n    line-height: 1.5;\n}\r\n\r\n/* Animations */\n@keyframes fadeInUp-61d9545d {\nfrom {\r\n        opacity: 0;\r\n        transform: translateY(30px);\n}\nto {\r\n        opacity: 1;\r\n        transform: translateY(0);\n}\n}\r\n\r\n/* Responsive Design */\n@media (max-width: 1024px) {\n.date-filters[data-v-61d9545d] {\r\n        grid-template-columns: 1fr;\r\n        gap: 1.5rem;\n}\n.report-summary[data-v-61d9545d] {\r\n        grid-template-columns: 1fr;\r\n        gap: 1rem;\n}\n.page-header h2[data-v-61d9545d] {\r\n        font-size: 2rem;\n}\n.actions-section[data-v-61d9545d] {\r\n        justify-content: stretch;\n}\n.professional-btn[data-v-61d9545d] {\r\n        flex: 1;\r\n        justify-content: center;\n}\n}\n@media (max-width: 768px) {\n.reporte-ventas-container[data-v-61d9545d] {\r\n        padding: 1rem;\n}\n.header-section[data-v-61d9545d],\r\n    .filters-section[data-v-61d9545d] {\r\n        border-radius: 16px;\r\n        padding: 1.5rem;\n}\n.professional-report-container[data-v-61d9545d] {\r\n        border-radius: 16px;\n}\n.page-header h2[data-v-61d9545d] {\r\n        font-size: 1.8rem;\r\n        flex-direction: column;\r\n        text-align: center;\r\n        gap: 0.5rem;\n}\n.report-header[data-v-61d9545d] {\r\n        padding: 1.5rem 1rem;\n}\n.report-title[data-v-61d9545d] {\r\n        font-size: 1.5rem;\r\n        flex-direction: column;\r\n        gap: 0.5rem;\n}\n.professional-table[data-v-61d9545d] {\r\n        font-size: 0.85rem;\r\n        min-width: 700px;\n}\n.professional-table thead th[data-v-61d9545d],\r\n    .professional-table tbody td[data-v-61d9545d],\r\n    .professional-table tfoot th[data-v-61d9545d] {\r\n        padding: 0.875rem 0.5rem;\n}\n}\n@media (max-width: 480px) {\n.reporte-ventas-container[data-v-61d9545d] {\r\n        padding: 0.75rem;\n}\n.header-section[data-v-61d9545d],\r\n    .filters-section[data-v-61d9545d] {\r\n        padding: 1.25rem;\n}\n.page-header h2[data-v-61d9545d] {\r\n        font-size: 1.6rem;\n}\n.report-title[data-v-61d9545d] {\r\n        font-size: 1.3rem;\n}\n.summary-card[data-v-61d9545d] {\r\n        padding: 1.25rem;\n}\n.summary-icon[data-v-61d9545d] {\r\n        width: 50px;\r\n        height: 50px;\r\n        font-size: 1.25rem;\n}\n.summary-value[data-v-61d9545d] {\r\n        font-size: 1.6rem;\n}\n.professional-table[data-v-61d9545d] {\r\n        min-width: 600px;\r\n        font-size: 0.8rem;\n}\n.professional-table thead th[data-v-61d9545d],\r\n    .professional-table tbody td[data-v-61d9545d],\r\n    .professional-table tfoot th[data-v-61d9545d] {\r\n        padding: 0.75rem 0.25rem;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_style_index_0_id_61d9545d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_style_index_0_id_61d9545d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_style_index_0_id_61d9545d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ normalizeComponent)
+/* harmony export */ });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent(
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */,
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("div", {
+    staticClass: "reporte-ventas-container"
+  }, [_vm.loader ? _c("div", {
+    staticClass: "loading-container"
+  }, [_vm._m(0)]) : _c("div", {
+    staticClass: "reporte-content"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "filters-section"
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
+    staticClass: "filters-content"
+  }, [_c("div", {
+    staticClass: "date-filters"
+  }, [_c("div", {
+    staticClass: "date-group"
+  }, [_vm._m(3), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.reporte.fecha_i,
+      expression: "reporte.fecha_i"
+    }],
+    staticClass: "date-input",
+    "class": {
+      "is-invalid": _vm.fechaFinalInvalida && _vm.reporte.fecha_i
+    },
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.reporte.fecha_i
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.reporte, "fecha_i", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "date-group"
+  }, [_vm._m(4), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.reporte.fecha_f,
+      expression: "reporte.fecha_f"
+    }],
+    staticClass: "date-input",
+    "class": {
+      "is-invalid": _vm.fechaFinalInvalida
+    },
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.reporte.fecha_f
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.reporte, "fecha_f", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.fechaFinalInvalida ? _c("div", {
+    staticClass: "invalid-feedback"
+  }, [_vm._v("\n                                La fecha final no puede ser menor a la fecha inicial\n                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "actions-section"
+  }, [_c("button", {
+    staticClass: "professional-btn btn-primary",
+    attrs: {
+      disabled: _vm.fechaFinalInvalida
+    },
+    on: {
+      click: _vm.generarReporteVentas
+    }
+  }, [_c("i", {
+    staticClass: "fas fa-search mr-2"
+  }), _vm._v("\n                            Generar Reporte\n                        ")])])])]), _vm._v(" "), _vm.ventas.length > 0 ? _c("div", {
+    staticClass: "results-section"
+  }, [_c("div", {
+    staticClass: "professional-report-container"
+  }, [_c("div", {
+    staticClass: "report-header"
+  }, [_c("div", {
+    staticClass: "report-info"
+  }, [_vm._m(5), _vm._v(" "), _c("div", {
+    staticClass: "report-summary"
+  }, [_c("div", {
+    staticClass: "summary-card"
+  }, [_vm._m(6), _vm._v(" "), _c("div", {
+    staticClass: "summary-content"
+  }, [_c("h4", {
+    staticClass: "summary-title"
+  }, [_vm._v("Total Registros")]), _vm._v(" "), _c("p", {
+    staticClass: "summary-value"
+  }, [_vm._v(_vm._s(_vm.ventas.length))])])]), _vm._v(" "), _c("div", {
+    staticClass: "summary-card"
+  }, [_vm._m(7), _vm._v(" "), _c("div", {
+    staticClass: "summary-content"
+  }, [_c("h4", {
+    staticClass: "summary-title"
+  }, [_vm._v("Total Ventas")]), _vm._v(" "), _c("p", {
+    staticClass: "summary-value"
+  }, [_vm._v(_vm._s(_vm._f("currency")(_vm.calcularTotalVentas())))])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "table-responsive professional-table-wrapper"
+  }, [_c("table", {
+    staticClass: "professional-table"
+  }, [_vm._m(8), _vm._v(" "), _c("tbody", _vm._l(_vm.ventas, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "data-row"
+    }, [_c("td", {
+      staticClass: "text-left client-cell"
+    }, [_c("div", {
+      staticClass: "client-info"
+    }, [_c("i", {
+      staticClass: "fas fa-user client-icon"
+    }), _vm._v(" "), _c("span", {
+      staticClass: "client-name"
+    }, [_vm._v(_vm._s(item.cliente))])])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center date-cell"
+    }, [_c("span", {
+      staticClass: "date-badge"
+    }, [_vm._v(_vm._s(_vm.formatearFecha(item.fecha)))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-right amount-cell"
+    }, [_c("span", {
+      staticClass: "amount-value"
+    }, [_vm._v(_vm._s(_vm._f("currency")(item.valor)))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center status-cell"
+    }, [_c("span", {
+      staticClass: "status-badge",
+      "class": _vm.getStatusClass(item.estado)
+    }, [_vm._v("\n                                            " + _vm._s(item.estado) + "\n                                        ")])])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", {
+    staticClass: "total-row"
+  }, [_vm._m(9), _vm._v(" "), _c("th", {
+    staticClass: "total-amount"
+  }, [_c("span", {
+    staticClass: "final-total"
+  }, [_vm._v(_vm._s(_vm._f("currency")(_vm.calcularTotalVentas())))])]), _vm._v(" "), _c("th", {
+    staticClass: "total-count"
+  }, [_c("span", {
+    staticClass: "count-badge"
+  }, [_vm._v(_vm._s(_vm.ventas.length) + " registros")])])])])])])])]) : !_vm.loader ? _c("div", {
+    staticClass: "no-data-section"
+  }, [_vm._m(10)]) : _vm._e()])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "loading-content"
+  }, [_c("div", {
+    staticClass: "professional-loader"
+  }, [_c("div", {
+    staticClass: "loader-spinner"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "loader-pulse"
+  })]), _vm._v(" "), _c("h3", {
+    staticClass: "loading-title"
+  }, [_vm._v("Generando Reporte de Ventas")]), _vm._v(" "), _c("p", {
+    staticClass: "loading-subtitle"
+  }, [_vm._v("Procesando información de ventas del período seleccionado...")]), _vm._v(" "), _c("div", {
+    staticClass: "loading-progress"
+  }, [_c("div", {
+    staticClass: "progress-bar"
+  })])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "header-section"
+  }, [_c("div", {
+    staticClass: "page-header"
+  }, [_c("h2", [_c("i", {
+    staticClass: "fas fa-chart-line mr-3"
+  }), _vm._v("\n                        Reporte de Ventas\n                    ")]), _vm._v(" "), _c("p", {
+    staticClass: "page-description"
+  }, [_vm._v("\n                        Consulta y analiza las ventas realizadas por período de fechas\n                    ")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "filters-header"
+  }, [_c("h5", {
+    staticClass: "filters-title"
+  }, [_c("i", {
+    staticClass: "fas fa-filter mr-2"
+  }), _vm._v("\n                        Filtros de búsqueda\n                    ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "filter-label"
+  }, [_c("i", {
+    staticClass: "fas fa-calendar-alt mr-2"
+  }), _vm._v("\n                                Fecha Inicial\n                            ")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "filter-label"
+  }, [_c("i", {
+    staticClass: "fas fa-calendar-alt mr-2"
+  }), _vm._v("\n                                Fecha Final\n                            ")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h3", {
+    staticClass: "report-title"
+  }, [_c("i", {
+    staticClass: "fas fa-table mr-2"
+  }), _vm._v("\n                                Resultados del Reporte\n                            ")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "summary-icon"
+  }, [_c("i", {
+    staticClass: "fas fa-list-ol"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "summary-icon"
+  }, [_c("i", {
+    staticClass: "fas fa-dollar-sign"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", {
+    staticClass: "text-left"
+  }, [_c("i", {
+    staticClass: "fas fa-user mr-2"
+  }), _vm._v("\n                                        Cliente\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("i", {
+    staticClass: "fas fa-calendar-alt mr-2"
+  }), _vm._v("\n                                        Fecha\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-right"
+  }, [_c("i", {
+    staticClass: "fas fa-dollar-sign mr-2"
+  }), _vm._v("\n                                        Valor\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("i", {
+    staticClass: "fas fa-info-circle mr-2"
+  }), _vm._v("\n                                        Estado\n                                    ")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("th", {
+    staticClass: "total-label",
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("i", {
+    staticClass: "fas fa-calculator mr-2"
+  }), _vm._v(" "), _c("strong", [_vm._v("Total General:")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "no-data-container"
+  }, [_c("div", {
+    staticClass: "no-data-icon"
+  }, [_c("i", {
+    staticClass: "fas fa-search"
+  })]), _vm._v(" "), _c("h3", {
+    staticClass: "no-data-title"
+  }, [_vm._v("No hay información para mostrar")]), _vm._v(" "), _c("p", {
+    staticClass: "no-data-description"
+  }, [_vm._v("\n                        Selecciona un rango de fechas y genera el reporte para ver los resultados\n                    ")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ReporteVentas.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/ReporteVentas.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ReporteVentas_vue_vue_type_template_id_61d9545d_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true */ "./resources/js/components/ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true");
+/* harmony import */ var _ReporteVentas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReporteVentas.vue?vue&type=script&lang=js */ "./resources/js/components/ReporteVentas.vue?vue&type=script&lang=js");
+/* harmony import */ var _ReporteVentas_vue_vue_type_style_index_0_id_61d9545d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css */ "./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ReporteVentas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReporteVentas_vue_vue_type_template_id_61d9545d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render,
+  _ReporteVentas_vue_vue_type_template_id_61d9545d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "61d9545d",
+  null
+  
+)
+
+/* hot reload */
+if (false) // removed by dead control flow
+{ var api; }
+component.options.__file = "resources/js/components/ReporteVentas.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReporteVentas.vue?vue&type=script&lang=js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/ReporteVentas.vue?vue&type=script&lang=js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ReporteVentas.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_style_index_0_id_61d9545d_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=style&index=0&id=61d9545d&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_template_id_61d9545d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_template_id_61d9545d_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ReporteVentas_vue_vue_type_template_id_61d9545d_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true */ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ReporteVentas.vue?vue&type=template&id=61d9545d&scoped=true");
+
+
+/***/ })
+
+}]);

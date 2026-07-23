@@ -1,12 +1,12 @@
 <template>
-    <v-app>
+    <div>
         <div class="container-fluid p-3" >   
             <!-- <b-breadcrumb :items="items"></b-breadcrumb>      -->
             <items-component tipo_cliente="1" :esFactura="true" :datosFactura="factura" @guardar="facturar" v-if="showComponent" ref="itemComponent">
                 <template #title>Realizar factura</template>
             </items-component>   
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     export default{

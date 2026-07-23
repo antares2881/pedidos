@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="pendientes-container">
             <!-- Modal con pendientes -->
             <b-modal 
@@ -127,7 +127,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
 export default {
@@ -971,6 +971,40 @@ export default {
     .lab-logo {
         width: 22px;
         height: 22px;
+    }
+}
+</style>
+
+<!-- Bootstrap-Vue mounts modals under <body>, outside this component's scoped
+     root. These width rules must therefore be global and use the unique
+     modal-class assigned above. -->
+<style>
+.professional-modal .modal-dialog {
+    width: calc(100vw - 2rem);
+    max-width: 1100px;
+    margin: 1.75rem auto;
+}
+
+@media (min-width: 1200px) {
+    .professional-modal .modal-dialog {
+        width: 80vw;
+        max-width: 1500px;
+    }
+
+    .professional-modal .modal-body {
+        padding: 2rem 2.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .professional-modal .modal-dialog {
+        width: calc(100vw - 1rem);
+        max-width: none;
+        margin: 0.5rem auto;
+    }
+
+    .professional-modal .modal-body {
+        padding: 1rem;
     }
 }
 </style>
