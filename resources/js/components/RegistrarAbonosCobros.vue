@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="abonos-container">
             <!-- Modal de facturas pendientes -->
             <b-modal ref="facturasClientes" no-close-on-backdrop centered hide-footer scrollable size="xl" modal-class="modal-facturas-pendientes">
@@ -578,7 +578,7 @@
             </div>
         </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import { ModelSelect } from 'vue-search-select';
@@ -817,7 +817,7 @@
                     })
             },
             getClientes(){
-                axios.get('/clientes')
+                axios.get('/clientes', { params: { selector: 1 } })
                     .then(res => {
                         // console.log(res.data)
                         for (let i = 0; i < res.data.length; i++) {
@@ -841,12 +841,12 @@
                                 // En desktop: mostrar texto completo
                                 clientText = res.data[i].razon_social + ' - ' + res.data[i].municipios.mcpio;
                             } */
-                            clientText = res.data[i].razon_social + ' - ' + res.data[i].municipios.mcpio;
+                            clientText = res.data[i].razon_social + ' - ' + res.data[i].mcpio;
                             
                             this.clientes.push({
                                 value: res.data[i].id,
                                 text: clientText,
-                                fullText: res.data[i].razon_social + ' - ' + res.data[i].municipios.mcpio // Guardamos el texto completo para tooltip
+                                fullText: res.data[i].razon_social + ' - ' + res.data[i].mcpio // Guardamos el texto completo para tooltip
                             });
                         }
                         this.loader = false;
@@ -3690,5 +3690,68 @@
 
 .text-center {
     text-align: center;
+}
+</style>
+
+<!-- Bootstrap-Vue renders this modal below <body>; shell sizing cannot live in
+     the scoped block above. Keep these rules global and limited to its
+     modal-class so they do not affect the other application dialogs. -->
+<style>
+.modal-facturas-pendientes .modal-dialog {
+    width: calc(100vw - 2rem) !important;
+    max-width: 1400px !important;
+    margin: 1rem auto !important;
+}
+
+.modal-facturas-pendientes .modal-content {
+    width: 100% !important;
+    max-height: calc(100vh - 2rem) !important;
+    overflow: hidden !important;
+}
+
+.modal-facturas-pendientes .modal-body {
+    max-height: calc(100vh - 7rem) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+@media (min-width: 1200px) {
+    .modal-facturas-pendientes .modal-dialog {
+        width: 92vw !important;
+        max-width: 1600px !important;
+    }
+
+    .modal-facturas-pendientes .search-inputs-row {
+        display: grid !important;
+        grid-template-columns: minmax(320px, 1fr) minmax(200px, 0.45fr) minmax(220px, 0.4fr) !important;
+        gap: 1rem !important;
+        align-items: end !important;
+    }
+
+    .modal-facturas-pendientes .search-inputs-row > .form-group {
+        width: auto !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .modal-facturas-pendientes .search-btn {
+        width: 100% !important;
+        max-width: none !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .modal-facturas-pendientes .modal-dialog {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+    }
+
+    .modal-facturas-pendientes .modal-content {
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+    }
 }
 </style>

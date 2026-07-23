@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="reporte-ventas-container">
             <!-- Professional Loading State -->
             <div v-if="loader" class="loading-container">
@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import Swal from 'sweetalert2';

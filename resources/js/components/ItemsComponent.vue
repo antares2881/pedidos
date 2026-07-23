@@ -1,10 +1,10 @@
 <template>
-    <v-app>
-        <view-history-price ref="historyPrice" />
-        <crear-cliente ref="crearCliente" @cliente_id="clienteNew"/>
-        <informacion-final-facturas ref="finalizarFactura" />
-        <modalitem-component ref="modalProducto" @updateItems="updateListItems"/>
-        <modalfacturas-pendientes ref="facturas" @seleccionar="llenarReferencia" />
+    <div>
+        <view-history-price v-if="mountedModals.history" ref="historyPrice" />
+        <crear-cliente v-if="mountedModals.client" ref="crearCliente" @cliente_id="clienteNew"/>
+        <informacion-final-facturas v-if="mountedModals.invoice" ref="finalizarFactura" />
+        <modalitem-component v-if="mountedModals.product" ref="modalProducto" @updateItems="updateListItems"/>
+        <modalfacturas-pendientes v-if="mountedModals.pendingInvoices" ref="facturas" @seleccionar="llenarReferencia" />
         <div class="row" >           
             
             <div class="col-md-5 col-sm-12">
@@ -16,7 +16,7 @@
                         <button class="btn btn-outline-primary btn-sm btn-block text-wrap" @click="nuevoProducto"><i class="fas fa-plus"></i> Crear</button>
                     </div>                        
                 </div>
-                <div class="products-grid overflow-y-auto overflow-x-hidden p-2" style="max-height: 520px;">
+                <div class="products-grid p-2">
                     <!-- Professional Loading State -->
                     <div v-if="loader" class="loading-container">
                         <div class="loading-content">
@@ -37,7 +37,7 @@
                     </div>                            
                     <div class="row justify-center" v-else>
                         
-                        <div class="col-6 col-lg-4 col-xl-3 mb-2"  v-for="item, index in items" :key="index" >
+                        <div class="col-6 col-lg-4 mb-2" v-for="item, index in items" :key="index">
                             <div class="product-card p-2">
 
                                 <img 
@@ -48,16 +48,16 @@
                                 class="product-logo"
                                 />
                                 <p class="product-title mb-1"> {{ item.producto }}</p>
-                                <div class="text-center mb-2">
+                                <div class="text-center mb-1">
                                     <span class="badge badge-info badge-sm text-wrap"> {{ item.presentacion }} </span>
                                 </div>                               
-                                <div class="text-center mb-2">
+                                <div class="text-center mb-1">
                                     <div v-if="historyLoading[item.codigo]" class="history-btn loading">
                                         <div class="mini-spinner"></div>
                                     </div>
                                     <i v-else class="fas fa-search history-btn" role="button" @click="viewHistory(item)"></i>
                                 </div>
-                                <hr class="my-2">
+                                <hr class="my-1">
                                 <div class="product-info" @click="addProducto(item, index)" style="cursor: pointer;">                                    
                                     <span class="stock-info" :class="[item.stock >0 ?'text-success':'text-danger']">Cant. {{ item.stock }}</span>  <br>
                                     <span class="price-info">{{ item.precio | currency }}</span>
@@ -87,10 +87,12 @@
                         <!-- OPCIONES DE EDICION DE PEDIDOS O CREACIÓN DE NUEVA COMPRA. -->
                         <slot name="opcionesExtras"></slot>
 
-                        <div class="row">
-                            <div class="col-12">
+                        <div class="row order-form">
+                            <div class="col-12 form-field">
+                                <label class="form-field-label" for="tipolista_id">Lista de precios</label>
                                 <b-form-select 
                                     id="tipolista_id"
+                                    class="order-form-control"
                                     v-model="pedido.tipolista_id" 
                                     :options="tipoListas"
                                     value-field="id"
@@ -98,28 +100,32 @@
                                     @change="getProductos(tipo_cliente)" 
                                 ></b-form-select>
                             </div>
-                            <div class="col-12 col-lg-8 col-md-12">
-                                <basic-select
-                                    :options="clientes"
-                                    id="cliente"
-                                    placeholder="Buscar Cliente"
-                                    :selected-option="itemCliente"
-                                    @select="selectCliente"
-                                    v-model="pedido.cliente_id"
-                                ></basic-select>
+                            <div class="col-12 col-lg-8 col-md-12 form-field">
+                                <label class="form-field-label" for="cliente">Cliente</label>
+                                <div class="client-select">
+                                    <basic-select
+                                        :options="clientes"
+                                        id="cliente"
+                                        placeholder="Buscar cliente"
+                                        :selected-option="itemCliente"
+                                        @select="selectCliente"
+                                        v-model="pedido.cliente_id"
+                                    ></basic-select>
+                                </div>
                             </div>
 
                             <!-- OPCION NOTA -->
-                            <div class="col-12 col-lg-4 col-md-12" v-if="esNota">
-                                <button class="btn btn-outline-success btn-block text-small text-wrap" @click="referenciarFactura">
+                            <div class="col-12 col-lg-4 col-md-12 form-field form-action" v-if="esNota">
+                                <button class="btn btn-outline-success btn-block text-small text-wrap order-action-btn" @click="referenciarFactura">
                                     <i class="fas fa-search"></i> Referenciar
                                 </button>
                             </div>
                             <!-- FIN OPCION NOTA -->
 
-                            <div class="col-12 col-lg-4 col-md-12" v-else>
-                                <button class="btn btn-outline-success btn-block text-small text-wrap" @click="newCliente">
-                                    <i class="fas fa-user-plus"></i> Nuevo
+                            <div class="col-12 col-lg-4 col-md-12 form-field form-action" v-else>
+                                <button class="btn btn-block text-small text-wrap order-action-btn new-client-btn" @click="newCliente">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>Nuevo cliente</span>
                                 </button>
                             </div>
                         </div>
@@ -163,21 +169,21 @@
                         </div>
 
                         <!-- OPCIONES AGREGAR NOTA-->
-                        <div class="row" v-if="esNota">
-                            <div class="col-6">
-                                <label for="numero_referencia">No. referencia</label>
-                                <input type="text" id="numero_referencia" class="form-control" v-model="pedido.numero_referencia" placeholder="No. referencia">
+                        <div class="row reference-fields" v-if="esNota">
+                            <div class="col-12 col-md-6 reference-field">
+                                <label class="form-field-label" for="numero_referencia">No. referencia</label>
+                                <input type="text" id="numero_referencia" class="form-control order-form-control" v-model="pedido.numero_referencia" placeholder="No. referencia">
                             </div>
-                            <div class="col-6">
-                                <label for="fecha_referencia">Fecha referencia</label>
-                                <input type="date" id="fecha_referencia" class="form-control" v-model="pedido.fecha_referencia">
+                            <div class="col-12 col-md-6 reference-field">
+                                <label class="form-field-label" for="fecha_referencia">Fecha de referencia</label>
+                                <input type="date" id="fecha_referencia" class="form-control order-form-control" v-model="pedido.fecha_referencia">
                             </div>                        
                             <div class="col-12" v-if="pedido.id_factura">
                                 <a :href="'/imprimir-factura/' + pedido.id_factura " target="_blank">Representación grafica - saldo factura ({{ pedido.valor_max_nota | currency }}) <i class="fas fa-file-pdf"></i></a>
                             </div>
-                            <div class="col-12">
-                                <label for="razon_referencia">Razon de la referencia</label>
-                                <input type="text" id="razon_referencia" class="form-control" v-model="pedido.razon_referencia">
+                            <div class="col-12 reference-field">
+                                <label class="form-field-label" for="razon_referencia">Razón de la referencia</label>
+                                <input type="text" id="razon_referencia" class="form-control order-form-control" v-model="pedido.razon_referencia">
                             </div>
                         </div>
                         <!-- FIN OPCIONES NOTA -->
@@ -253,10 +259,10 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
-    import { BasicSelect, ModelSelect } from 'vue-search-select';
+    import { BasicSelect } from 'vue-search-select';
     export default {
         props: ['tipo_cliente', 'num_pedido', 'datosFactura', 'esFactura', 'esNota'],
         data(){
@@ -265,6 +271,14 @@
                 esFacturaDirecto: false,
                 facturado: false,
                 historyLoading: {},
+                modalPreloadTimer: null,
+                mountedModals: {
+                    history: false,
+                    client: false,
+                    invoice: false,
+                    product: false,
+                    pendingInvoices: false
+                },
                 saveLoading: false,
                 facturaLoading: false,
                 itemCliente: {
@@ -272,7 +286,6 @@
                     text: ''
                 },
                 items: [],
-                laboratorios: [],
                 loader: true,                
                 nombreProducto: '',
                 pedido: {id: '', cliente_id: '', numero: '', fecha: '', pedidos: [], total: 0, tipolista_id: 3, laboratorio_id: '', esFacturaDirecto: false, numero_referencia: null, fecha_referencia: null, id_factura: null, valor_max_nota: 0},
@@ -285,16 +298,66 @@
         },
         mounted() {
             this.pedido.fecha = this.formatingDate(new Date());
-            this.getPorcentaje();
+            if (String(this.tipo_cliente) === '1') {
+                this.getPorcentaje();
+            } else {
+                this.getProductos(this.tipo_cliente);
+            }
             this.getClientes();
-            this.getLaboratorios();
             this.getTiposListaPrecios();
+            this.scheduleModalPreload();
             if(this.esFactura){
                 this.setPedidos();
             }
                  
         },
+        beforeDestroy() {
+            if (this.modalPreloadTimer) {
+                clearTimeout(this.modalPreloadTimer);
+            }
+        },
         methods: {
+            scheduleModalPreload() {
+                const preload = () => {
+                    if (typeof window.preloadVueScreen !== 'function') {
+                        return;
+                    }
+
+                    [
+                        'ViewHistoryPrice',
+                        'CrearClientes',
+                        'ModalfacturasPendientes',
+                        'InformacionFinalFacturas',
+                        'ModalItem'
+                    ].forEach(file => {
+                        window.preloadVueScreen(file).catch(() => {});
+                    });
+                };
+
+                // Dejar terminar primero la pantalla y sus datos esenciales.
+                this.modalPreloadTimer = setTimeout(() => {
+                    if ('requestIdleCallback' in window) {
+                        window.requestIdleCallback(preload, { timeout: 3000 });
+                    } else {
+                        preload();
+                    }
+                }, 1200);
+            },
+            async ensureModal(modal, refName) {
+                if (!this.mountedModals[modal]) {
+                    this.$set(this.mountedModals, modal, true);
+                }
+
+                for (let attempt = 0; attempt < 500; attempt++) {
+                    await new Promise(resolve => this.$nextTick(resolve));
+                    if (this.$refs[refName]) {
+                        return this.$refs[refName];
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 20));
+                }
+
+                throw new Error(`No fue posible cargar el modal ${refName}`);
+            },
             addBonus(index){
                 const bonus = document.getElementById('bonus'+index).value;
                 if(bonus < 0){
@@ -421,7 +484,8 @@
                         productos: this.pedidos,
                         total: this.totalPedido
                     }
-                    await this.$refs.finalizarFactura.facturar(factura);
+                    const finalizarFactura = await this.ensureModal('invoice', 'finalizarFactura');
+                    await finalizarFactura.facturar(factura);
                 } catch (error) {
                     console.error('Error al facturar:', error);
                 } finally {
@@ -451,18 +515,6 @@
                         console.log(err)
                     })
             },
-            getLaboratorios(){
-                axios.get('/laboratorios')
-                    .then(res => {
-                        // console.log(res.data)
-                        res.data.map((el) => {                            
-                            this.laboratorios.push({
-                                text: el.Laboratorio,
-                                value: el.id
-                            });                            
-                        })
-                    })
-            },  
             getPorcentaje(){
                 axios.get('/porcentaje')
                     .then(res => {
@@ -520,14 +572,17 @@
                 this.pedido.valor_max_nota = nota.saldo;
                 this.pedido.tipo_factura = nota.tipo_factura;
             },
-            newCliente(){
-                this.$refs.crearCliente.newCliente();
+            async newCliente(){
+                const crearCliente = await this.ensureModal('client', 'crearCliente');
+                crearCliente.newCliente();
             },
-            nuevoProducto(){
-                this.$refs.modalProducto.newProduct(this.tipoListas);
+            async nuevoProducto(){
+                const modalProducto = await this.ensureModal('product', 'modalProducto');
+                modalProducto.newProduct(this.tipoListas);
             },            
-            referenciarFactura(){
-                this.$refs.facturas.mostrarModalFacturas(this.pedido.cliente_id);
+            async referenciarFactura(){
+                const facturas = await this.ensureModal('pendingInvoices', 'facturas');
+                facturas.mostrarModalFacturas(this.pedido.cliente_id);
             },
             async save(){
                 this.saveLoading = true;
@@ -603,7 +658,8 @@
                 
                 try {
                     // Llamar al método del modal
-                    await this.$refs.historyPrice.showPriceProducts(item);
+                    const historyPrice = await this.ensureModal('history', 'historyPrice');
+                    await historyPrice.showPriceProducts(item);
                 } catch (error) {
                     console.error('Error al cargar historial:', error);
                 } finally {
@@ -615,8 +671,7 @@
             }
         },
         components: {
-            BasicSelect,
-            ModelSelect
+            BasicSelect
         },
         computed: {
             formatTotal(){
@@ -634,6 +689,12 @@
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     border-radius: 12px;
     padding: 15px;
+    height: 520px;
+    max-height: 520px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    -webkit-overflow-scrolling: touch;
 }
 
 .product-card {
@@ -643,7 +704,7 @@
     border: 1px solid rgba(255,255,255,0.8);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
-    min-height: 200px;
+    min-height: 0;
     position: relative;
     overflow: hidden;
 }
@@ -672,12 +733,12 @@
 
 .product-logo {
     display: block;
-    margin: 0 auto 12px;
-    padding: 4px;
+    margin: 0 auto 6px;
+    padding: 2px;
     background: transparent;
     border-radius: 8px;
-    width: 45px;
-    height: 45px;
+    width: 38px;
+    height: 38px;
     object-fit: contain;
 }
 
@@ -688,7 +749,7 @@
     line-height: 1.3;
     margin-bottom: 8px;
     text-align: center;
-    min-height: 40px;
+    min-height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -696,7 +757,7 @@
 
 .badge-sm {
     font-size: 0.75rem;
-    padding: 0.4em 0.8em;
+    padding: 0.3em 0.65em;
     border-radius: 20px;
     background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
     border: none;
@@ -710,14 +771,14 @@
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
-    padding: 8px;
+    padding: 5px;
     border-radius: 50%;
     background: rgba(102, 126, 234, 0.1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
 }
 
 .history-btn:hover {
@@ -789,15 +850,15 @@
     text-align: center;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 12px;
-    padding: 12px 8px;
-    margin: 8px 0;
+    padding: 7px 6px;
+    margin: 4px 0;
 }
 
 .stock-info {
     font-size: 0.85rem;
     font-weight: 700;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -817,6 +878,118 @@
 .order-card {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border: none;
+}
+
+.order-form {
+    margin-right: -7px;
+    margin-left: -7px;
+    row-gap: 14px;
+}
+
+.order-form .form-field {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+.reference-fields {
+    margin: 14px -7px 0;
+    row-gap: 14px;
+}
+
+.reference-fields .reference-field {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+.form-field-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #475569;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+}
+
+.order-form-control {
+    height: 46px;
+    padding-right: 2.5rem;
+    padding-left: 0.9rem;
+    color: #334155;
+    background-color: #fff;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.order-form-control:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);
+}
+
+.client-select >>> .ui.selection.dropdown {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 0.75rem 2.5rem 0.75rem 0.9rem;
+    color: #334155;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.client-select >>> .ui.selection.dropdown > .text,
+.client-select >>> .ui.search.dropdown > input.search {
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.client-select >>> .ui.selection.dropdown:focus,
+.client-select >>> .ui.selection.active.dropdown {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);
+}
+
+.form-action {
+    display: flex;
+    align-items: flex-end;
+}
+
+.order-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.new-client-btn {
+    color: #fff;
+    background: linear-gradient(135deg, #20b486 0%, #169b76 100%);
+    border: 1px solid #169b76;
+    box-shadow: 0 5px 12px rgba(22, 155, 118, 0.2);
+}
+
+.new-client-btn:hover,
+.new-client-btn:focus {
+    color: #fff;
+    background: linear-gradient(135deg, #1ca379 0%, #128363 100%);
+    box-shadow: 0 7px 16px rgba(22, 155, 118, 0.28);
+    transform: translateY(-1px);
 }
 
 .table-compact {
@@ -957,6 +1130,14 @@
 @media (max-width: 768px) {
     .product-card {
         min-height: 160px;
+    }
+
+    .order-form {
+        row-gap: 12px;
+    }
+
+    .reference-fields {
+        row-gap: 12px;
     }
     
     .compact-input {

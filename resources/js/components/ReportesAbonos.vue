@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="reports-container">
             <!-- Professional Header -->
             <div class="professional-header">
@@ -230,7 +230,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import Swal from 'sweetalert2';

@@ -1,1 +1,829 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[6927],{160:(e,a,t)=>{t.d(a,{A:()=>r});var i=t(6798),n=t.n(i)()(function(e){return e[1]});n.push([e.id,".theme--light.v-application{background:#fff;color:rgba(0,0,0,.87)}.theme--light.v-application .text--primary{color:rgba(0,0,0,.87)!important}.theme--light.v-application .text--secondary{color:rgba(0,0,0,.6)!important}.theme--light.v-application .text--disabled{color:rgba(0,0,0,.38)!important}.theme--dark.v-application{background:#121212;color:#fff}.theme--dark.v-application .text--primary{color:#fff!important}.theme--dark.v-application .text--secondary{color:hsla(0,0%,100%,.7)!important}.theme--dark.v-application .text--disabled{color:hsla(0,0%,100%,.5)!important}.v-application{display:flex;position:relative}.v-application a{cursor:pointer}.v-application--is-rtl{direction:rtl}.v-application--wrap{backface-visibility:hidden;display:flex;flex:1 1 auto;flex-direction:column;max-width:100%;min-height:100vh;position:relative}@-moz-document url-prefix(){@media print{.v-application,.v-application--wrap{display:block}}}",""]);const r=n},1582:(e,a,t)=>{t.d(a,{A:()=>n,H:()=>r});const i=t(2893).default.extend().extend({name:"themeable",provide(){return{theme:this.themeableProvide}},inject:{theme:{default:{isDark:!1}}},props:{dark:{type:Boolean,default:null},light:{type:Boolean,default:null}},data:()=>({themeableProvide:{isDark:!1}}),computed:{appIsDark(){return this.$vuetify.theme.dark||!1},isDark(){return!0===this.dark||!0!==this.light&&this.theme.isDark},themeClasses(){return{"theme--dark":this.isDark,"theme--light":!this.isDark}},rootIsDark(){return!0===this.dark||!0!==this.light&&this.appIsDark},rootThemeClasses(){return{"theme--dark":this.rootIsDark,"theme--light":!this.rootIsDark}}},watch:{isDark:{handler(e,a){e!==a&&(this.themeableProvide.isDark=this.isDark)},immediate:!0}}}),n=i;function r(e){const a={...e.props,...e.injections},t=i.options.computed.isDark.call(a);return i.options.computed.themeClasses.call({isDark:t})}},2006:(e,a,t)=>{t.d(a,{A:()=>n});var i=t(2893);function n(...e){return i.default.extend({mixins:e})}},3517:(e,a,t)=>{t.r(a),t.d(a,{default:()=>c});var i=t(8122);const n={props:["user"],data:function(){return{abono:{},errores:"",facturas:[],fechaHoy:"",loader:!0,mensajeError:!1,search:"",title:"Facturas Pendientes",todasLasFacturas:[],currentPage:1,itemsPerPage:10,itemsPerPageOptions:[10,25,50,100]}},computed:{filteredFacturas:function(){var e=this,a=this.facturas;return this.search&&(a=a.filter(function(a){return a.cliente.toLowerCase().includes(e.search.toLowerCase())||a.num_factura.toString().toLowerCase().includes(e.search.toLowerCase())||a.electronica&&a.electronica.toString().toLowerCase().includes(e.search.toLowerCase())})),a},paginatedFacturas:function(){var e=(this.currentPage-1)*this.itemsPerPage,a=e+this.itemsPerPage;return this.filteredFacturas.slice(e,a)},totalPages:function(){return Math.ceil(this.filteredFacturas.length/this.itemsPerPage)},paginationInfo:function(){return{start:(this.currentPage-1)*this.itemsPerPage+1,end:Math.min(this.currentPage*this.itemsPerPage,this.filteredFacturas.length),total:this.filteredFacturas.length}}},watch:{search:function(){this.currentPage=1}},created:function(){},mounted:function(){this.getFacturas()},methods:{filtrar:function(e){var a=this;this.loader=!0,setTimeout(function(){var t=[];e.canceladas?(a.title="Facturas Canceladas",a.todasLasFacturas.map(function(e){3===e.estado_id&&t.push(Object.assign({},e))}),a.setFacturas(t)):e.pagadas?(a.title="Facturas Pagadas",a.todasLasFacturas.map(function(e){6===e.estado_id&&t.push(Object.assign({},e))}),a.setFacturas(t)):e.pendientes&&(a.title="Facturas Pendientes",a.todasLasFacturas.map(function(e){4!==e.estado_id&&5!==e.estado_id||t.push(Object.assign({},e))}),a.setFacturas(t)),a.currentPage=1,a.loader=!1},800)},nextPage:function(){this.currentPage<this.totalPages&&this.currentPage++},prevPage:function(){this.currentPage>1&&this.currentPage--},goToPage:function(e){e>=1&&e<=this.totalPages&&(this.currentPage=e)},changeItemsPerPage:function(e){this.itemsPerPage=e,this.currentPage=1},getVisiblePages:function(){var e=this.totalPages,a=this.currentPage;if(e<=7)return Array.from({length:e},function(e,a){return a+1});var t=[];t.push(1),a-2>2&&t.push("...");for(var i=Math.max(2,a-2),n=Math.min(e-1,a+2),r=i;r<=n;r++)t.push(r);return a+2<e-1&&t.push("..."),e>1&&t.push(e),t},historyCoin:function(e){this.$refs.historialPagos.getHistorialPagos(1,e)},getFacturas:function(){var e=this;axios.get("/facturas").then(function(a){e.setFacturas(a.data),e.todasLasFacturas=a.data,e.loader=!1;e.filtrar({pendientes:!0,canceladas:!1,pagadas:!1})}).catch(function(e){console.log(e)})},opcionesFiltrado:function(){this.$refs.filtros.showFiltros(1)},setFacturas:function(e){this.facturas=[];for(var a=new Date,t=0;t<e.length;t++){var i=new Date(e[t].fecha_factura),n=Math.round((a.getTime()-i.getTime())/864e5);this.facturas.push({id:e[t].id,estado_id:e[t].estado_id,estado:e[t].estado,cliente:e[t].razon_social,num_factura:e[t].numero_factura,electronica:e[t].electronica,fecha:e[t].fecha_factura,total:e[t].valor,tiempo:n})}}}};var r=t(5072),o=t.n(r),s=t(5205),d={insert:"head",singleton:!1};o()(s.A,d);s.A.locals;const c=(0,t(4486).A)(n,function(){var e=this,a=e._self._c;return a(i.A,[a("div",{staticClass:"invoices-container"},[a("aplicar-filtros",{ref:"filtros",on:{aplicarFiltros:e.filtrar}}),e._v(" "),a("historial-pagos",{ref:"historialPagos"}),e._v(" "),a("div",{staticClass:"header-section"},[a("div",{staticClass:"page-header"},[a("h2",[a("span",{staticClass:"custom-icon custom-icon-document"},[e._v("📄")]),e._v(" "),a("span",{staticClass:"page-title"},[e._v(e._s(e.title))])]),e._v(" "),a("p",{staticClass:"page-description"},[e._v("\n                    Gestión completa del historial de facturas y seguimiento de pagos\n                ")])]),e._v(" "),a("div",{staticClass:"header-actions"},[a("div",{staticClass:"search-box"},[a("span",{staticClass:"custom-icon custom-icon-search"},[e._v("🔍")]),e._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.search,expression:"search"}],staticClass:"form-control search-input",attrs:{type:"text",placeholder:"Buscar por cliente o factura..."},domProps:{value:e.search},on:{input:function(a){a.target.composing||(e.search=a.target.value)}}})]),e._v(" "),a("button",{staticClass:"btn btn-primary new-lab-btn",on:{click:e.opcionesFiltrado}},[a("span",{staticClass:"custom-icon custom-icon-filter"},[e._v("🔽")]),e._v("\n                    Filtrar Facturas\n                ")])])]),e._v(" "),e.loader?a("div",{staticClass:"loading-section"},[a("div",{staticClass:"professional-report-container"},[a("div",{staticClass:"loader-container"},[a("div",{staticClass:"spinner-professional"}),e._v(" "),a("h3",{staticClass:"loader-title"},[e._v("Cargando historial de facturas")]),e._v(" "),a("p",{staticClass:"loader-subtitle"},[e._v("Procesando información de facturas y estados de pago...")]),e._v(" "),a("div",{staticClass:"loading-progress"},[a("div",{staticClass:"progress-bar"})])])])]):e._e(),e._v(" "),e.loader?e._e():a("div",{staticClass:"invoices-content"},[a("div",{staticClass:"professional-report-container"},[a("div",{staticClass:"desktop-table"},[a("div",{staticClass:"table-responsive professional-table-wrapper"},[a("table",{staticClass:"professional-table"},[a("thead",[a("tr",[a("th",{staticClass:"text-left"},[a("span",{staticClass:"custom-icon"},[e._v("👤")]),e._v("\n                                        Cliente\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("📄")]),e._v(" Factura\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("📅")]),e._v("\n                                        Fecha\n                                    ")]),e._v(" "),a("th",{staticClass:"text-right"},[a("span",{staticClass:"custom-icon"},[e._v("💰")]),e._v("\n                                        Valor\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("⏱️")]),e._v("\n                                        Estado/Edad\n                                    ")]),e._v(" "),a("th",{staticClass:"text-center"},[a("span",{staticClass:"custom-icon"},[e._v("⚙️")]),e._v("\n                                        Acciones\n                                    ")])])]),e._v(" "),a("tbody",e._l(e.paginatedFacturas,function(t,i){return a("tr",{key:i,staticClass:"data-row"},[a("td",{staticClass:"text-left client-cell"},[a("span",{staticClass:"client-name"},[e._v(e._s(t.cliente))])]),e._v(" "),a("td",{staticClass:"text-center invoice-cell"},[a("span",{staticClass:"invoice-number"},[e._v("\n                                            "+e._s(0==t.electronica?t.num_factura:t.electronica)+"\n                                        ")])]),e._v(" "),a("td",{staticClass:"text-center date-cell"},[a("span",{staticClass:"date-value"},[e._v(e._s(t.fecha))])]),e._v(" "),a("td",{staticClass:"text-right amount-cell"},[a("span",{staticClass:"amount-value"},[e._v(e._s(e._f("currency")(t.total)))])]),e._v(" "),a("td",{staticClass:"text-center status-cell"},[3===t.estado_id||6===t.estado_id?a("div",[3===t.estado_id?a("span",{staticClass:"status-badge status-cancelled"},[a("span",{staticClass:"custom-icon"},[e._v("❌")]),e._v("\n                                                Cancelada\n                                            ")]):e._e(),e._v(" "),6===t.estado_id?a("span",{staticClass:"status-badge status-paid"},[a("span",{staticClass:"custom-icon"},[e._v("✅")]),e._v("\n                                                Pagada\n                                            ")]):e._e()]):a("div",[a("span",{staticClass:"age-badge",class:{"age-normal":t.tiempo<=30,"age-warning":t.tiempo>30&&t.tiempo<=45,"age-danger":t.tiempo>45}},[a("span",{staticClass:"custom-icon"},[e._v("⏰")]),e._v("\n                                                "+e._s(t.tiempo)+" días\n                                            ")])])]),e._v(" "),a("td",{staticClass:"text-center actions-cell"},[a("div",{staticClass:"action-buttons"},[a("a",{staticClass:"action-btn print-btn",attrs:{href:"/imprimir-factura/"+t.id,target:"_blank",title:"Imprimir factura"}},[a("span",{staticClass:"custom-icon"},[e._v("🖨️")])]),e._v(" "),6===t.estado_id||5===t.estado_id?a("button",{staticClass:"action-btn history-btn",attrs:{title:"Historial de abonos"},on:{click:function(a){return e.historyCoin(t)}}},[a("span",{staticClass:"custom-icon"},[e._v("💳")])]):e._e()])])])}),0)])])]),e._v(" "),a("div",{staticClass:"mobile-cards-container"},e._l(e.paginatedFacturas,function(t,i){return a("div",{key:i,staticClass:"invoice-card"},[a("div",{staticClass:"card-header"},[a("div",{staticClass:"client-info"},[a("span",{staticClass:"custom-icon client-icon"},[e._v("👤")]),e._v(" "),a("span",{staticClass:"client-name-mobile"},[e._v(e._s(t.cliente))])]),e._v(" "),a("div",{staticClass:"invoice-badge"},[a("span",{staticClass:"custom-icon"},[e._v("📄")]),e._v(" "+e._s(0==t.electronica?t.num_factura:t.electronica)+"\n                            ")])]),e._v(" "),a("div",{staticClass:"card-body"},[a("div",{staticClass:"info-row"},[a("div",{staticClass:"info-item"},[a("span",{staticClass:"custom-icon info-icon"},[e._v("📅")]),e._v(" "),a("div",{staticClass:"info-content"},[a("span",{staticClass:"info-label"},[e._v("Fecha")]),e._v(" "),a("span",{staticClass:"info-value"},[e._v(e._s(t.fecha))])])]),e._v(" "),a("div",{staticClass:"info-item"},[a("span",{staticClass:"custom-icon info-icon"},[e._v("💰")]),e._v(" "),a("div",{staticClass:"info-content"},[a("span",{staticClass:"info-label"},[e._v("Valor")]),e._v(" "),a("span",{staticClass:"info-value"},[e._v(e._s(e._f("currency")(t.total)))])])])]),e._v(" "),a("div",{staticClass:"status-section"},[3===t.estado_id||6===t.estado_id?a("div",{staticClass:"status-container"},[3===t.estado_id?a("span",{staticClass:"status-badge-mobile status-cancelled"},[a("span",{staticClass:"custom-icon"},[e._v("❌")]),e._v("\n                                        Cancelada\n                                    ")]):e._e(),e._v(" "),6===t.estado_id?a("span",{staticClass:"status-badge-mobile status-paid"},[a("span",{staticClass:"custom-icon"},[e._v("✅")]),e._v("\n                                        Pagada\n                                    ")]):e._e()]):a("div",{staticClass:"age-container"},[a("span",{staticClass:"custom-icon age-icon"},[e._v("⏰")]),e._v(" "),a("span",{staticClass:"age-badge-mobile",class:{"age-normal":t.tiempo<=30,"age-warning":t.tiempo>30&&t.tiempo<=45,"age-danger":t.tiempo>45}},[e._v("\n                                        "+e._s(t.tiempo)+" días de antigüedad\n                                    ")])])]),e._v(" "),a("div",{staticClass:"actions-section"},[a("a",{staticClass:"mobile-action-btn print-btn",attrs:{href:"/imprimir-factura/"+t.id,target:"_blank"}},[a("span",{staticClass:"custom-icon"},[e._v("🖨️")]),e._v("\n                                    Imprimir\n                                ")]),e._v(" "),6===t.estado_id||5===t.estado_id?a("button",{staticClass:"mobile-action-btn history-btn",on:{click:function(a){return e.historyCoin(t)}}},[a("span",{staticClass:"custom-icon"},[e._v("💳")]),e._v("\n                                    Historial\n                                ")]):e._e()])])])}),0),e._v(" "),e.filteredFacturas.length>0?a("div",{staticClass:"pagination-section"},[a("div",{staticClass:"pagination-info"},[a("div",{staticClass:"items-per-page"},[a("span",{staticClass:"pagination-label"},[e._v("Mostrar:")]),e._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:e.itemsPerPage,expression:"itemsPerPage"}],staticClass:"items-select",on:{change:[function(a){var t=Array.prototype.filter.call(a.target.options,function(e){return e.selected}).map(function(e){return"_value"in e?e._value:e.value});e.itemsPerPage=a.target.multiple?t:t[0]},function(a){return e.changeItemsPerPage(e.itemsPerPage)}]}},e._l(e.itemsPerPageOptions,function(t){return a("option",{key:t,domProps:{value:t}},[e._v("\n                                    "+e._s(t)+"\n                                ")])}),0),e._v(" "),a("span",{staticClass:"pagination-label"},[e._v("registros")])]),e._v(" "),a("div",{staticClass:"page-info"},[a("span",{staticClass:"page-info-text"},[e._v("\n                                Mostrando "+e._s(e.paginationInfo.start)+" - "+e._s(e.paginationInfo.end)+" de "+e._s(e.paginationInfo.total)+" registros\n                            ")])])]),e._v(" "),a("div",{staticClass:"pagination-controls"},[a("button",{staticClass:"pagination-btn prev-btn",attrs:{disabled:1===e.currentPage},on:{click:e.prevPage}},[a("span",{staticClass:"custom-icon"},[e._v("◀️")]),e._v("\n                            Anterior\n                        ")]),e._v(" "),a("div",{staticClass:"page-numbers"},e._l(e.getVisiblePages(),function(t){return a("button",{key:t,class:["page-btn",{active:t===e.currentPage,ellipsis:"..."===t}],attrs:{disabled:"..."===t},on:{click:function(a){return e.goToPage(t)}}},[e._v("\n                                "+e._s(t)+"\n                            ")])}),0),e._v(" "),a("button",{staticClass:"pagination-btn next-btn",attrs:{disabled:e.currentPage===e.totalPages},on:{click:e.nextPage}},[e._v("\n                            Siguiente\n                            "),a("span",{staticClass:"custom-icon"},[e._v("▶️")])])])]):e._e()])])],1)])},[],!1,null,"e1a1e8f2",null).exports},4486:(e,a,t)=>{function i(e,a,t,i,n,r,o,s){var d,c="function"==typeof e?e.options:e;if(a&&(c.render=a,c.staticRenderFns=t,c._compiled=!0),i&&(c.functional=!0),r&&(c._scopeId="data-v-"+r),o?(d=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),n&&n.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(o)},c._ssrRegister=d):n&&(d=s?function(){n.call(this,(c.functional?this.parent:this).$root.$options.shadowRoot)}:n),d)if(c.functional){c._injectStyles=d;var l=c.render;c.render=function(e,a){return d.call(a),l(e,a)}}else{var f=c.beforeCreate;c.beforeCreate=f?[].concat(f,d):[d]}return{exports:e,options:c}}t.d(a,{A:()=>i})},5205:(e,a,t)=>{t.d(a,{A:()=>r});var i=t(6798),n=t.n(i)()(function(e){return e[1]});n.push([e.id,".invoices-container[data-v-e1a1e8f2]{background:#f8f9fa;min-height:100vh;padding:2rem}.header-section[data-v-e1a1e8f2]{align-items:center;backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;margin-bottom:2rem;padding:2rem}.page-header h2[data-v-e1a1e8f2]{align-items:center;display:flex;font-size:2.2rem;font-weight:700;margin:0 0 .5rem}.header-icon[data-v-e1a1e8f2],.page-header h2 i[data-v-e1a1e8f2]{-webkit-text-fill-color:#3b82f6!important;background:none!important;background-clip:unset!important;-webkit-background-clip:unset!important;color:#3b82f6!important;display:inline-block;font-size:2rem;margin-right:1rem;opacity:1!important;visibility:visible!important}.header-icon-fallback[data-v-e1a1e8f2]{display:none;font-size:2rem;margin-right:1rem}.custom-icon[data-v-e1a1e8f2]{display:inline-block;font-size:1.2em;font-style:normal;font-weight:400;line-height:1;margin-right:.5rem;vertical-align:middle}.custom-icon-document[data-v-e1a1e8f2]{color:#3b82f6;font-size:2rem;margin-right:1rem}.custom-icon-search[data-v-e1a1e8f2]{color:#64748b;font-size:1.2rem;left:1rem;margin-right:0;pointer-events:none;position:absolute;top:50%;transform:translateY(-50%);z-index:3}.custom-icon-filter[data-v-e1a1e8f2]{color:#fff;font-size:1rem;margin-right:.5rem}.professional-table thead th .custom-icon[data-v-e1a1e8f2]{color:#3b82f6;font-size:1.1rem;margin-right:.5rem}.client-icon.custom-icon[data-v-e1a1e8f2]{background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border-radius:10px;color:#0277bd;font-size:1.3rem;height:40px;margin-right:.75rem;width:40px}.client-icon.custom-icon[data-v-e1a1e8f2],.info-icon.custom-icon[data-v-e1a1e8f2]{align-items:center;display:flex;justify-content:center}.info-icon.custom-icon[data-v-e1a1e8f2]{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:8px;color:#2563eb;font-size:1.1rem;height:35px;margin-right:0;width:35px}.age-icon.custom-icon[data-v-e1a1e8f2]{color:#64748b;font-size:1.5rem;margin-right:1rem}.action-btn .custom-icon[data-v-e1a1e8f2]{font-size:1.2rem;margin:0}.mobile-action-btn .custom-icon[data-v-e1a1e8f2]{font-size:1.1rem;margin-right:.5rem}.pagination-btn .custom-icon[data-v-e1a1e8f2]{font-size:1rem;margin:0 .25rem}.status-badge .custom-icon[data-v-e1a1e8f2],.status-badge-mobile .custom-icon[data-v-e1a1e8f2]{font-size:1rem;margin-right:.5rem}.custom-icon[data-v-e1a1e8f2]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Android Emoji,EmojiSymbols,serif}.page-title[data-v-e1a1e8f2]{-webkit-text-fill-color:transparent;background:linear-gradient(135deg,#3b82f6,#2563eb);background-clip:text;-webkit-background-clip:text;font-weight:700}.page-description[data-v-e1a1e8f2]{color:#64748b;font-size:1.1rem;font-weight:400;margin:0}.header-actions[data-v-e1a1e8f2]{align-items:center;display:flex;flex-wrap:wrap;gap:1rem}.search-box[data-v-e1a1e8f2]{min-width:300px;position:relative}.search-icon[data-v-e1a1e8f2]{color:#64748b;left:1rem;pointer-events:none;position:absolute;top:50%;transform:translateY(-50%);z-index:3}.search-input[data-v-e1a1e8f2]{backdrop-filter:blur(10px);background:hsla(0,0%,100%,.9);border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;height:50px;padding:0 1rem 0 3rem!important;transition:all .3s ease;width:100%}.search-input[data-v-e1a1e8f2]::-moz-placeholder{color:#9ca3af;padding-left:0}.search-input[data-v-e1a1e8f2]::placeholder{color:#9ca3af;padding-left:0}.search-input[data-v-e1a1e8f2]:focus{background:#fff;border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.1);outline:none}.new-lab-btn[data-v-e1a1e8f2]{align-items:center;background:linear-gradient(135deg,#3b82f6,#2563eb);border:none;border-radius:12px;box-shadow:0 5px 15px rgba(59,130,246,.3);color:#fff;cursor:pointer;display:flex;font-size:1rem;font-weight:600;gap:.5rem;height:50px;padding:0 2rem;transition:all .3s ease}.new-lab-btn[data-v-e1a1e8f2]:hover{box-shadow:0 8px 25px rgba(59,130,246,.4);color:#fff;transform:translateY(-2px)}.loading-section[data-v-e1a1e8f2]{margin-top:2rem;width:100%}.professional-report-container[data-v-e1a1e8f2]{backdrop-filter:blur(20px);background:hsla(0,0%,100%,.95);border:1px solid hsla(0,0%,100%,.2);border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.1);box-sizing:border-box;overflow:hidden;width:100%}.loader-container[data-v-e1a1e8f2]{padding:4rem 2rem;text-align:center}.spinner-professional[data-v-e1a1e8f2]{animation:spin-e1a1e8f2 1s linear infinite;border:4px solid #e5e7eb;border-radius:50%;border-top-color:#3b82f6;height:60px;margin:0 auto 2rem;width:60px}.loader-title[data-v-e1a1e8f2]{color:#1e293b;font-size:1.5rem;font-weight:700;margin:0 0 .75rem}.loader-subtitle[data-v-e1a1e8f2]{color:#64748b;font-size:1rem;font-weight:500;line-height:1.5;margin:0 0 2rem}.loading-progress[data-v-e1a1e8f2]{background:#e5e7eb;border-radius:2px;height:4px;margin:0 auto;max-width:300px;overflow:hidden;width:100%}.progress-bar[data-v-e1a1e8f2]{animation:progress-e1a1e8f2 2s ease-in-out infinite;background:linear-gradient(90deg,#3b82f6,#2563eb);border-radius:2px;height:100%}.invoices-content[data-v-e1a1e8f2]{margin-top:2rem}.mobile-cards-container[data-v-e1a1e8f2]{display:none}.desktop-table[data-v-e1a1e8f2]{display:block}.professional-table-wrapper[data-v-e1a1e8f2]{-webkit-overflow-scrolling:touch;overflow-x:auto}.professional-table[data-v-e1a1e8f2]{background:#fff;border-collapse:separate;border-spacing:0;font-size:.95rem;min-width:900px;width:100%}.professional-table thead th[data-v-e1a1e8f2]{background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-bottom:2px solid #3b82f6;color:#374151;font-size:.9rem;font-weight:700;padding:1.25rem 1rem;position:sticky;top:0;white-space:nowrap;z-index:10}.professional-table thead th i[data-v-e1a1e8f2]{color:#3b82f6;margin-right:.5rem}.professional-table tbody tr[data-v-e1a1e8f2]{border-bottom:1px solid #f1f5f9;transition:all .3s ease}.professional-table tbody tr[data-v-e1a1e8f2]:hover{background:rgba(59,130,246,.05);box-shadow:0 5px 15px rgba(0,0,0,.1);transform:translateX(5px)}.professional-table tbody td[data-v-e1a1e8f2]{border-bottom:1px solid #f1f5f9;padding:1rem;vertical-align:middle}.client-cell[data-v-e1a1e8f2]{color:#1e293b;font-weight:600}.client-name[data-v-e1a1e8f2]{background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border:1px solid #81d4fa;border-radius:8px;color:#0277bd;font-weight:700;padding:.4rem .8rem}.invoice-cell[data-v-e1a1e8f2]{color:#1e293b;font-weight:600}.invoice-number[data-v-e1a1e8f2]{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:8px;color:#92400e;font-weight:700;padding:.4rem .8rem}.date-cell[data-v-e1a1e8f2]{color:#64748b;font-weight:500}.date-value[data-v-e1a1e8f2]{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:.4rem .8rem}.amount-cell[data-v-e1a1e8f2]{font-family:Courier New,monospace;font-weight:600}.amount-value[data-v-e1a1e8f2]{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:1px solid #93c5fd;border-radius:6px;color:#1e293b;font-weight:700;padding:.4rem .8rem}.status-badge[data-v-e1a1e8f2]{align-items:center;border-radius:8px;display:inline-flex;font-size:.85rem;font-weight:700;gap:.5rem;padding:.5rem 1rem}.status-cancelled[data-v-e1a1e8f2]{background:linear-gradient(135deg,#fecaca,#fca5a5);border:1px solid #f87171;color:#dc2626}.status-paid[data-v-e1a1e8f2]{background:linear-gradient(135deg,#bbf7d0,#86efac);border:1px solid #4ade80;color:#059669}.age-badge[data-v-e1a1e8f2]{align-items:center;border-radius:8px;display:inline-flex;font-size:.85rem;font-weight:700;gap:.5rem;padding:.5rem 1rem}.age-normal[data-v-e1a1e8f2]{background:linear-gradient(135deg,#e0f2fe,#bae6fd);border:1px solid #7dd3fc;color:#0369a1}.age-warning[data-v-e1a1e8f2]{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fbbf24;color:#d97706}.age-danger[data-v-e1a1e8f2]{background:linear-gradient(135deg,#fecaca,#fca5a5);border:1px solid #f87171;color:#dc2626}.action-buttons[data-v-e1a1e8f2]{gap:.5rem}.action-btn[data-v-e1a1e8f2],.action-buttons[data-v-e1a1e8f2]{display:flex;justify-content:center}.action-btn[data-v-e1a1e8f2]{align-items:center;border:none;border-radius:10px;cursor:pointer;font-size:1rem;height:40px;text-decoration:none;transition:all .3s ease;width:40px}.print-btn[data-v-e1a1e8f2]{background:linear-gradient(135deg,#f87171,#ef4444);box-shadow:0 5px 15px hsla(0,91%,71%,.3);color:#fff}.print-btn[data-v-e1a1e8f2]:hover{box-shadow:0 8px 25px hsla(0,91%,71%,.4);transform:translateY(-2px)}.history-btn[data-v-e1a1e8f2]{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 5px 15px rgba(16,185,129,.3);color:#fff}.history-btn[data-v-e1a1e8f2]:hover{box-shadow:0 8px 25px rgba(16,185,129,.4);transform:translateY(-2px)}.invoice-card[data-v-e1a1e8f2]{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.1);margin-bottom:1rem;padding:1.5rem;transition:all .3s ease}.invoice-card[data-v-e1a1e8f2]:hover{box-shadow:0 15px 35px rgba(0,0,0,.15);transform:translateY(-5px)}.card-header[data-v-e1a1e8f2]{border-bottom:2px solid #f1f5f9;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem}.card-header[data-v-e1a1e8f2],.client-info[data-v-e1a1e8f2]{align-items:center;display:flex}.client-info[data-v-e1a1e8f2]{flex:1;gap:.75rem}.client-icon[data-v-e1a1e8f2]{align-items:center;background:linear-gradient(135deg,#e0f2fe,#b3e5fc);border-radius:10px;color:#0277bd;display:flex;font-size:1.1rem;height:40px;justify-content:center;width:40px}.client-name-mobile[data-v-e1a1e8f2]{color:#1e293b;font-size:1.1rem;font-weight:700;line-height:1.2}.invoice-badge[data-v-e1a1e8f2]{align-items:center;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:10px;color:#92400e;display:flex;font-size:.9rem;font-weight:700;gap:.5rem;padding:.5rem 1rem}.card-body[data-v-e1a1e8f2]{display:flex;flex-direction:column;gap:1.5rem}.info-row[data-v-e1a1e8f2]{display:grid;gap:1rem;grid-template-columns:1fr 1fr}.info-item[data-v-e1a1e8f2]{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;gap:.75rem;padding:1rem}.info-icon[data-v-e1a1e8f2],.info-item[data-v-e1a1e8f2]{align-items:center;display:flex}.info-icon[data-v-e1a1e8f2]{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:8px;color:#2563eb;font-size:.9rem;height:35px;justify-content:center;width:35px}.info-content[data-v-e1a1e8f2]{display:flex;flex:1;flex-direction:column;gap:.25rem}.info-label[data-v-e1a1e8f2]{color:#64748b;font-size:.8rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase}.info-value[data-v-e1a1e8f2]{color:#1e293b;font-size:1rem;font-weight:700}.status-section[data-v-e1a1e8f2]{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem}.status-badge-mobile[data-v-e1a1e8f2]{border-radius:12px;display:inline-flex;font-size:1rem;font-weight:700;gap:.5rem;padding:.75rem 1.25rem;width:100%}.age-container[data-v-e1a1e8f2],.status-badge-mobile[data-v-e1a1e8f2]{align-items:center;justify-content:center}.age-container[data-v-e1a1e8f2]{display:flex;gap:1rem}.age-icon[data-v-e1a1e8f2]{color:#64748b;font-size:1.5rem}.age-badge-mobile[data-v-e1a1e8f2]{border-radius:8px;font-size:1.1rem;font-weight:700;padding:.5rem 1rem;text-align:center}.actions-section[data-v-e1a1e8f2]{display:flex;gap:1rem}.mobile-action-btn[data-v-e1a1e8f2]{align-items:center;border:none;border-radius:12px;cursor:pointer;display:flex;flex:1;font-size:1rem;font-weight:600;gap:.75rem;justify-content:center;padding:1rem;text-decoration:none;transition:all .3s ease}@keyframes spin-e1a1e8f2{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes progress-e1a1e8f2{0%{transform:translateX(-100%)}50%{transform:translateX(0)}to{transform:translateX(100%)}}@media (max-width:1024px){.header-section[data-v-e1a1e8f2]{align-items:stretch;flex-direction:column;text-align:center}.header-actions[data-v-e1a1e8f2]{justify-content:center}.search-box[data-v-e1a1e8f2]{min-width:100%}.page-header h2[data-v-e1a1e8f2]{font-size:2rem;justify-content:center}}@media (max-width:900px){.desktop-table[data-v-e1a1e8f2]{display:none}.mobile-cards-container[data-v-e1a1e8f2]{display:block;padding:0 .5rem}}@media (max-width:768px){.invoices-container[data-v-e1a1e8f2]{padding:1rem}.header-section[data-v-e1a1e8f2]{padding:1.5rem}.header-section[data-v-e1a1e8f2],.professional-report-container[data-v-e1a1e8f2]{border-radius:16px}.page-header h2[data-v-e1a1e8f2]{flex-direction:column;font-size:1.8rem;gap:.5rem;text-align:center}.invoice-card[data-v-e1a1e8f2]{border-radius:14px;margin-bottom:1rem;padding:1.25rem}.card-header[data-v-e1a1e8f2]{align-items:stretch;flex-direction:column;gap:1rem;margin-bottom:1.25rem}.client-info[data-v-e1a1e8f2]{justify-content:center;text-align:center}.client-name-mobile[data-v-e1a1e8f2]{font-size:1rem;text-align:center}.invoice-badge[data-v-e1a1e8f2]{align-self:center;font-size:.85rem}.info-row[data-v-e1a1e8f2]{gap:.75rem;grid-template-columns:1fr}.actions-section[data-v-e1a1e8f2]{flex-direction:column;gap:.75rem}}@media (max-width:480px){.invoices-container[data-v-e1a1e8f2]{padding:.75rem}.header-section[data-v-e1a1e8f2]{padding:1.25rem}.page-header h2[data-v-e1a1e8f2]{font-size:1.6rem}.invoice-card[data-v-e1a1e8f2]{margin-bottom:.875rem;padding:1rem}.client-name-mobile[data-v-e1a1e8f2]{font-size:.95rem}}.pagination-section[data-v-e1a1e8f2]{background:#fff;border-top:2px solid #f1f5f9;gap:1rem;justify-content:space-between;padding:1.5rem 2rem}.pagination-info[data-v-e1a1e8f2],.pagination-section[data-v-e1a1e8f2]{align-items:center;display:flex;flex-wrap:wrap}.pagination-info[data-v-e1a1e8f2]{gap:2rem}.items-per-page[data-v-e1a1e8f2]{align-items:center;display:flex;gap:.5rem}.items-select[data-v-e1a1e8f2],.pagination-label[data-v-e1a1e8f2]{color:#374151;font-size:.9rem;font-weight:600}.items-select[data-v-e1a1e8f2]{background:#fff;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;outline:none;padding:.5rem .75rem;transition:all .3s ease}.items-select[data-v-e1a1e8f2]:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1)}.page-info-text[data-v-e1a1e8f2]{color:#64748b;font-size:.9rem;font-weight:500}.pagination-btn[data-v-e1a1e8f2],.pagination-controls[data-v-e1a1e8f2]{align-items:center;display:flex;gap:.5rem}.pagination-btn[data-v-e1a1e8f2]{background:#fff;border:2px solid #e5e7eb;border-radius:8px;color:#374151;cursor:pointer;font-size:.9rem;font-weight:600;padding:.75rem 1rem;transition:all .3s ease}.pagination-btn[data-v-e1a1e8f2]:hover:not(:disabled){background:rgba(59,130,246,.05);border-color:#3b82f6;color:#3b82f6}.pagination-btn[data-v-e1a1e8f2]:disabled{color:#9ca3af;cursor:not-allowed;opacity:.5}.page-numbers[data-v-e1a1e8f2]{display:flex;gap:.25rem;margin:0 1rem}.page-btn[data-v-e1a1e8f2]{align-items:center;background:#fff;border:2px solid #e5e7eb;border-radius:8px;color:#374151;cursor:pointer;display:flex;font-size:.9rem;font-weight:600;height:40px;justify-content:center;transition:all .3s ease;width:40px}.page-btn[data-v-e1a1e8f2]:hover:not(:disabled):not(.ellipsis){background:rgba(59,130,246,.05);border-color:#3b82f6;color:#3b82f6}.page-btn.active[data-v-e1a1e8f2]{background:linear-gradient(135deg,#3b82f6,#2563eb);border-color:#3b82f6;box-shadow:0 5px 15px rgba(59,130,246,.3);color:#fff}.page-btn.ellipsis[data-v-e1a1e8f2]{color:#9ca3af;cursor:default}.page-btn.ellipsis[data-v-e1a1e8f2],.page-btn.ellipsis[data-v-e1a1e8f2]:hover{background:transparent;border:none}@media (max-width:768px){.pagination-section[data-v-e1a1e8f2]{align-items:stretch;flex-direction:column;gap:1rem;padding:1rem}.pagination-info[data-v-e1a1e8f2]{flex-direction:column;gap:1rem;text-align:center}.items-per-page[data-v-e1a1e8f2],.pagination-info[data-v-e1a1e8f2]{justify-content:center}.page-numbers[data-v-e1a1e8f2],.pagination-controls[data-v-e1a1e8f2]{flex-wrap:wrap;justify-content:center}.page-numbers[data-v-e1a1e8f2]{margin:0 .5rem}.pagination-btn[data-v-e1a1e8f2]{font-size:.8rem;padding:.6rem .8rem}.page-btn[data-v-e1a1e8f2]{font-size:.8rem;height:35px;width:35px}}@media (max-width:480px){.pagination-controls[data-v-e1a1e8f2]{flex-direction:column;gap:1rem}.page-numbers[data-v-e1a1e8f2]{margin:0;order:2}.prev-btn[data-v-e1a1e8f2]{order:1}.next-btn[data-v-e1a1e8f2],.prev-btn[data-v-e1a1e8f2]{align-self:stretch;justify-content:center}.next-btn[data-v-e1a1e8f2]{order:3}}",""]);const r=n},8122:(e,a,t)=>{t.d(a,{A:()=>d});var i=t(5072),n=t.n(i),r=t(160),o={insert:"head",singleton:!1};n()(r.A,o);r.A.locals;var s=t(1582);const d=(0,t(2006).A)(s.A).extend({name:"v-app",props:{dark:{type:Boolean,default:void 0},id:{type:String,default:"app"},light:{type:Boolean,default:void 0}},computed:{isDark(){return this.$vuetify.theme.dark}},beforeCreate(){if(!this.$vuetify||this.$vuetify===this.$root)throw new Error("Vuetify is not properly initialized, see https://vuetifyjs.com/getting-started/quick-start#bootstrapping-the-vuetify-object")},render(e){const a=e("div",{staticClass:"v-application--wrap"},this.$slots.default);return e("div",{staticClass:"v-application",class:{"v-application--is-rtl":this.$vuetify.rtl,"v-application--is-ltr":!this.$vuetify.rtl,...this.themeClasses},attrs:{"data-app":!0},domProps:{id:this.id}},[a])}})}}]);
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["screen-HistorialFacturas-vue"],{
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['user'],
+  data: function data() {
+    return {
+      abono: {},
+      errores: '',
+      facturas: [],
+      fechaHoy: '',
+      loader: true,
+      mensajeError: false,
+      search: '',
+      title: 'Facturas Pendientes',
+      todasLasFacturas: [],
+      // Paginación
+      currentPage: 1,
+      itemsPerPage: 10,
+      itemsPerPageOptions: [10, 25, 50, 100]
+    };
+  },
+  computed: {
+    filteredFacturas: function filteredFacturas() {
+      var _this = this;
+      var filtered = this.facturas;
+
+      // Aplicar filtro de búsqueda
+      if (this.search) {
+        filtered = filtered.filter(function (factura) {
+          return factura.cliente.toLowerCase().includes(_this.search.toLowerCase()) || factura.num_factura.toString().toLowerCase().includes(_this.search.toLowerCase()) || factura.electronica && factura.electronica.toString().toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
+      return filtered;
+    },
+    paginatedFacturas: function paginatedFacturas() {
+      var start = (this.currentPage - 1) * this.itemsPerPage;
+      var end = start + this.itemsPerPage;
+      return this.filteredFacturas.slice(start, end);
+    },
+    totalPages: function totalPages() {
+      return Math.ceil(this.filteredFacturas.length / this.itemsPerPage);
+    },
+    paginationInfo: function paginationInfo() {
+      var start = (this.currentPage - 1) * this.itemsPerPage + 1;
+      var end = Math.min(this.currentPage * this.itemsPerPage, this.filteredFacturas.length);
+      return {
+        start: start,
+        end: end,
+        total: this.filteredFacturas.length
+      };
+    }
+  },
+  watch: {
+    search: function search() {
+      // Resetear página cuando cambie la búsqueda
+      this.currentPage = 1;
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.getFacturas();
+    // console.log(this.user)
+  },
+  methods: {
+    filtrar: function filtrar(opcion) {
+      var _this2 = this;
+      // Mostrar loader al aplicar filtros
+      this.loader = true;
+
+      // Simular tiempo de procesamiento para mostrar el loader
+      setTimeout(function () {
+        var facturas = [];
+        if (opcion.canceladas) {
+          _this2.title = 'Facturas Canceladas';
+          _this2.todasLasFacturas.map(function (el) {
+            if (el.estado_id === 3) {
+              facturas.push(Object.assign({}, el));
+            }
+          });
+          _this2.setFacturas(facturas);
+        } else if (opcion.pagadas) {
+          _this2.title = 'Facturas Pagadas';
+          _this2.todasLasFacturas.map(function (el) {
+            if (el.estado_id === 6) {
+              facturas.push(Object.assign({}, el));
+            }
+          });
+          _this2.setFacturas(facturas);
+        } else if (opcion.pendientes) {
+          _this2.title = 'Facturas Pendientes';
+          _this2.todasLasFacturas.map(function (el) {
+            if (el.estado_id === 4 || el.estado_id === 5) {
+              facturas.push(Object.assign({}, el));
+            }
+          });
+          _this2.setFacturas(facturas);
+        }
+
+        // Resetear página actual al aplicar filtros
+        _this2.currentPage = 1;
+        _this2.loader = false;
+      }, 800); // 800ms para mostrar el loader
+    },
+    nextPage: function nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage: function prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    goToPage: function goToPage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+      }
+    },
+    changeItemsPerPage: function changeItemsPerPage(newValue) {
+      this.itemsPerPage = newValue;
+      this.currentPage = 1; // Reset to first page
+    },
+    getVisiblePages: function getVisiblePages() {
+      var totalPages = this.totalPages;
+      var current = this.currentPage;
+      var delta = 2; // Número de páginas a mostrar a cada lado de la actual
+
+      if (totalPages <= 7) {
+        // Si hay 7 páginas o menos, mostrar todas
+        return Array.from({
+          length: totalPages
+        }, function (_, i) {
+          return i + 1;
+        });
+      }
+      var pages = [];
+
+      // Siempre mostrar la primera página
+      pages.push(1);
+      if (current - delta > 2) {
+        pages.push('...');
+      }
+
+      // Páginas alrededor de la actual
+      var start = Math.max(2, current - delta);
+      var end = Math.min(totalPages - 1, current + delta);
+      for (var i = start; i <= end; i++) {
+        pages.push(i);
+      }
+      if (current + delta < totalPages - 1) {
+        pages.push('...');
+      }
+
+      // Siempre mostrar la última página
+      if (totalPages > 1) {
+        pages.push(totalPages);
+      }
+      return pages;
+    },
+    historyCoin: function historyCoin(item) {
+      this.$refs.historialPagos.getHistorialPagos(1, item);
+    },
+    getFacturas: function getFacturas() {
+      var _this3 = this;
+      axios.get('/facturas').then(function (res) {
+        // console.log(res.data)
+        _this3.setFacturas(res.data);
+        _this3.todasLasFacturas = res.data;
+        _this3.loader = false;
+        var opcion = {
+          pendientes: true,
+          canceladas: false,
+          pagadas: false
+        };
+        _this3.filtrar(opcion);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    opcionesFiltrado: function opcionesFiltrado() {
+      this.$refs.filtros.showFiltros(1);
+    },
+    setFacturas: function setFacturas(facturas) {
+      this.facturas = [];
+      var hoy = new Date();
+      for (var i = 0; i < facturas.length; i++) {
+        var fecha = new Date(facturas[i].fecha_factura); //Calcula el tiempo transcurrido de la factura
+        var tiempo = Math.round((hoy.getTime() - fecha.getTime()) / 86400000);
+        this.facturas.push({
+          id: facturas[i].id,
+          estado_id: facturas[i].estado_id,
+          estado: facturas[i].estado,
+          cliente: facturas[i].razon_social,
+          num_factura: facturas[i].numero_factura,
+          electronica: facturas[i].electronica,
+          fecha: facturas[i].fecha_factura,
+          total: facturas[i].valor,
+          tiempo: tiempo
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Professional Container */\n.invoices-container[data-v-54a1b622] {\r\n    min-height: 100vh;\r\n    background: #f8f9fa;\r\n    padding: 2rem;\n}\r\n\r\n/* Header Section */\n.header-section[data-v-54a1b622] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    padding: 2rem;\r\n    margin-bottom: 2rem;\r\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    gap: 2rem;\n}\n.page-header h2[data-v-54a1b622] {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    margin: 0 0 0.5rem 0;\r\n    display: flex;\r\n    align-items: center;\n}\n.page-header h2 i[data-v-54a1b622],\r\n.header-icon[data-v-54a1b622] {\r\n    color: #3b82f6 !important;\r\n    margin-right: 1rem;\r\n    font-size: 2rem;\r\n    display: inline-block;\r\n    -webkit-text-fill-color: #3b82f6 !important;\r\n    background: none !important;\r\n    background-clip: unset !important;\r\n    -webkit-background-clip: unset !important;\r\n    opacity: 1 !important;\r\n    visibility: visible !important;\n}\n.header-icon-fallback[data-v-54a1b622] {\r\n    margin-right: 1rem;\r\n    font-size: 2rem;\r\n    display: none;\n}\r\n\r\n/* Sistema de iconos personalizados con emojis */\n.custom-icon[data-v-54a1b622] {\r\n    display: inline-block;\r\n    font-size: 1.2em;\r\n    line-height: 1;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n    font-style: normal;\r\n    font-weight: normal;\n}\n.custom-icon-document[data-v-54a1b622] {\r\n    font-size: 2rem;\r\n    margin-right: 1rem;\r\n    color: #3b82f6;\n}\n.custom-icon-search[data-v-54a1b622] {\r\n    position: absolute;\r\n    left: 1rem;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    z-index: 3;\r\n    pointer-events: none;\r\n    font-size: 1.2rem;\r\n    margin-right: 0;\r\n    color: #64748b;\n}\n.custom-icon-filter[data-v-54a1b622] {\r\n    font-size: 1rem;\r\n    margin-right: 0.5rem;\r\n    color: white;\n}\r\n\r\n/* Iconos en headers de tabla */\n.professional-table thead th .custom-icon[data-v-54a1b622] {\r\n    color: #3b82f6;\r\n    margin-right: 0.5rem;\r\n    font-size: 1.1rem;\n}\r\n\r\n/* Iconos de cliente móvil */\n.client-icon.custom-icon[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 10px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.3rem;\r\n    margin-right: 0.75rem;\n}\r\n\r\n/* Iconos de información móvil */\n.info-icon.custom-icon[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\r\n    color: #2563eb;\r\n    width: 35px;\r\n    height: 35px;\r\n    border-radius: 8px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.1rem;\r\n    margin-right: 0;\n}\r\n\r\n/* Iconos de edad */\n.age-icon.custom-icon[data-v-54a1b622] {\r\n    font-size: 1.5rem;\r\n    color: #64748b;\r\n    margin-right: 1rem;\n}\r\n\r\n/* Botones de acción con iconos */\n.action-btn .custom-icon[data-v-54a1b622] {\r\n    font-size: 1.2rem;\r\n    margin: 0;\n}\n.mobile-action-btn .custom-icon[data-v-54a1b622] {\r\n    font-size: 1.1rem;\r\n    margin-right: 0.5rem;\n}\r\n\r\n/* Iconos de paginación */\n.pagination-btn .custom-icon[data-v-54a1b622] {\r\n    font-size: 1rem;\r\n    margin: 0 0.25rem;\n}\r\n\r\n/* Estados específicos de iconos */\n.status-badge .custom-icon[data-v-54a1b622],\r\n.status-badge-mobile .custom-icon[data-v-54a1b622] {\r\n    margin-right: 0.5rem;\r\n    font-size: 1rem;\n}\r\n\r\n/* Asegurar que los emojis se vean bien en todos los navegadores */\n.custom-icon[data-v-54a1b622] {\r\n    font-family: \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Noto Color Emoji\", \"Android Emoji\", \"EmojiSymbols\", serif;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\n}\n.page-title[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);\r\n    background-clip: text;\r\n    -webkit-background-clip: text;\r\n    -webkit-text-fill-color: transparent;\r\n    font-weight: 700;\n}\n.page-description[data-v-54a1b622] {\r\n    color: #64748b;\r\n    font-size: 1.1rem;\r\n    margin: 0;\r\n    font-weight: 400;\n}\n.header-actions[data-v-54a1b622] {\r\n    display: flex;\r\n    gap: 1rem;\r\n    align-items: center;\r\n    flex-wrap: wrap;\n}\n.search-box[data-v-54a1b622] {\r\n    position: relative;\r\n    min-width: 300px;\n}\n.search-icon[data-v-54a1b622] {\r\n    position: absolute;\r\n    left: 1rem;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    color: #64748b;\r\n    z-index: 3;\r\n    pointer-events: none;\n}\n.search-input[data-v-54a1b622] {\r\n    width: 100%;\r\n    height: 50px;\r\n    padding: 0 1rem 0 3rem !important;\r\n    border: 2px solid #e2e8f0;\r\n    border-radius: 12px;\r\n    font-size: 1rem;\r\n    background: rgba(255, 255, 255, 0.9);\r\n    backdrop-filter: blur(10px);\r\n    transition: all 0.3s ease;\n}\n.search-input[data-v-54a1b622]::-moz-placeholder {\r\n    color: #9ca3af;\r\n    padding-left: 0;\n}\n.search-input[data-v-54a1b622]::placeholder {\r\n    color: #9ca3af;\r\n    padding-left: 0;\n}\n.search-input[data-v-54a1b622]:focus {\r\n    outline: none;\r\n    border-color: #3b82f6;\r\n    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);\r\n    background: white;\n}\n.new-lab-btn[data-v-54a1b622] {\r\n    height: 50px;\r\n    padding: 0 2rem;\r\n    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);\r\n    color: white;\r\n    border: none;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    font-size: 1rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);\n}\n.new-lab-btn[data-v-54a1b622]:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);\r\n    color: white;\n}\r\n\r\n/* Loading Section */\n.loading-section[data-v-54a1b622] {\r\n    margin-top: 2rem;\r\n    width: 100%;\n}\n.professional-report-container[data-v-54a1b622] {\r\n    background: rgba(255, 255, 255, 0.95);\r\n    backdrop-filter: blur(20px);\r\n    border-radius: 20px;\r\n    overflow: hidden;\r\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid rgba(255, 255, 255, 0.2);\r\n    width: 100%;\r\n    box-sizing: border-box;\n}\n.loader-container[data-v-54a1b622] {\r\n    text-align: center;\r\n    padding: 4rem 2rem;\n}\n.spinner-professional[data-v-54a1b622] {\r\n    width: 60px;\r\n    height: 60px;\r\n    border: 4px solid #e5e7eb;\r\n    border-top: 4px solid #3b82f6;\r\n    border-radius: 50%;\r\n    animation: spin-54a1b622 1s linear infinite;\r\n    margin: 0 auto 2rem;\n}\n.loader-title[data-v-54a1b622] {\r\n    color: #1e293b;\r\n    font-size: 1.5rem;\r\n    font-weight: 700;\r\n    margin: 0 0 0.75rem 0;\n}\n.loader-subtitle[data-v-54a1b622] {\r\n    color: #64748b;\r\n    font-size: 1rem;\r\n    font-weight: 500;\r\n    margin: 0 0 2rem 0;\r\n    line-height: 1.5;\n}\n.loading-progress[data-v-54a1b622] {\r\n    width: 100%;\r\n    max-width: 300px;\r\n    height: 4px;\r\n    background: #e5e7eb;\r\n    border-radius: 2px;\r\n    margin: 0 auto;\r\n    overflow: hidden;\n}\n.progress-bar[data-v-54a1b622] {\r\n    height: 100%;\r\n    background: linear-gradient(90deg, #3b82f6, #2563eb);\r\n    border-radius: 2px;\r\n    animation: progress-54a1b622 2s ease-in-out infinite;\n}\r\n\r\n/* Content */\n.invoices-content[data-v-54a1b622] {\r\n    margin-top: 2rem;\n}\r\n\r\n/* Mobile Cards - Hidden by default */\n.mobile-cards-container[data-v-54a1b622] {\r\n    display: none;\n}\n.desktop-table[data-v-54a1b622] {\r\n    display: block;\n}\r\n\r\n/* Professional Table */\n.professional-table-wrapper[data-v-54a1b622] {\r\n    overflow-x: auto;\r\n    -webkit-overflow-scrolling: touch;\n}\n.professional-table[data-v-54a1b622] {\r\n    width: 100%;\r\n    border-collapse: separate;\r\n    border-spacing: 0;\r\n    background: white;\r\n    font-size: 0.95rem;\r\n    min-width: 900px;\n}\r\n\r\n/* Table Header */\n.professional-table thead th[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);\r\n    color: #374151;\r\n    font-weight: 700;\r\n    font-size: 0.9rem;\r\n    padding: 1.25rem 1rem;\r\n    border-bottom: 2px solid #3b82f6;\r\n    position: sticky;\r\n    top: 0;\r\n    z-index: 10;\r\n    white-space: nowrap;\n}\n.professional-table thead th i[data-v-54a1b622] {\r\n    margin-right: 0.5rem;\r\n    color: #3b82f6;\n}\r\n\r\n/* Table Body */\n.professional-table tbody tr[data-v-54a1b622] {\r\n    transition: all 0.3s ease;\r\n    border-bottom: 1px solid #f1f5f9;\n}\n.professional-table tbody tr[data-v-54a1b622]:hover {\r\n    background: rgba(59, 130, 246, 0.05);\r\n    transform: translateX(5px);\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\n}\n.professional-table tbody td[data-v-54a1b622] {\r\n    padding: 1rem;\r\n    vertical-align: middle;\r\n    border-bottom: 1px solid #f1f5f9;\n}\r\n\r\n/* Cell Styles */\n.client-cell[data-v-54a1b622] {\r\n    font-weight: 600;\r\n    color: #1e293b;\n}\n.client-name[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    border: 1px solid #81d4fa;\n}\n.invoice-cell[data-v-54a1b622] {\r\n    font-weight: 600;\r\n    color: #1e293b;\n}\n.invoice-number[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);\r\n    color: #92400e;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    border: 1px solid #fcd34d;\n}\n.date-cell[data-v-54a1b622] {\r\n    color: #64748b;\r\n    font-weight: 500;\n}\n.date-value[data-v-54a1b622] {\r\n    background: #f8fafc;\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 6px;\r\n    border: 1px solid #e2e8f0;\n}\n.amount-cell[data-v-54a1b622] {\r\n    font-weight: 600;\r\n    font-family: 'Courier New', monospace;\n}\n.amount-value[data-v-54a1b622] {\r\n    padding: 0.4rem 0.8rem;\r\n    border-radius: 6px;\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\r\n    border: 1px solid #93c5fd;\n}\r\n\r\n/* Status Badges */\n.status-badge[data-v-54a1b622] {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    font-size: 0.85rem;\n}\n.status-cancelled[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);\r\n    color: #dc2626;\r\n    border: 1px solid #f87171;\n}\n.status-paid[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);\r\n    color: #059669;\r\n    border: 1px solid #4ade80;\n}\n.age-badge[data-v-54a1b622] {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 8px;\r\n    font-weight: 700;\r\n    font-size: 0.85rem;\n}\n.age-normal[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);\r\n    color: #0369a1;\r\n    border: 1px solid #7dd3fc;\n}\n.age-warning[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);\r\n    color: #d97706;\r\n    border: 1px solid #fbbf24;\n}\n.age-danger[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);\r\n    color: #dc2626;\r\n    border: 1px solid #f87171;\n}\r\n\r\n/* Action Buttons */\n.action-buttons[data-v-54a1b622] {\r\n    display: flex;\r\n    gap: 0.5rem;\r\n    justify-content: center;\n}\n.action-btn[data-v-54a1b622] {\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 10px;\r\n    border: none;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    font-size: 1rem;\r\n    text-decoration: none;\n}\n.print-btn[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);\r\n    color: white;\r\n    box-shadow: 0 5px 15px rgba(248, 113, 113, 0.3);\n}\n.print-btn[data-v-54a1b622]:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 8px 25px rgba(248, 113, 113, 0.4);\n}\n.history-btn[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #10b981 0%, #059669 100%);\r\n    color: white;\r\n    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);\n}\n.history-btn[data-v-54a1b622]:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);\n}\r\n\r\n/* Mobile Cards Styles */\n.invoice-card[data-v-54a1b622] {\r\n    background: white;\r\n    border-radius: 16px;\r\n    padding: 1.5rem;\r\n    margin-bottom: 1rem;\r\n    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);\r\n    border: 1px solid #e5e7eb;\r\n    transition: all 0.3s ease;\n}\n.invoice-card[data-v-54a1b622]:hover {\r\n    transform: translateY(-5px);\r\n    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);\n}\n.card-header[data-v-54a1b622] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 1.5rem;\r\n    padding-bottom: 1rem;\r\n    border-bottom: 2px solid #f1f5f9;\n}\n.client-info[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.75rem;\r\n    flex: 1;\n}\n.client-icon[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);\r\n    color: #0277bd;\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 10px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 1.1rem;\n}\n.client-name-mobile[data-v-54a1b622] {\r\n    font-weight: 700;\r\n    color: #1e293b;\r\n    font-size: 1.1rem;\r\n    line-height: 1.2;\n}\n.invoice-badge[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);\r\n    color: #92400e;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 10px;\r\n    font-weight: 700;\r\n    border: 1px solid #fcd34d;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    font-size: 0.9rem;\n}\n.card-body[data-v-54a1b622] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 1.5rem;\n}\n.info-row[data-v-54a1b622] {\r\n    display: grid;\r\n    grid-template-columns: 1fr 1fr;\r\n    gap: 1rem;\n}\n.info-item[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.75rem;\r\n    padding: 1rem;\r\n    background: #f8fafc;\r\n    border-radius: 12px;\r\n    border: 1px solid #e2e8f0;\n}\n.info-icon[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\r\n    color: #2563eb;\r\n    width: 35px;\r\n    height: 35px;\r\n    border-radius: 8px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 0.9rem;\n}\n.info-content[data-v-54a1b622] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 0.25rem;\r\n    flex: 1;\n}\n.info-label[data-v-54a1b622] {\r\n    font-size: 0.8rem;\r\n    font-weight: 600;\r\n    color: #64748b;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\n}\n.info-value[data-v-54a1b622] {\r\n    font-size: 1rem;\r\n    font-weight: 700;\r\n    color: #1e293b;\n}\r\n\r\n/* Status Section Mobile */\n.status-section[data-v-54a1b622] {\r\n    padding: 1.5rem;\r\n    background: #f8fafc;\r\n    border-radius: 12px;\r\n    border: 1px solid #e2e8f0;\n}\n.status-badge-mobile[data-v-54a1b622] {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.75rem 1.25rem;\r\n    border-radius: 12px;\r\n    font-weight: 700;\r\n    font-size: 1rem;\r\n    width: 100%;\r\n    justify-content: center;\n}\n.age-container[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 1rem;\r\n    justify-content: center;\n}\n.age-icon[data-v-54a1b622] {\r\n    font-size: 1.5rem;\r\n    color: #64748b;\n}\n.age-badge-mobile[data-v-54a1b622] {\r\n    font-weight: 700;\r\n    font-size: 1.1rem;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 8px;\r\n    text-align: center;\n}\r\n\r\n/* Actions Section Mobile */\n.actions-section[data-v-54a1b622] {\r\n    display: flex;\r\n    gap: 1rem;\n}\n.mobile-action-btn[data-v-54a1b622] {\r\n    flex: 1;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    gap: 0.75rem;\r\n    padding: 1rem;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    font-size: 1rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    text-decoration: none;\r\n    border: none;\n}\r\n\r\n/* Animations */\n@keyframes spin-54a1b622 {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n@keyframes progress-54a1b622 {\n0% { transform: translateX(-100%);\n}\n50% { transform: translateX(0%);\n}\n100% { transform: translateX(100%);\n}\n}\r\n\r\n/* Responsive Design */\n@media (max-width: 1024px) {\n.header-section[data-v-54a1b622] {\r\n        flex-direction: column;\r\n        align-items: stretch;\r\n        text-align: center;\n}\n.header-actions[data-v-54a1b622] {\r\n        justify-content: center;\n}\n.search-box[data-v-54a1b622] {\r\n        min-width: 100%;\n}\n.page-header h2[data-v-54a1b622] {\r\n        font-size: 2rem;\r\n        justify-content: center;\n}\n}\n@media (max-width: 900px) {\r\n    /* Show mobile cards, hide desktop table */\n.desktop-table[data-v-54a1b622] {\r\n        display: none;\n}\n.mobile-cards-container[data-v-54a1b622] {\r\n        display: block;\r\n        padding: 0 0.5rem;\n}\n}\n@media (max-width: 768px) {\n.invoices-container[data-v-54a1b622] {\r\n        padding: 1rem;\n}\n.header-section[data-v-54a1b622] {\r\n        border-radius: 16px;\r\n        padding: 1.5rem;\n}\n.professional-report-container[data-v-54a1b622] {\r\n        border-radius: 16px;\n}\n.page-header h2[data-v-54a1b622] {\r\n        font-size: 1.8rem;\r\n        flex-direction: column;\r\n        text-align: center;\r\n        gap: 0.5rem;\n}\n.invoice-card[data-v-54a1b622] {\r\n        margin-bottom: 1rem;\r\n        padding: 1.25rem;\r\n        border-radius: 14px;\n}\n.card-header[data-v-54a1b622] {\r\n        flex-direction: column;\r\n        gap: 1rem;\r\n        align-items: stretch;\r\n        margin-bottom: 1.25rem;\n}\n.client-info[data-v-54a1b622] {\r\n        justify-content: center;\r\n        text-align: center;\n}\n.client-name-mobile[data-v-54a1b622] {\r\n        font-size: 1rem;\r\n        text-align: center;\n}\n.invoice-badge[data-v-54a1b622] {\r\n        align-self: center;\r\n        font-size: 0.85rem;\n}\n.info-row[data-v-54a1b622] {\r\n        grid-template-columns: 1fr;\r\n        gap: 0.75rem;\n}\n.actions-section[data-v-54a1b622] {\r\n        flex-direction: column;\r\n        gap: 0.75rem;\n}\n}\n@media (max-width: 480px) {\n.invoices-container[data-v-54a1b622] {\r\n        padding: 0.75rem;\n}\n.header-section[data-v-54a1b622] {\r\n        padding: 1.25rem;\n}\n.page-header h2[data-v-54a1b622] {\r\n        font-size: 1.6rem;\n}\n.invoice-card[data-v-54a1b622] {\r\n        padding: 1rem;\r\n        margin-bottom: 0.875rem;\n}\n.client-name-mobile[data-v-54a1b622] {\r\n        font-size: 0.95rem;\n}\n}\r\n\r\n/* Pagination Styles */\n.pagination-section[data-v-54a1b622] {\r\n    background: white;\r\n    border-top: 2px solid #f1f5f9;\r\n    padding: 1.5rem 2rem;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    gap: 1rem;\n}\n.pagination-info[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 2rem;\r\n    flex-wrap: wrap;\n}\n.items-per-page[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\n}\n.pagination-label[data-v-54a1b622] {\r\n    font-weight: 600;\r\n    color: #374151;\r\n    font-size: 0.9rem;\n}\n.items-select[data-v-54a1b622] {\r\n    padding: 0.5rem 0.75rem;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 8px;\r\n    font-size: 0.9rem;\r\n    font-weight: 600;\r\n    color: #374151;\r\n    background: white;\r\n    cursor: pointer;\r\n    outline: none;\r\n    transition: all 0.3s ease;\n}\n.items-select[data-v-54a1b622]:focus {\r\n    border-color: #3b82f6;\r\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n}\n.page-info-text[data-v-54a1b622] {\r\n    font-size: 0.9rem;\r\n    color: #64748b;\r\n    font-weight: 500;\n}\n.pagination-controls[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\n}\n.pagination-btn[data-v-54a1b622] {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.5rem;\r\n    padding: 0.75rem 1rem;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 8px;\r\n    background: white;\r\n    color: #374151;\r\n    font-weight: 600;\r\n    font-size: 0.9rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\n}\n.pagination-btn[data-v-54a1b622]:hover:not(:disabled) {\r\n    border-color: #3b82f6;\r\n    color: #3b82f6;\r\n    background: rgba(59, 130, 246, 0.05);\n}\n.pagination-btn[data-v-54a1b622]:disabled {\r\n    opacity: 0.5;\r\n    cursor: not-allowed;\r\n    color: #9ca3af;\n}\n.page-numbers[data-v-54a1b622] {\r\n    display: flex;\r\n    gap: 0.25rem;\r\n    margin: 0 1rem;\n}\n.page-btn[data-v-54a1b622] {\r\n    width: 40px;\r\n    height: 40px;\r\n    border: 2px solid #e5e7eb;\r\n    border-radius: 8px;\r\n    background: white;\r\n    color: #374151;\r\n    font-weight: 600;\r\n    font-size: 0.9rem;\r\n    cursor: pointer;\r\n    transition: all 0.3s ease;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\n}\n.page-btn[data-v-54a1b622]:hover:not(:disabled):not(.ellipsis) {\r\n    border-color: #3b82f6;\r\n    color: #3b82f6;\r\n    background: rgba(59, 130, 246, 0.05);\n}\n.page-btn.active[data-v-54a1b622] {\r\n    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);\r\n    color: white;\r\n    border-color: #3b82f6;\r\n    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);\n}\n.page-btn.ellipsis[data-v-54a1b622] {\r\n    border: none;\r\n    background: transparent;\r\n    cursor: default;\r\n    color: #9ca3af;\n}\n.page-btn.ellipsis[data-v-54a1b622]:hover {\r\n    background: transparent;\r\n    border: none;\n}\r\n\r\n/* Responsive Pagination */\n@media (max-width: 768px) {\n.pagination-section[data-v-54a1b622] {\r\n        padding: 1rem;\r\n        flex-direction: column;\r\n        align-items: stretch;\r\n        gap: 1rem;\n}\n.pagination-info[data-v-54a1b622] {\r\n        justify-content: center;\r\n        flex-direction: column;\r\n        gap: 1rem;\r\n        text-align: center;\n}\n.items-per-page[data-v-54a1b622] {\r\n        justify-content: center;\n}\n.pagination-controls[data-v-54a1b622] {\r\n        justify-content: center;\r\n        flex-wrap: wrap;\n}\n.page-numbers[data-v-54a1b622] {\r\n        margin: 0 0.5rem;\r\n        flex-wrap: wrap;\r\n        justify-content: center;\n}\n.pagination-btn[data-v-54a1b622] {\r\n        font-size: 0.8rem;\r\n        padding: 0.6rem 0.8rem;\n}\n.page-btn[data-v-54a1b622] {\r\n        width: 35px;\r\n        height: 35px;\r\n        font-size: 0.8rem;\n}\n}\n@media (max-width: 480px) {\n.pagination-controls[data-v-54a1b622] {\r\n        flex-direction: column;\r\n        gap: 1rem;\n}\n.page-numbers[data-v-54a1b622] {\r\n        margin: 0;\r\n        order: 2;\n}\n.prev-btn[data-v-54a1b622] {\r\n        order: 1;\r\n        align-self: stretch;\r\n        justify-content: center;\n}\n.next-btn[data-v-54a1b622] {\r\n        order: 3;\r\n        align-self: stretch;\r\n        justify-content: center;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_style_index_0_id_54a1b622_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_style_index_0_id_54a1b622_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_style_index_0_id_54a1b622_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ normalizeComponent)
+/* harmony export */ });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent(
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */,
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("div", {
+    staticClass: "invoices-container"
+  }, [_c("aplicar-filtros", {
+    ref: "filtros",
+    on: {
+      aplicarFiltros: _vm.filtrar
+    }
+  }), _vm._v(" "), _c("historial-pagos", {
+    ref: "historialPagos"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "header-section"
+  }, [_c("div", {
+    staticClass: "page-header"
+  }, [_c("h2", [_c("span", {
+    staticClass: "custom-icon custom-icon-document"
+  }, [_vm._v("📄")]), _vm._v(" "), _c("span", {
+    staticClass: "page-title"
+  }, [_vm._v(_vm._s(_vm.title))])]), _vm._v(" "), _c("p", {
+    staticClass: "page-description"
+  }, [_vm._v("\n                    Gestión completa del historial de facturas y seguimiento de pagos\n                ")])]), _vm._v(" "), _c("div", {
+    staticClass: "header-actions"
+  }, [_c("div", {
+    staticClass: "search-box"
+  }, [_c("span", {
+    staticClass: "custom-icon custom-icon-search"
+  }, [_vm._v("🔍")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.search,
+      expression: "search"
+    }],
+    staticClass: "form-control search-input",
+    attrs: {
+      type: "text",
+      placeholder: "Buscar por cliente o factura..."
+    },
+    domProps: {
+      value: _vm.search
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.search = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary new-lab-btn",
+    on: {
+      click: _vm.opcionesFiltrado
+    }
+  }, [_c("span", {
+    staticClass: "custom-icon custom-icon-filter"
+  }, [_vm._v("🔽")]), _vm._v("\n                    Filtrar Facturas\n                ")])])]), _vm._v(" "), _vm.loader ? _c("div", {
+    staticClass: "loading-section"
+  }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), !_vm.loader ? _c("div", {
+    staticClass: "invoices-content"
+  }, [_c("div", {
+    staticClass: "professional-report-container"
+  }, [_c("div", {
+    staticClass: "desktop-table"
+  }, [_c("div", {
+    staticClass: "table-responsive professional-table-wrapper"
+  }, [_c("table", {
+    staticClass: "professional-table"
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.paginatedFacturas, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "data-row"
+    }, [_c("td", {
+      staticClass: "text-left client-cell"
+    }, [_c("span", {
+      staticClass: "client-name"
+    }, [_vm._v(_vm._s(item.cliente))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center invoice-cell"
+    }, [_c("span", {
+      staticClass: "invoice-number"
+    }, [_vm._v("\n                                            " + _vm._s(item.electronica == 0 ? item.num_factura : item.electronica) + "\n                                        ")])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center date-cell"
+    }, [_c("span", {
+      staticClass: "date-value"
+    }, [_vm._v(_vm._s(item.fecha))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-right amount-cell"
+    }, [_c("span", {
+      staticClass: "amount-value"
+    }, [_vm._v(_vm._s(_vm._f("currency")(item.total)))])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center status-cell"
+    }, [item.estado_id === 3 || item.estado_id === 6 ? _c("div", [item.estado_id === 3 ? _c("span", {
+      staticClass: "status-badge status-cancelled"
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("❌")]), _vm._v("\n                                                Cancelada\n                                            ")]) : _vm._e(), _vm._v(" "), item.estado_id === 6 ? _c("span", {
+      staticClass: "status-badge status-paid"
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("✅")]), _vm._v("\n                                                Pagada\n                                            ")]) : _vm._e()]) : _c("div", [_c("span", {
+      staticClass: "age-badge",
+      "class": {
+        "age-normal": item.tiempo <= 30,
+        "age-warning": item.tiempo > 30 && item.tiempo <= 45,
+        "age-danger": item.tiempo > 45
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("⏰")]), _vm._v("\n                                                " + _vm._s(item.tiempo) + " días\n                                            ")])])]), _vm._v(" "), _c("td", {
+      staticClass: "text-center actions-cell"
+    }, [_c("div", {
+      staticClass: "action-buttons"
+    }, [_c("a", {
+      staticClass: "action-btn print-btn",
+      attrs: {
+        href: "/imprimir-factura/" + item.id,
+        target: "_blank",
+        title: "Imprimir factura"
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("🖨️")])]), _vm._v(" "), item.estado_id === 6 || item.estado_id === 5 ? _c("button", {
+      staticClass: "action-btn history-btn",
+      attrs: {
+        title: "Historial de abonos"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.historyCoin(item);
+        }
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("💳")])]) : _vm._e()])])]);
+  }), 0)])])]), _vm._v(" "), _c("div", {
+    staticClass: "mobile-cards-container"
+  }, _vm._l(_vm.paginatedFacturas, function (item, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invoice-card"
+    }, [_c("div", {
+      staticClass: "card-header"
+    }, [_c("div", {
+      staticClass: "client-info"
+    }, [_c("span", {
+      staticClass: "custom-icon client-icon"
+    }, [_vm._v("👤")]), _vm._v(" "), _c("span", {
+      staticClass: "client-name-mobile"
+    }, [_vm._v(_vm._s(item.cliente))])]), _vm._v(" "), _c("div", {
+      staticClass: "invoice-badge"
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("📄")]), _vm._v(" " + _vm._s(item.electronica == 0 ? item.num_factura : item.electronica) + "\n                            ")])]), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("div", {
+      staticClass: "info-row"
+    }, [_c("div", {
+      staticClass: "info-item"
+    }, [_c("span", {
+      staticClass: "custom-icon info-icon"
+    }, [_vm._v("📅")]), _vm._v(" "), _c("div", {
+      staticClass: "info-content"
+    }, [_c("span", {
+      staticClass: "info-label"
+    }, [_vm._v("Fecha")]), _vm._v(" "), _c("span", {
+      staticClass: "info-value"
+    }, [_vm._v(_vm._s(item.fecha))])])]), _vm._v(" "), _c("div", {
+      staticClass: "info-item"
+    }, [_c("span", {
+      staticClass: "custom-icon info-icon"
+    }, [_vm._v("💰")]), _vm._v(" "), _c("div", {
+      staticClass: "info-content"
+    }, [_c("span", {
+      staticClass: "info-label"
+    }, [_vm._v("Valor")]), _vm._v(" "), _c("span", {
+      staticClass: "info-value"
+    }, [_vm._v(_vm._s(_vm._f("currency")(item.total)))])])])]), _vm._v(" "), _c("div", {
+      staticClass: "status-section"
+    }, [item.estado_id === 3 || item.estado_id === 6 ? _c("div", {
+      staticClass: "status-container"
+    }, [item.estado_id === 3 ? _c("span", {
+      staticClass: "status-badge-mobile status-cancelled"
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("❌")]), _vm._v("\n                                        Cancelada\n                                    ")]) : _vm._e(), _vm._v(" "), item.estado_id === 6 ? _c("span", {
+      staticClass: "status-badge-mobile status-paid"
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("✅")]), _vm._v("\n                                        Pagada\n                                    ")]) : _vm._e()]) : _c("div", {
+      staticClass: "age-container"
+    }, [_c("span", {
+      staticClass: "custom-icon age-icon"
+    }, [_vm._v("⏰")]), _vm._v(" "), _c("span", {
+      staticClass: "age-badge-mobile",
+      "class": {
+        "age-normal": item.tiempo <= 30,
+        "age-warning": item.tiempo > 30 && item.tiempo <= 45,
+        "age-danger": item.tiempo > 45
+      }
+    }, [_vm._v("\n                                        " + _vm._s(item.tiempo) + " días de antigüedad\n                                    ")])])]), _vm._v(" "), _c("div", {
+      staticClass: "actions-section"
+    }, [_c("a", {
+      staticClass: "mobile-action-btn print-btn",
+      attrs: {
+        href: "/imprimir-factura/" + item.id,
+        target: "_blank"
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("🖨️")]), _vm._v("\n                                    Imprimir\n                                ")]), _vm._v(" "), item.estado_id === 6 || item.estado_id === 5 ? _c("button", {
+      staticClass: "mobile-action-btn history-btn",
+      on: {
+        click: function click($event) {
+          return _vm.historyCoin(item);
+        }
+      }
+    }, [_c("span", {
+      staticClass: "custom-icon"
+    }, [_vm._v("💳")]), _vm._v("\n                                    Historial\n                                ")]) : _vm._e()])])]);
+  }), 0), _vm._v(" "), _vm.filteredFacturas.length > 0 ? _c("div", {
+    staticClass: "pagination-section"
+  }, [_c("div", {
+    staticClass: "pagination-info"
+  }, [_c("div", {
+    staticClass: "items-per-page"
+  }, [_c("span", {
+    staticClass: "pagination-label"
+  }, [_vm._v("Mostrar:")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.itemsPerPage,
+      expression: "itemsPerPage"
+    }],
+    staticClass: "items-select",
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.itemsPerPage = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }, function ($event) {
+        return _vm.changeItemsPerPage(_vm.itemsPerPage);
+      }]
+    }
+  }, _vm._l(_vm.itemsPerPageOptions, function (option) {
+    return _c("option", {
+      key: option,
+      domProps: {
+        value: option
+      }
+    }, [_vm._v("\n                                    " + _vm._s(option) + "\n                                ")]);
+  }), 0), _vm._v(" "), _c("span", {
+    staticClass: "pagination-label"
+  }, [_vm._v("registros")])]), _vm._v(" "), _c("div", {
+    staticClass: "page-info"
+  }, [_c("span", {
+    staticClass: "page-info-text"
+  }, [_vm._v("\n                                Mostrando " + _vm._s(_vm.paginationInfo.start) + " - " + _vm._s(_vm.paginationInfo.end) + " de " + _vm._s(_vm.paginationInfo.total) + " registros\n                            ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "pagination-controls"
+  }, [_c("button", {
+    staticClass: "pagination-btn prev-btn",
+    attrs: {
+      disabled: _vm.currentPage === 1
+    },
+    on: {
+      click: _vm.prevPage
+    }
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("◀️")]), _vm._v("\n                            Anterior\n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "page-numbers"
+  }, _vm._l(_vm.getVisiblePages(), function (page) {
+    return _c("button", {
+      key: page,
+      "class": ["page-btn", {
+        active: page === _vm.currentPage,
+        ellipsis: page === "..."
+      }],
+      attrs: {
+        disabled: page === "..."
+      },
+      on: {
+        click: function click($event) {
+          return _vm.goToPage(page);
+        }
+      }
+    }, [_vm._v("\n                                " + _vm._s(page) + "\n                            ")]);
+  }), 0), _vm._v(" "), _c("button", {
+    staticClass: "pagination-btn next-btn",
+    attrs: {
+      disabled: _vm.currentPage === _vm.totalPages
+    },
+    on: {
+      click: _vm.nextPage
+    }
+  }, [_vm._v("\n                            Siguiente\n                            "), _c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("▶️")])])])]) : _vm._e()])]) : _vm._e()], 1)]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "professional-report-container"
+  }, [_c("div", {
+    staticClass: "loader-container"
+  }, [_c("div", {
+    staticClass: "spinner-professional"
+  }), _vm._v(" "), _c("h3", {
+    staticClass: "loader-title"
+  }, [_vm._v("Cargando historial de facturas")]), _vm._v(" "), _c("p", {
+    staticClass: "loader-subtitle"
+  }, [_vm._v("Procesando información de facturas y estados de pago...")]), _vm._v(" "), _c("div", {
+    staticClass: "loading-progress"
+  }, [_c("div", {
+    staticClass: "progress-bar"
+  })])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", {
+    staticClass: "text-left"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("👤")]), _vm._v("\n                                        Cliente\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("📄")]), _vm._v(" Factura\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("📅")]), _vm._v("\n                                        Fecha\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-right"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("💰")]), _vm._v("\n                                        Valor\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("⏱️")]), _vm._v("\n                                        Estado/Edad\n                                    ")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center"
+  }, [_c("span", {
+    staticClass: "custom-icon"
+  }, [_vm._v("⚙️")]), _vm._v("\n                                        Acciones\n                                    ")])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HistorialFacturas.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/HistorialFacturas.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HistorialFacturas_vue_vue_type_template_id_54a1b622_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true */ "./resources/js/components/HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true");
+/* harmony import */ var _HistorialFacturas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistorialFacturas.vue?vue&type=script&lang=js */ "./resources/js/components/HistorialFacturas.vue?vue&type=script&lang=js");
+/* harmony import */ var _HistorialFacturas_vue_vue_type_style_index_0_id_54a1b622_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css */ "./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _HistorialFacturas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HistorialFacturas_vue_vue_type_template_id_54a1b622_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render,
+  _HistorialFacturas_vue_vue_type_template_id_54a1b622_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "54a1b622",
+  null
+  
+)
+
+/* hot reload */
+if (false) // removed by dead control flow
+{ var api; }
+component.options.__file = "resources/js/components/HistorialFacturas.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/HistorialFacturas.vue?vue&type=script&lang=js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/HistorialFacturas.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialFacturas.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_style_index_0_id_54a1b622_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=style&index=0&id=54a1b622&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_template_id_54a1b622_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_template_id_54a1b622_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialFacturas_vue_vue_type_template_id_54a1b622_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true */ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HistorialFacturas.vue?vue&type=template&id=54a1b622&scoped=true");
+
+
+/***/ })
+
+}]);

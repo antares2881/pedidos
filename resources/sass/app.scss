@@ -4,6 +4,5 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-// @import '~vuetify/dist/vuetify.min.css';
+// Bootstrap is loaded once from the administration theme in app.blade.php.
+// Keep this file for application-specific Sass only.

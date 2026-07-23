@@ -1,5 +1,15 @@
 <template>
-    <b-modal ref="my-modal" hide-footer :title="title" :size="modalSize" class="history-price-modal">
+    <b-modal
+        ref="my-modal"
+        hide-footer
+        centered
+        scrollable
+        :title="title"
+        :size="modalSize"
+        modal-class="history-price-modal"
+        dialog-class="history-price-dialog"
+        body-class="history-price-body"
+    >
         <!-- Contenedor responsivo para la tabla -->
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover">
@@ -46,7 +56,7 @@
         </div>
 
         <!-- Paginación -->
-        <div v-if="totalPages > 1" class="d-flex justify-content-between align-items-center mt-3">
+        <div v-if="totalPages > 1" class="history-pagination d-flex justify-content-between align-items-center mt-3">
             <div class="text-muted small">
                 Mostrando {{ startIndex + 1 }} - {{ endIndex }} de {{ totalRecords }} registros
             </div>
@@ -115,26 +125,22 @@
                 const year = d.getFullYear();
                 return `${year}-${month}-${day}`;
             },
-            showPriceProducts(item){
+            async showPriceProducts(item){
                 this.loading = true;
-                return new Promise((resolve, reject) => {
-                    axios.get(`/view-history-price/${item.codigo}`)
-                        .then(res => {
-                            this.productos = res.data;
-                            this.title = item.producto + ' - ' + item.presentacion;
-                            this.currentProduct = item; // Guardar el item original con código
-                            this.loading = false;
-                            this.$nextTick(() => {
-                                this.$refs['my-modal'].show();
-                                resolve(res.data);
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            this.loading = false;
-                            reject(err);
-                        })
-                });
+                this.productos = null;
+                this.title = item.producto + ' - ' + item.presentacion;
+                this.currentProduct = item;
+
+                await new Promise(resolve => this.$nextTick(resolve));
+                this.$refs['my-modal'].show();
+
+                try {
+                    const res = await axios.get(`/view-history-price/${item.codigo}`);
+                    this.productos = res.data;
+                    return res.data;
+                } finally {
+                    this.loading = false;
+                }
             },
             // Método para cambiar de página
             changePage(page) {
@@ -169,48 +175,60 @@
     }
 </script>
 
-<style scoped>
+<style>
 /* Estilos para el modal de historial de precios */
 .history-price-modal {
     --primary-color: #17a2b8;
     --primary-hover: #138496;
 }
 
-/* Modal responsivo */
-.history-price-modal .modal-dialog {
-    margin: 1rem;
+.history-price-modal .history-price-dialog {
+    width: calc(100vw - 3rem);
+    max-width: 1280px;
+    margin: 1.5rem auto;
 }
 
-@media (min-width: 1280px) {
-    .history-price-modal .modal-dialog {
-        max-width: 90vw;
-        margin: 1.75rem auto;
-    }
+.history-price-modal .modal-content {
+    max-height: calc(100vh - 3rem);
+    overflow: hidden;
+    border: 0;
+    border-radius: 16px;
+}
+
+.history-price-modal .history-price-body {
+    padding: 1.25rem;
+    overflow-y: auto;
 }
 
 @media (max-width: 768px) {
-    .history-price-modal .modal-dialog {
-        margin: 0.5rem;
+    .history-price-modal .history-price-dialog {
+        width: calc(100vw - 1rem);
         max-width: calc(100vw - 1rem);
+        margin: 0.5rem auto;
     }
-    
-    .history-price-modal .modal-body {
+
+    .history-price-modal .modal-content {
+        max-height: calc(100vh - 1rem);
+    }
+
+    .history-price-modal .history-price-body {
         padding: 0.75rem;
     }
 }
 
 /* Tabla responsiva mejorada */
-.table-responsive {
+.history-price-modal .table-responsive {
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.table {
+.history-price-modal .table {
+    min-width: 920px;
     margin-bottom: 0;
     background-color: white;
 }
 
-.table th {
+.history-price-modal .table th {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
     color: white;
     font-weight: 600;
@@ -219,44 +237,44 @@
     font-size: 0.85rem;
 }
 
-.table td {
+.history-price-modal .table td {
     padding: 0.75rem 0.5rem;
     vertical-align: middle;
     border-top: 1px solid #e9ecef;
     font-size: 0.85rem;
 }
 
-.table-row:hover {
+.history-price-modal .table-row:hover {
     background-color: #f8f9fa;
     transform: translateY(-1px);
     transition: all 0.2s ease;
 }
 
 /* Texto truncado para celdas largas */
-.text-truncate {
+.history-price-modal .text-truncate {
     max-width: 200px;
 }
 
 /* Estilos para precios */
-.text-success {
+.history-price-modal .text-success {
     color: var(--primary-color) !important;
     font-weight: 600;
 }
 
 /* Paginación personalizada */
-.pagination .page-link {
+.history-price-modal .pagination .page-link {
     color: var(--primary-color);
     border: 1px solid #dee2e6;
     background-color: white;
 }
 
-.pagination .page-link:hover {
+.history-price-modal .pagination .page-link:hover {
     color: white;
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }
 
-.pagination .page-item.active .page-link {
+.history-price-modal .pagination .page-item.active .page-link {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
@@ -264,69 +282,76 @@
 
 /* Responsive para pantallas pequeñas */
 @media (max-width: 576px) {
-    .table th,
-    .table td {
+    .history-price-modal .table th,
+    .history-price-modal .table td {
         padding: 0.5rem 0.25rem;
         font-size: 0.8rem;
     }
     
-    .text-truncate {
+    .history-price-modal .text-truncate {
         max-width: 120px;
     }
     
-    .pagination {
+    .history-price-modal .pagination {
         font-size: 0.8rem;
     }
 }
 
 /* Estado vacío */
-.table tbody tr td[colspan="6"] {
+.history-price-modal .table tbody tr td[colspan="6"] {
     padding: 2rem;
     background-color: #f8f9fa;
 }
 
-.table tbody tr td[colspan="6"] i {
+.history-price-modal .table tbody tr td[colspan="6"] i {
     color: #6c757d;
 }
 
 /* Mejoras visuales adicionales */
-.modal-header {
+.history-price-modal .modal-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
     color: white;
     border-bottom: none;
 }
 
-.modal-header .modal-title {
+.history-price-modal .modal-header .modal-title {
     font-weight: 600;
 }
 
-.modal-header .close {
+.history-price-modal .modal-header .close {
     color: white;
     opacity: 0.8;
 }
 
-.modal-header .close:hover {
+.history-price-modal .modal-header .close:hover {
     opacity: 1;
 }
 
-.modal-body {
-    padding: 1.5rem;
-}
-
 /* Información de paginación */
-.text-muted.small {
+.history-price-modal .text-muted.small {
     font-size: 0.8rem;
     color: #6c757d !important;
 }
 
+.history-pagination {
+    gap: 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .history-pagination {
+        align-items: flex-start !important;
+        flex-direction: column;
+    }
+}
+
 /* Spinner de carga */
-.spinner-border.text-primary {
+.history-price-modal .spinner-border.text-primary {
     color: var(--primary-color) !important;
     border-right-color: transparent;
 }
 
 /* Paginación deshabilitada */
-.pagination.disabled .page-link {
+.history-price-modal .pagination.disabled .page-link {
     opacity: 0.5;
     pointer-events: none;
 }

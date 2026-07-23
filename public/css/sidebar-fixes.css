@@ -103,16 +103,29 @@
 }
 
 /* ========== RESPONSIVE: PANTALLAS PEQUEÑAS < 992px ========== */
-@media (max-width: 992px) {
-    /* Restaurar comportamiento original del sidebar en móviles */
+@media (max-width: 991.98px) {
+    /* El menú móvil se superpone al contenido y nunca ocupa espacio en el flujo. */
     .nav-left-sidebar {
-        width: auto !important; /* Permitir que Bootstrap maneje el ancho */
-        position: relative !important; /* Posición normal, no fixed */
-        top: auto !important;
-        left: auto !important;
-        z-index: auto !important;
-        height: auto !important;
-        transform: none !important; /* Quitar transforms que puedan ocultar contenido */
+        position: fixed !important;
+        top: 60px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 60px) !important;
+        /* Debajo de los modales Bootstrap (backdrop 1040 / modal 1050). */
+        z-index: 1030 !important;
+        overflow-y: auto !important;
+        transition: transform 0.3s ease !important;
+    }
+
+    /* El botón móvil se controla desde el layout, sin depender del plugin
+       collapse de Bootstrap. Esto evita un sidebar visible con contenido oculto. */
+    .dashboard-main-wrapper:not(.sidebar-hidden) .nav-left-sidebar #navbarNav {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    .dashboard-main-wrapper.sidebar-hidden .nav-left-sidebar #navbarNav {
+        display: none !important;
     }
     
     /* Asegurar que el sidebar sea visible cuando está colapsado en móviles */
@@ -202,14 +215,14 @@
         left: 0 !important;
         width: 100% !important;
         height: calc(100vh - 60px) !important;
-        z-index: 1050 !important;
+        z-index: 1030 !important;
         transition: transform 0.3s ease !important;
     }
     
-    /* Cuando el sidebar está visible en móviles */
-    body:not(.sidebar-hidden) .nav-left-sidebar {
+    /* La clase sidebar-hidden vive en #app, no en body. */
+    .dashboard-main-wrapper:not(.sidebar-hidden) .nav-left-sidebar {
         transform: translateX(0) !important;
-        position: relative !important;
+        position: fixed !important;
     }
 }
 

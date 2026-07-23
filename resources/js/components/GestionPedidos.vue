@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="pedidos-container">
             <aplicar-filtros ref="filtros" @aplicarFiltros="filtrar" />
             <historial-pagos ref="historialPagos" />
@@ -206,7 +206,7 @@
                 </div>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
 

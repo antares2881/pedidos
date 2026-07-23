@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <div class="users-container">
             <!-- Professional Loading State -->
             <div v-if="loader" class="loading-container">
@@ -246,7 +246,7 @@
                 </b-modal>
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 <script>
     import { ModelSelect } from 'vue-search-select';
