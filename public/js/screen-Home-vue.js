@@ -11,6 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["num"],
   data: function data() {
@@ -173,9 +174,19 @@ __webpack_require__.r(__webpack_exports__);
             });
           } else {
             _this3.errores = res.data;
+            Swal.fire({
+              icon: 'error',
+              title: 'No fue posible guardar',
+              text: _this3.validationMessage(res.data)
+            });
           }
         })["catch"](function (err) {
-          console.log(err);
+          console.error(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'No fue posible guardar',
+            text: 'OcurriÃ³ un error al procesar la transferencia. Intenta nuevamente.'
+          });
         });
       } else {
         // Si es nuevo, usar POST para crear
@@ -196,15 +207,34 @@ __webpack_require__.r(__webpack_exports__);
             });
           } else {
             _this3.errores = res.data;
+            Swal.fire({
+              icon: 'error',
+              title: 'No fue posible guardar',
+              text: _this3.validationMessage(res.data)
+            });
           }
         })["catch"](function (err) {
-          console.log(err);
+          console.error(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'No fue posible guardar',
+            text: 'OcurriÃ³ un error al procesar la transferencia. Intenta nuevamente.'
+          });
         });
       }
     },
+    validationMessage: function validationMessage(errors) {
+      if (!errors || _typeof(errors) !== 'object') {
+        return 'Verifica los datos de la transferencia e intenta nuevamente.';
+      }
+      var firstError = Object.values(errors).find(function (value) {
+        return value;
+      });
+      return Array.isArray(firstError) ? firstError[0] : String(firstError);
+    },
     validar: function validar() {
       this["return"] = false;
-      if (this.pedido.cliente_id === '') {
+      if (!this.pedido.cliente_id) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -212,7 +242,7 @@ __webpack_require__.r(__webpack_exports__);
         });
         this["return"] = true;
       }
-      if (this.pedido.numero === '') {
+      if (!this.pedido.numero) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -220,19 +250,11 @@ __webpack_require__.r(__webpack_exports__);
         });
         this["return"] = true;
       }
-      if (this.pedido.fecha === '') {
+      if (!this.pedido.fecha) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Debes agregar una fecha de pedido'
-        });
-        this["return"] = true;
-      }
-      if (this.pedido.cliente_id === '') {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Debes agregar un cliente para realizar el pedido'
         });
         this["return"] = true;
       }

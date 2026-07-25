@@ -129,8 +129,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row overflow-auto mb-2" style="max-height: 380px;">
-                            <div class="col-12 p-0">
+                        <div class="order-items-scroll mb-2">
                                 <table class="table table-sm table-compact mb-0">
                                     <thead class="thead-light">
                                         <tr class="compact-header">
@@ -165,7 +164,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
                         </div>
 
                         <!-- OPCIONES AGREGAR NOTA-->
@@ -221,12 +219,12 @@
 
                         <div class="row" v-if="!esFactura && !esFacturaDirecto">
                             <div class="col-6">
-                                <button class="btn btn-secondary btn-block" @click="emptyCart" :disabled="saveLoading">
+                                <button type="button" class="btn btn-secondary btn-block" @click.prevent="emptyCart" :disabled="saveLoading">
                                     <i class="fas fa-trash mr-2"></i>Vaciar productos
                                 </button>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-primary btn-block" @click="save" :disabled="saveLoading">
+                                <button type="button" class="btn btn-primary btn-block" @click.prevent="save" :disabled="saveLoading">
                                     <div v-if="saveLoading" class="d-flex align-items-center justify-content-center">
                                         <div class="save-spinner mr-2"></div>
                                         Guardando...
@@ -585,6 +583,24 @@
                 facturas.mostrarModalFacturas(this.pedido.cliente_id);
             },
             async save(){
+                if (!this.pedido.cliente_id) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Debes agregar un cliente para realizar el pedido'
+                    });
+                    return;
+                }
+
+                if (this.pedidos.length === 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Debes agregar productos al pedido'
+                    });
+                    return;
+                }
+
                 this.saveLoading = true;
                 try {
                     if(this.tipo_cliente == 2){
@@ -592,7 +608,11 @@
                     }
                     this.pedido.totalPedido = this.totalPedido;
                     this.pedido.pedidos = this.pedidos;
-                    await this.$emit('guardar', this.pedido);
+                    this.$emit('guardar', {
+                        ...this.pedido,
+                        pedidos: this.pedidos,
+                        totalPedido: this.totalPedido
+                    });
                 } catch (error) {
                     console.error('Error al guardar:', error);
                 } finally {
@@ -995,6 +1015,26 @@
 .table-compact {
     margin-bottom: 0;
     font-size: 0.85rem;
+}
+
+.order-items-scroll {
+    width: 100%;
+    max-height: clamp(220px, 38vh, 380px);
+    overflow-x: auto;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.order-items-scroll .table-compact {
+    min-width: 680px;
+}
+
+.order-items-scroll .table-compact thead th {
+    background: #f8f9fa;
+    box-shadow: inset 0 -1px 0 #dee2e6;
 }
 
 .table-compact th,

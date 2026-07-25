@@ -171,10 +171,20 @@
                                 })
                             }else{
                                 this.errores = res.data;
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'No fue posible guardar',
+                                    text: this.validationMessage(res.data)
+                                });
                             }
                         })
                         .catch(err => {
-                            console.log(err)
+                            console.error(err);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'No fue posible guardar',
+                                text: 'OcurriÃ³ un error al procesar la transferencia. Intenta nuevamente.'
+                            });
                         })
                 } else {
                     // Si es nuevo, usar POST para crear
@@ -196,19 +206,37 @@
                                 })
                             }else{
                                 this.errores = res.data;
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'No fue posible guardar',
+                                    text: this.validationMessage(res.data)
+                                });
                             }
                         })
                         .catch(err => {
-                            console.log(err)
+                            console.error(err);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'No fue posible guardar',
+                                text: 'OcurriÃ³ un error al procesar la transferencia. Intenta nuevamente.'
+                            });
                         })
                 }
+            },
+            validationMessage(errors) {
+                if (!errors || typeof errors !== 'object') {
+                    return 'Verifica los datos de la transferencia e intenta nuevamente.';
+                }
+
+                const firstError = Object.values(errors).find(value => value);
+                return Array.isArray(firstError) ? firstError[0] : String(firstError);
             },
             
             validar(){
 
                 this.return = false;
 
-                if(this.pedido.cliente_id === ''){
+                if(!this.pedido.cliente_id){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -216,7 +244,7 @@
                     });
                     this.return = true;
                 }
-                if(this.pedido.numero === ''){
+                if(!this.pedido.numero){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -224,19 +252,11 @@
                     });
                     this.return = true;
                 }
-                if(this.pedido.fecha === ''){
+                if(!this.pedido.fecha){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Debes agregar una fecha de pedido'
-                    });
-                    this.return = true;
-                }
-                if(this.pedido.cliente_id === ''){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Debes agregar un cliente para realizar el pedido'
                     });
                     this.return = true;
                 }
