@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     buscarPedidoCalox: function buscarPedidoCalox() {
       var _this = this;
-      var numero = document.getElementById('num_pedido').value;
+      var numero = this.entrada.num_pedido;
       this.entradas = [];
       axios.get("/pedidos-calox/".concat(numero))
       // this.reset()
@@ -107,19 +107,20 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     getConsecutivo: function getConsecutivo() {
+      var _this2 = this;
       axios.get('/consecutivo-pedidos-calox').then(function (res) {
         // console.log(res.data)
 
-        document.getElementById('num_pedido').value = res.data[0].consecutivo + 1;
+        _this2.entrada.num_pedido = Number(res.data[0].consecutivo) + 1;
       })["catch"](function (err) {
         console.log(err);
       });
     },
     getLaboratorios: function getLaboratorios() {
-      var _this2 = this;
+      var _this3 = this;
       axios.get('/laboratorios').then(function (res) {
         res.data.map(function (el) {
-          _this2.laboratorios.push({
+          _this3.laboratorios.push({
             text: el.Laboratorio,
             value: el.id
           });
@@ -127,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     savePedido: function savePedido(pedido) {
-      var _this3 = this;
+      var _this4 = this;
       var url = '';
       var method = '';
       Swal.showLoading();
@@ -150,7 +151,6 @@ __webpack_require__.r(__webpack_exports__);
       // this.entrada.esFacturaDirecto = pedido.esFacturaDirecto; 
       this.entrada.entradas = pedido.pedidos;
       // this.entrada.fecha = pedido.fecha;
-      this.entrada.num_pedido = document.getElementById('num_pedido').value;
       this.entrada.cliente_id = pedido.cliente_id;
       // this.entrada.laboratorio_id = pedido.laboratorio_id;
       this.validar();
@@ -174,12 +174,12 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          _this3.errores = res.data;
+          _this4.errores = res.data;
         }
       });
     },
     updatePedido: function updatePedido() {
-      var _this4 = this;
+      var _this5 = this;
       Swal.showLoading();
       this.entrada.entradas = this.entradas;
       this.entrada.valor = this.totalFactura;
@@ -205,8 +205,8 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          _this4.mensajeError = true;
-          _this4.errorEntrada = res.data;
+          _this5.mensajeError = true;
+          _this5.errorEntrada = res.data;
         }
       });
     },
@@ -273,7 +273,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fondo[data-v-29a2c874] {\n    background-color: #c3c3c3;\n}\n.purchase-fields[data-v-29a2c874] {\n    margin-right: -7px;\n    margin-bottom: 14px;\n    margin-left: -7px;\n    row-gap: 14px;\n}\n.purchase-field[data-v-29a2c874] {\n    padding-right: 7px;\n    padding-left: 7px;\n}\n.purchase-label[data-v-29a2c874] {\n    display: block;\n    margin-bottom: 6px;\n    color: #475569;\n    font-family: inherit;\n    font-size: 0.78rem;\n    font-weight: 700;\n    line-height: 1.2;\n    letter-spacing: 0.025em;\n}\n.purchase-input[data-v-29a2c874] {\n    width: 100%;\n    height: 46px;\n    padding: 0.75rem 0.9rem;\n    color: #334155;\n    background-color: #fff;\n    border: 1px solid #d7dee8;\n    border-radius: 10px;\n    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);\n    font-family: inherit;\n    font-size: 0.9rem;\n    line-height: 1.2;\n    transition: border-color 0.2s, box-shadow 0.2s;\n}\n.purchase-input[data-v-29a2c874]:focus {\n    border-color: #17a2b8;\n    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);\n}\n.purchase-select[data-v-29a2c874] .ui.selection.dropdown {\n    display: flex;\n    align-items: center;\n    width: 100%;\n    min-width: 0;\n    min-height: 46px;\n    padding: 0.75rem 2.5rem 0.75rem 0.9rem;\n    color: #334155;\n    border: 1px solid #d7dee8;\n    border-radius: 10px;\n    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);\n    font-family: inherit;\n    font-size: 0.9rem;\n    line-height: 1.2;\n    transition: border-color 0.2s, box-shadow 0.2s;\n}\n.purchase-select[data-v-29a2c874] .ui.selection.dropdown:focus,\n.purchase-select[data-v-29a2c874] .ui.selection.active.dropdown {\n    border-color: #17a2b8;\n    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);\n}\n.purchase-select[data-v-29a2c874] .ui.selection.dropdown > .text,\n.purchase-select[data-v-29a2c874] .ui.search.dropdown > input.search {\n    font-family: inherit;\n    font-size: 0.9rem;\n}\n@media (max-width: 767.98px) {\n.purchase-fields[data-v-29a2c874] {\n        row-gap: 12px;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.fondo[data-v-29a2c874] {\n    background-color: #c3c3c3;\n}\n.purchase-fields[data-v-29a2c874] {\n    margin-right: -7px;\n    margin-bottom: 14px;\n    margin-left: -7px;\n    row-gap: 14px;\n}\n.purchase-field[data-v-29a2c874] {\n    padding-right: 7px;\n    padding-left: 7px;\n}\n.purchase-label[data-v-29a2c874] {\n    display: block;\n    margin-bottom: 6px;\n    color: #475569;\n    font-family: inherit;\n    font-size: 0.78rem;\n    font-weight: 700;\n    line-height: 1.2;\n    letter-spacing: 0.025em;\n}\n.purchase-input[data-v-29a2c874] {\n    width: 100%;\n    height: 46px;\n    padding: 0.75rem 0.9rem;\n    color: #334155;\n    background-color: #fff;\n    border: 1px solid #d7dee8;\n    border-radius: 10px;\n    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);\n    font-family: inherit;\n    font-size: 0.9rem;\n    line-height: 1.2;\n    transition: border-color 0.2s, box-shadow 0.2s;\n}\n.purchase-input[data-v-29a2c874]:focus {\n    border-color: #17a2b8;\n    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);\n}\n.purchase-select[data-v-29a2c874] .ui.selection.dropdown {\n    display: flex;\n    align-items: center;\n    width: 100%;\n    min-width: 0;\n    min-height: 46px;\n    padding: 0.75rem 2.5rem 0.75rem 0.9rem;\n    color: #334155;\n    border: 1px solid #d7dee8;\n    border-radius: 10px;\n    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);\n    font-family: inherit;\n    font-size: 0.9rem;\n    line-height: 1.2;\n    transition: border-color 0.2s, box-shadow 0.2s;\n}\n.purchase-select[data-v-29a2c874] .ui.selection.dropdown:focus,\n.purchase-select[data-v-29a2c874] .ui.selection.active.dropdown {\n    border-color: #17a2b8;\n    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.14);\n}\n.purchase-select[data-v-29a2c874] .ui.selection.dropdown > .text,\n.purchase-select[data-v-29a2c874] .ui.search.dropdown > input.search {\n    font-family: inherit;\n    font-size: 0.9rem;\n}\n@media (max-width: 920px) {\n.purchase-fields[data-v-29a2c874] {\n        row-gap: 12px;\n}\n.purchase-field[data-v-29a2c874] {\n        flex: 0 0 100%;\n        max-width: 100%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5504,15 +5504,28 @@ var render = function render() {
             "for": "num_pedido"
           }
         }, [_vm._v("Número de pedido")]), _vm._v(" "), !_vm.esFacturaDirecto ? _c("input", {
+          directives: [{
+            name: "model",
+            rawName: "v-model",
+            value: _vm.entrada.num_pedido,
+            expression: "entrada.num_pedido"
+          }],
           staticClass: "form-control purchase-input",
           attrs: {
             type: "number",
             id: "num_pedido"
           },
+          domProps: {
+            value: _vm.entrada.num_pedido
+          },
           on: {
             keypress: function keypress($event) {
               if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
               return _vm.buscarPedidoCalox.apply(null, arguments);
+            },
+            input: function input($event) {
+              if ($event.target.composing) return;
+              _vm.$set(_vm.entrada, "num_pedido", $event.target.value);
             }
           }
         }) : _c("input", {
@@ -5618,7 +5631,7 @@ var render = function render() {
         }, [_vm._v("\n                        Editar pedido\n                    ")])], 1)];
       },
       proxy: true
-    }], null, false, 1667613777)
+    }], null, false, 95696189)
   }) : _vm._e()], 1)]);
 };
 var staticRenderFns = [];
