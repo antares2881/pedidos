@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-md-6 purchase-field">
                             <label class="purchase-label" for="num_pedido">Número de pedido</label>
-                            <input type="number" id="num_pedido" class="form-control purchase-input" @keypress.enter="buscarPedidoCalox" v-if="!esFacturaDirecto">
+                            <input type="number" id="num_pedido" v-model="entrada.num_pedido" class="form-control purchase-input" @keypress.enter="buscarPedidoCalox" v-if="!esFacturaDirecto">
                             <input type="number" id="num_pedido" v-model="entrada.num_pedido" class="form-control purchase-input" @keypress.enter="buscarPedidoCalox" v-else>
                         </div>
                         <div class="col-md-6 purchase-field">
@@ -73,7 +73,7 @@
             
             buscarPedidoCalox(){
 
-                const numero = document.getElementById('num_pedido').value;
+                const numero = this.entrada.num_pedido;
                 this.entradas = [];
                 axios.get(`/pedidos-calox/${numero}`)
                     // this.reset()
@@ -124,7 +124,7 @@
                     .then(res => {
                         // console.log(res.data)
                         
-                        document.getElementById('num_pedido').value = res.data[0].consecutivo + 1;
+                        this.entrada.num_pedido = Number(res.data[0].consecutivo) + 1;
                     })
                     .catch(err => {
                         console.log(err)
@@ -168,7 +168,6 @@
                 // this.entrada.esFacturaDirecto = pedido.esFacturaDirecto; 
                 this.entrada.entradas = pedido.pedidos;
                 // this.entrada.fecha = pedido.fecha;
-                this.entrada.num_pedido = document.getElementById('num_pedido').value;
                 this.entrada.cliente_id = pedido.cliente_id;
                 // this.entrada.laboratorio_id = pedido.laboratorio_id;
                 this.validar();
@@ -358,9 +357,14 @@
     font-size: 0.9rem;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 920px) {
     .purchase-fields {
         row-gap: 12px;
+    }
+
+    .purchase-field {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }
 </style>

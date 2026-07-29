@@ -1,5 +1,14 @@
 <template>
-    <b-modal id="modal-item" no-close-on-backdrop scrollable centered hide-footer :title="title" v-model="dialogClient" >
+    <b-modal
+        id="cliente-modal"
+        dialog-class="cliente-modal-dialog"
+        no-close-on-backdrop
+        scrollable
+        centered
+        hide-footer
+        :title="title"
+        v-model="dialogClient"
+    >
         <div class="row">
             <div class="col-12">
                 <model-select 
@@ -226,3 +235,18 @@
         }
     }
 </script>
+<style>
+.cliente-modal-dialog {
+    width: calc(100% - 2rem);
+    max-width: 760px;
+}
+
+@media (max-width: 768px) {
+    .cliente-modal-dialog {
+        width: calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+</style>

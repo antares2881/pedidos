@@ -1854,6 +1854,8 @@
     
     /* Modal en pantallas muy pequeñas */
     #movimientosModal .modal-dialog {
+        width: calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
         max-height: 98vh;
         margin: 0.25rem auto;
     }
@@ -2265,6 +2267,52 @@
     #movimientosModal .movimientos-summary {
         margin-bottom: 4rem;
         padding-bottom: 2rem;
+    }
+}
+
+/* Layout amplio y tabla legible para el historial de movimientos */
+@media (min-width: 769px) {
+    #movimientosModal .modal-dialog {
+        width: 94vw;
+        max-width: 1400px;
+    }
+}
+
+#movimientosModal .movimientos-table-container,
+#movimientosModal .movimientos-table-container .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#movimientosModal .movimientos-table-container .table {
+    width: 100%;
+    min-width: 900px;
+    table-layout: auto;
+}
+
+#movimientosModal .movimientos-table-container th,
+#movimientosModal .movimientos-table-container td {
+    white-space: nowrap;
+}
+
+#movimientosModal .movimientos-table-container th:first-child,
+#movimientosModal .movimientos-table-container td:first-child {
+    min-width: 115px;
+}
+
+#movimientosModal .movimientos-table-container th:nth-child(2),
+#movimientosModal .movimientos-table-container td:nth-child(2) {
+    min-width: 160px;
+}
+
+#movimientosModal .movimientos-table-container th:nth-child(3),
+#movimientosModal .movimientos-table-container td:nth-child(3) {
+    min-width: 140px;
+}
+
+@media (max-width: 768px) {
+    #movimientosModal .movimientos-table-container .table {
+        min-width: 760px;
     }
 }
 

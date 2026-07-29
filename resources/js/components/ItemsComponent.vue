@@ -7,12 +7,12 @@
         <modalfacturas-pendientes v-if="mountedModals.pendingInvoices" ref="facturas" @seleccionar="llenarReferencia" />
         <div class="row" >           
             
-            <div class="col-md-5 col-sm-12">
+            <div class="col-md-5 col-sm-12 catalog-panel">
                 <div class="row p-2 mb-1">
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-8 product-search-field">
                         <input type="text" class="form-control form-control-sm" placeholder="Buscar productos" @keyup="filterItems" v-model="nombreProducto">
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 product-create-action">
                         <button class="btn btn-outline-primary btn-sm btn-block text-wrap" @click="nuevoProducto"><i class="fas fa-plus"></i> Crear</button>
                     </div>                        
                 </div>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-7 col-sm-12 order-panel">
                 <div class="card order-card">
                     <div class="card-header bg-light">
                         <h5 class="card-title mb-0 text-center">
@@ -1167,7 +1167,23 @@
 }
 
 /* Responsivo */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
+    .catalog-panel,
+    .order-panel,
+    .product-search-field,
+    .product-create-action {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .product-create-action {
+        margin-top: 0.5rem;
+    }
+
+    .order-panel {
+        margin-top: 1rem;
+    }
+
     .product-card {
         min-height: 160px;
     }
@@ -1335,7 +1351,7 @@
 }
 
 /* Responsive loading */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
     .loading-container {
         min-height: 300px;
         padding: 30px 15px;
