@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.cliente-modal-dialog {\n    width: calc(100% - 2rem);\n    max-width: 760px;\n}\n@media (max-width: 768px) {\n.cliente-modal-dialog {\n        width: calc(100% - 1rem);\n        max-width: calc(100% - 1rem);\n        margin-right: auto;\n        margin-left: auto;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.cliente-modal-dialog {\r\n    width: calc(100% - 2rem);\r\n    max-width: 760px;\n}\n@media (max-width: 768px) {\n.cliente-modal-dialog {\r\n        width: calc(100% - 1rem);\r\n        max-width: calc(100% - 1rem);\r\n        margin-right: auto;\r\n        margin-left: auto;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -184,7 +184,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearClientes_vue_vue_type_style_index_0_id_b173f9f6_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CrearClientes.vue?vue&type=style&index=0&id=b173f9f6&lang=css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CrearClientes.vue?vue&type=style&index=0&id=b173f9f6&lang=css");
 
-
+            
 
 var options = {};
 

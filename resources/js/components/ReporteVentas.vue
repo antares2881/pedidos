@@ -138,7 +138,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(item, index) in ventas" :key="index" class="data-row">
+                                    <tr v-for="(item, index) in ventasPaginadas" :key="`${item.cliente}-${item.fecha}-${index}`" class="data-row">
                                         <td class="text-left client-cell">
                                             <div class="client-info">
                                                 <i class="fas fa-user client-icon"></i>
@@ -173,6 +173,62 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                        </div>
+
+                        <div class="pagination-section">
+                            <div class="pagination-summary">
+                                <label for="ventas-per-page">Mostrar</label>
+                                <select
+                                    id="ventas-per-page"
+                                    v-model.number="registrosPorPagina"
+                                    class="pagination-select"
+                                    @change="cambiarRegistrosPorPagina"
+                                >
+                                    <option v-for="opcion in opcionesPorPagina" :key="opcion" :value="opcion">
+                                        {{ opcion }}
+                                    </option>
+                                </select>
+                                <span>registros</span>
+                                <span class="pagination-range">
+                                    Mostrando {{ rangoPaginacion.inicio }}–{{ rangoPaginacion.fin }} de {{ ventas.length }}
+                                </span>
+                            </div>
+
+                            <nav class="pagination-controls" aria-label="Paginaci&oacute;n del reporte de ventas">
+                                <button
+                                    type="button"
+                                    class="pagination-btn"
+                                    :disabled="paginaActual === 1"
+                                    @click="irPagina(paginaActual - 1)"
+                                >
+                                    <i class="fas fa-chevron-left"></i>
+                                    Anterior
+                                </button>
+
+                                <div class="pagination-pages">
+                                    <button
+                                        v-for="pagina in paginasVisibles"
+                                        :key="`pagina-${pagina}`"
+                                        type="button"
+                                        class="pagination-page"
+                                        :class="{ active: pagina === paginaActual, ellipsis: pagina === '...' }"
+                                        :disabled="pagina === '...'"
+                                        @click="pagina !== '...' && irPagina(pagina)"
+                                    >
+                                        {{ pagina }}
+                                    </button>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="pagination-btn"
+                                    :disabled="paginaActual === totalPaginas"
+                                    @click="irPagina(paginaActual + 1)"
+                                >
+                                    Siguiente
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -209,7 +265,46 @@
                 reporte: {fecha_i: null, fecha_f: null},
                 ventas: [],
                 loader: false,
-                fechaFinalInvalida: false
+                fechaFinalInvalida: false,
+                paginaActual: 1,
+                registrosPorPagina: 25,
+                opcionesPorPagina: [10, 25, 50, 100]
+            }
+        },
+        computed: {
+            totalPaginas() {
+                return Math.max(1, Math.ceil(this.ventas.length / this.registrosPorPagina));
+            },
+            ventasPaginadas() {
+                const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
+                return this.ventas.slice(inicio, inicio + this.registrosPorPagina);
+            },
+            rangoPaginacion() {
+                if (this.ventas.length === 0) {
+                    return { inicio: 0, fin: 0 };
+                }
+
+                const inicio = (this.paginaActual - 1) * this.registrosPorPagina + 1;
+                return {
+                    inicio,
+                    fin: Math.min(inicio + this.registrosPorPagina - 1, this.ventas.length)
+                };
+            },
+            paginasVisibles() {
+                if (this.totalPaginas <= 7) {
+                    return Array.from({ length: this.totalPaginas }, (_, index) => index + 1);
+                }
+
+                const paginas = [1];
+                const desde = Math.max(2, this.paginaActual - 2);
+                const hasta = Math.min(this.totalPaginas - 1, this.paginaActual + 2);
+
+                if (desde > 2) paginas.push('...');
+                for (let pagina = desde; pagina <= hasta; pagina++) paginas.push(pagina);
+                if (hasta < this.totalPaginas - 1) paginas.push('...');
+                paginas.push(this.totalPaginas);
+
+                return paginas;
             }
         },
         mounted() {
@@ -254,6 +349,7 @@
                 }
 
                 this.ventas = [];
+                this.paginaActual = 1;
                 this.loader = true;
                 
                 axios.post('/reportes-ventas', this.reporte)
@@ -286,6 +382,14 @@
             },
             calcularTotalVentas() {
                 return this.ventas.reduce((total, venta) => total + parseFloat(venta.valor || 0), 0);
+            },
+            irPagina(pagina) {
+                if (pagina >= 1 && pagina <= this.totalPaginas) {
+                    this.paginaActual = pagina;
+                }
+            },
+            cambiarRegistrosPorPagina() {
+                this.paginaActual = 1;
             },
             formatearFecha(fecha) {
                 if (!fecha) return '';
@@ -940,6 +1044,103 @@
     line-height: 1.5;
 }
 
+/* Pagination */
+.pagination-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+}
+
+.pagination-summary,
+.pagination-controls,
+.pagination-pages {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-summary {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.pagination-select {
+    min-width: 72px;
+    height: 40px;
+    padding: 0 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pagination-select:focus {
+    outline: none;
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.15);
+}
+
+.pagination-range {
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid #cbd5e1;
+}
+
+.pagination-btn,
+.pagination-page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn {
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+}
+
+.pagination-page {
+    min-width: 40px;
+    padding: 0.55rem;
+}
+
+.pagination-btn:hover:not(:disabled),
+.pagination-page:hover:not(:disabled),
+.pagination-page.active {
+    border-color: #17a2b8;
+    background: #17a2b8;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.25);
+}
+
+.pagination-btn:disabled,
+.pagination-page:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.pagination-page.ellipsis {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    color: #64748b;
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -1020,6 +1221,17 @@
     .professional-table tfoot th {
         padding: 0.875rem 0.5rem;
     }
+
+    .pagination-section,
+    .pagination-summary,
+    .pagination-controls {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .pagination-controls {
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1063,6 +1275,24 @@
     .professional-table tbody td,
     .professional-table tfoot th {
         padding: 0.75rem 0.25rem;
+    }
+
+    .pagination-summary {
+        flex-wrap: wrap;
+    }
+
+    .pagination-range {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 0;
+        border-left: 0;
+        text-align: center;
+    }
+
+    .pagination-pages {
+        order: 3;
+        width: 100%;
+        justify-content: center;
     }
 }
 </style>

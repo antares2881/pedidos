@@ -29,6 +29,17 @@
                 </v-card-title>
 
                 <v-card-text>
+                    <v-progress-linear
+                        v-if="loadingDetalle"
+                        indeterminate
+                        color="primary"
+                        class="mb-4"
+                    ></v-progress-linear>
+
+                    <v-alert v-if="errorDetalle" type="error" dense outlined>
+                        {{ errorDetalle }}
+                    </v-alert>
+
                     <h4>{{transferencia.cliente}}</h4>
                     <p><strong>Nit: </strong>{{`${transferencia.nit} - ${transferencia.dv}`}}</p>
                     <p>Fecha: {{transferencia.fecha}}</p>
@@ -94,7 +105,9 @@
     export default {
         data() {
             return {
-                detalleProductos: [],                
+                detalleProductos: [],
+                loadingDetalle: false,
+                errorDetalle: '',
                 dialogTransferencia: false,
                 transferencia: {factura: {id: null, numero_factura: null}}
             }
@@ -105,10 +118,12 @@
             showTransferencia(item){
                 this.detalleProductos = [];
                 this.transferencia = Object.assign({}, item);
-                // console.log(this.transferencia)
+                this.errorDetalle = '';
+                this.loadingDetalle = true;
+                this.dialogTransferencia = true;
+
                 axios.get(`/producto-transferencias/${item.id}`)
                     .then(res => {
-                        console.log(res.data)
                         for (let i = 0; i < res.data.length; i++) {
                             
                             // let vUnit = (res.data[i].detalleproductos.precio*0.17) + res.data[i].detalleproductos.precio;
@@ -124,12 +139,14 @@
                                total: vTotal
                            })
                         }
-                        // Swal.hideLoading() 
-                        this.dialogTransferencia = true;
                     })
                     .catch(err => {
-                        console.log(err)
+                        console.error(err);
+                        this.errorDetalle = 'No fue posible cargar el detalle de la transferencia.';
                     })
+                    .finally(() => {
+                        this.loadingDetalle = false;
+                    });
             }
         },
     }

@@ -203,6 +203,11 @@ const mountApp = (vuetify) => new Vue({
 });
 
 if (screenUsesVuetify) {
+    // Overlay components such as v-dialog and v-menu need a data-app target.
+    // The project mounts Vue on the administration layout instead of <v-app>,
+    // so expose that existing root as Vuetify's application container.
+    appRoot.setAttribute('data-app', 'true');
+
     // MDI is only required by Vuetify screens. Keeping it out of the base
     // layout saves the stylesheet and font request on Bootstrap-only pages.
     const mdiStylesheet = document.createElement('link');
