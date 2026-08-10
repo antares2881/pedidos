@@ -274,7 +274,7 @@
                 axios.post('/new-item', this.producto)
                     .then(res => {
                         this.saving = false;
-                        if(res.data.length > 0){
+                        if(res.data.ok && res.data.item){
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Guardado',
@@ -288,16 +288,15 @@
                                 }
                             })
                         }else{
-                            // Manejar errores del servidor
-                            if (Array.isArray(res.data) && res.data.length > 0) {
-                                this.$set(this.validationErrors, 'general', res.data);
-                            }
+                            this.$set(this.validationErrors, 'general', ['El servidor no confirmo la creacion del item.']);
                         }
                     })
                     .catch(error => {
                         this.saving = false;
                         if (error.response && error.response.status === 422) {
-                            this.validationErrors = error.response.data.errors;
+                            this.validationErrors = error.response.data.errors || {
+                                general: [error.response.data.message || 'No fue posible crear el item.']
+                            };
                         } else {
                             this.$set(this.validationErrors, 'general', ['Error al guardar el item. Por favor, inténtelo de nuevo.']);
                         }

@@ -55,39 +55,59 @@ class ListaprecioController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->messages(), 200);
+            return response()->json(['errors' => $validator->messages()], 422);
         }
 
-        $productoExists = Listaprecio::where('codigo', $request->codigo)->first();
-        if(!$productoExists){            
-            $producto = new Detalleproducto();
-            $producto->producto_id = $request->producto_id;
-            $producto->presentacione_id = $request->presentacione_id;
-            $producto->codigo = $request->codigo;
+        $item = DB::transaction(function () use ($request) {
+            // El detalle y el precio pertenecen a tablas diferentes. La existencia
+            // del detalle debe comprobarse en detalleproductos, no en listaprecios.
+            $producto = Detalleproducto::where('codigo', $request->codigo)->first();
+
+            if ($producto && (
+                (int) $producto->producto_id !== (int) $request->producto_id ||
+                (int) $producto->presentacione_id !== (int) $request->presentacione_id
+            )) {
+                abort(422, 'El codigo ya pertenece a otro producto o presentacion.');
+            }
+
+            if (!$producto) {
+                $producto = new Detalleproducto();
+                $producto->producto_id = $request->producto_id;
+                $producto->presentacione_id = $request->presentacione_id;
+                $producto->codigo = $request->codigo;
+            }
+
             $producto->precio = $request->precio;
             $producto->stock = $request->stock;
             $producto->fecha_vence = $request->fecha_vence;
             $producto->save();
-        }
 
+            $listaprecio = Listaprecio::where('codigo', $request->codigo)
+                ->where('tipolista_id', $request->tipolista_id)
+                ->first();
 
-        $listaprecio = new Listaprecio();
-        $listaprecio->codigo = $request->codigo;
-        $listaprecio->tipolista_id = $request->tipolista_id;
-        $listaprecio->precio = $request->precio;
-        $listaprecio->impuesto = $request->impuesto;
+            if (!$listaprecio) {
+                $listaprecio = new Listaprecio();
+                $listaprecio->codigo = $request->codigo;
+                $listaprecio->tipolista_id = $request->tipolista_id;
+            }
 
-        $listaprecio->save();
+            $listaprecio->precio = $request->precio;
+            $listaprecio->impuesto = $request->impuesto;
+            $listaprecio->save();
 
-        $item = DB::select("SELECT p.laboratorio_id, lp.codigo, c.categoria, p.producto, dp.id as detalleproducto_id, dp.producto_id, dp.presentacione_id, dp.fecha_vence, pr.presentacion, dp.stock, lp.precio, lp.tipolista_id, lp.impuesto, t.tipo_lista FROM listaprecios as lp 
-        INNER JOIN tipolistas as t ON lp.tipolista_id = t.id
-        INNER JOIN detalleproductos as dp ON lp.codigo = dp.codigo
-        INNER JOIN productos as p ON dp.producto_id = p.id
-        INNER JOIN presentaciones as pr ON dp.presentacione_id = pr.id
-        INNER JOIN categorias as c ON p.categoria_id = c.id
-        WHERE lp.id = $listaprecio->id ");
+            return DB::table('listaprecios as lp')
+                ->join('tipolistas as t', 'lp.tipolista_id', '=', 't.id')
+                ->join('detalleproductos as dp', 'lp.codigo', '=', 'dp.codigo')
+                ->join('productos as p', 'dp.producto_id', '=', 'p.id')
+                ->join('presentaciones as pr', 'dp.presentacione_id', '=', 'pr.id')
+                ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
+                ->select('p.laboratorio_id', 'lp.codigo', 'c.categoria', 'p.producto', 'dp.id as detalleproducto_id', 'dp.producto_id', 'dp.presentacione_id', 'dp.fecha_vence', 'pr.presentacion', 'dp.stock', 'lp.precio', 'lp.tipolista_id', 'lp.impuesto', 't.tipo_lista')
+                ->where('lp.id', $listaprecio->id)
+                ->first();
+        });
 
-        return $item;
+        return response()->json(['ok' => true, 'item' => $item], 201);
     }
 
     public function update(Request $request, $codigo){

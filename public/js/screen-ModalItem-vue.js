@@ -168,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
       }
       axios.post('/new-item', this.producto).then(function (res) {
         _this6.saving = false;
-        if (res.data.length > 0) {
+        if (res.data.ok && res.data.item) {
           Swal.fire({
             icon: 'success',
             title: 'Guardado',
@@ -182,15 +182,14 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          // Manejar errores del servidor
-          if (Array.isArray(res.data) && res.data.length > 0) {
-            _this6.$set(_this6.validationErrors, 'general', res.data);
-          }
+          _this6.$set(_this6.validationErrors, 'general', ['El servidor no confirmo la creacion del item.']);
         }
       })["catch"](function (error) {
         _this6.saving = false;
         if (error.response && error.response.status === 422) {
-          _this6.validationErrors = error.response.data.errors;
+          _this6.validationErrors = error.response.data.errors || {
+            general: [error.response.data.message || 'No fue posible crear el item.']
+          };
         } else {
           _this6.$set(_this6.validationErrors, 'general', ['Error al guardar el item. Por favor, inténtelo de nuevo.']);
         }
