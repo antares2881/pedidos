@@ -56,11 +56,14 @@ class FacturaController extends Controller
         $formapago = $factura['formapago']['forma_pago'];
         $mediopago = $factura['mediopago']['medio_pago'];
         $tipo_documento = 1;
+        $numeroFactura = (!empty($factura->electronica) && (string) $factura->electronica !== '0')
+            ? $factura->electronica
+            : $factura->numero_factura;
 
-        QrCode::generate("NumFac: $factura->numero_factura\nFechaFac: $factura->fecha_factura\nHoraFac: $factura->hora_factura\nNitFac: $mayorista->nit\nDocAdq: $cliente\nValFac: $factura->valor\nValIva: $factura->iva\nValTolFac: $factura->valor\nFormPag: $formapago\nMedPago: $mediopago",'../public/qrcodes/qrcode.svg');
+        QrCode::generate("NumFac: $numeroFactura\nFechaFac: $factura->fecha_factura\nHoraFac: $factura->hora_factura\nNitFac: $mayorista->nit\nDocAdq: $cliente\nValFac: $factura->valor\nValIva: $factura->iva\nValTolFac: $factura->valor\nFormPag: $formapago\nMedPago: $mediopago",'../public/qrcodes/qrcode.svg');
 
         $pdf = PDF::loadView('imprimir.factura.index', compact('factura', 'mayorista', 'mundep_cliente', 'productos', 'tipo_documento'));
-        $nombre = $factura['clientes']['razon_social'].'_'.$factura->numero_factura.'_'.time().'.pdf';
+        $nombre = $factura['clientes']['razon_social'].'_'.$numeroFactura.'_'.time().'.pdf';
         return $pdf->stream("$nombre");
 
     }
@@ -134,13 +137,21 @@ class FacturaController extends Controller
     }
 
     public function store(Request $request){
+        $validarElectronicaCvl = filter_var($request->input('requiere_electronica_cvl', false), FILTER_VALIDATE_BOOLEAN);
+
         $validator = Validator::make($request->all(), [
             'cliente_id' => 'required',
             'formapago_id' => 'required',
             'mediopago_id' => 'required',
             'tipofactura_id' => 'required',
             'numero_factura' => 'required|unique:facturas',
+            'electronica' => $validarElectronicaCvl
+                ? ['required', 'string', 'max:20', 'regex:/^CVL [0-9]+$/']
+                : ['nullable'],
             'valor' => 'required',
+        ], [
+            'electronica.required' => 'La factura electronica es requerida.',
+            'electronica.regex' => 'La factura electronica debe tener el formato CVL seguido de numeros.',
         ]);
 
         if ($validator->fails()) {

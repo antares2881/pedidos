@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    @php
+        $esFacturaElectronica = !empty($factura->electronica) && (string) $factura->electronica !== '0';
+        $numeroFactura = $esFacturaElectronica
+            ? 'CVL - '.preg_replace('/^CVL\s*-?\s*/i', '', trim($factura->electronica))
+            : $factura->numero_factura;
+    @endphp
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{($tipo_documento == 1)?'Factura-'.$factura->numero_factura:'NC-'.$nota->numero}}</title>
+    <title>{{($tipo_documento == 1)?'Factura-'.$numeroFactura:'NC-'.$nota->numero}}</title>
     <link rel="stylesheet" href="css/pdf.css">
 </head>
 <body>
@@ -30,7 +36,17 @@
                 </td>
                 <td class="info_factura">
                     <div>
-                        <span class="h3">{{($tipo_documento == 1)?'Factura de venta No: '.$factura->numero_factura:'Nota credito no: NC-'.$nota->numero}} </span>
+                        @if($tipo_documento == 1)
+                            <span class="h3">
+                                @if($esFacturaElectronica)
+                                    Factura electronica<br>{{$numeroFactura}}
+                                @else
+                                    Factura de venta {{$numeroFactura}}
+                                @endif
+                            </span>
+                        @else
+                            <span class="h3">Nota credito no: NC-{{$nota->numero}}</span>
+                        @endif
                     </div>
                 </td>
             </tr>
@@ -209,7 +225,13 @@
                 </td>
                 <td class="info_factura">
                     <div>
-                        <span class="h3">Factura de venta No. <strong>{{$factura->numero_factura}}</strong></span>
+                        <span class="h3">
+                            @if($esFacturaElectronica)
+                                Factura electronica<br>{{$numeroFactura}}
+                            @else
+                                Factura de venta {{$numeroFactura}}
+                            @endif
+                        </span>
                     </div>
                 </td>
             </tr>

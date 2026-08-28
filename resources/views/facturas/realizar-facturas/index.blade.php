@@ -8,3 +8,7 @@
 @section('content')
     <facturar-pedidos :factura="{{json_encode($data)}}"  />
 @endsection
+
+@push('versioned-screens')
+    <script src="{{ mix('js/screen-InformacionFinalFacturas-vue.js') }}"></script>
+@endpush

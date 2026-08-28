@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
         tipo_factura: 1,
         forma_pago: 2,
         medio_pago: 1,
-        factura_electronica: 0
+        factura_electronica_numero: ''
       },
       mediospago: [{
         text: 'Efectivo',
@@ -72,6 +72,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     facturar: function facturar(item) {
       console.log(item);
+      this.informacionAdicional.factura_electronica_numero = '';
+      this.erroresValidacion = '';
       // this.factura = Object.assign({}, item);
       this.factura = {
         cliente: {
@@ -102,11 +104,26 @@ __webpack_require__.r(__webpack_exports__);
         return 0;
       });
     },
+    actualizarFacturaElectronica: function actualizarFacturaElectronica(event) {
+      var soloNumeros = event.target.value.replace(/\D/g, '').slice(0, 14);
+      this.informacionAdicional.factura_electronica_numero = soloNumeros;
+      event.target.value = soloNumeros;
+      if (soloNumeros) {
+        this.erroresValidacion = '';
+      }
+    },
     save: function save() {
       var _this = this;
       this.saving = true;
       this.erroresValidacion = '';
-      this.factura.electronica = this.informacionAdicional.factura_electronica;
+      var numeroElectronico = this.informacionAdicional.factura_electronica_numero.trim();
+      if (!/^\d+$/.test(numeroElectronico)) {
+        this.saving = false;
+        this.erroresValidacion = 'La factura electronica es requerida y debe contener solo numeros.';
+        return;
+      }
+      this.factura.electronica = "CVL ".concat(numeroElectronico);
+      this.factura.requiere_electronica_cvl = true;
       this.factura.formapago_id = this.informacionAdicional.forma_pago;
       this.factura.mediopago_id = this.informacionAdicional.medio_pago;
       this.factura.tipofactura_id = this.informacionAdicional.tipo_factura;
@@ -139,6 +156,58 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.factura-identificacion p[data-v-22ced11f] {\n    margin-bottom: 0.85rem;\n}\n.factura-campo[data-v-22ced11f] {\n    margin-bottom: 1rem;\n}\n.factura-campo label[data-v-22ced11f] {\n    display: block;\n    margin-bottom: 0.45rem;\n}\n.factura-campo .form-control[data-v-22ced11f],\n.factura-campo .custom-select[data-v-22ced11f],\n.factura-campo .input-group-text[data-v-22ced11f] {\n    height: 46px;\n}\n.factura-campo .input-group-text[data-v-22ced11f] {\n    display: flex;\n    align-items: center;\n    padding-right: 0.85rem;\n    padding-left: 0.85rem;\n}\n.factura-campo .input-group[data-v-22ced11f] {\n    flex-wrap: nowrap;\n    gap: 0.5rem;\n}\n.factura-campo .input-group-prepend[data-v-22ced11f] {\n    margin-right: 0;\n}\n.factura-campo .input-group-text[data-v-22ced11f],\n.factura-campo .input-group > .form-control[data-v-22ced11f] {\n    border-radius: 0.25rem;\n}\n.factura-campo textarea.form-control[data-v-22ced11f] {\n    min-height: 88px;\n    height: 88px;\n    resize: vertical;\n}\n.factura-alerta .alert[data-v-22ced11f] {\n    margin-bottom: 1rem;\n}\n.factura-acciones .btn[data-v-22ced11f] {\n    min-height: 48px;\n}\n@media (max-width: 575.98px) {\n.factura-campo[data-v-22ced11f] {\n        margin-bottom: 0.85rem;\n}\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_style_index_0_id_22ced11f_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css");
+
+
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_style_index_0_id_22ced11f_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_style_index_0_id_22ced11f_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -252,10 +321,10 @@ function normalizeComponent(
 
 /***/ }),
 
-/***/ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -276,44 +345,45 @@ var render = function render() {
       title: _vm.factura.cliente.razon_social
     }
   }, [_c("div", {
-    staticClass: "row"
+    staticClass: "row factura-formulario"
   }, [_c("div", {
-    staticClass: "col-12"
+    staticClass: "col-12 factura-identificacion"
   }, [_c("p", [_vm._v("Nit. " + _vm._s(_vm.factura.cliente.nit))])]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-6 col-6"
+    staticClass: "col-12 col-sm-6 factura-campo"
   }, [_c("label", {
     attrs: {
-      "for": "fecha"
+      "for": "factura_electronica"
     }
-  }, [_c("strong", [_vm._v("Fact. electronica")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.informacionAdicional.factura_electronica,
-      expression: "informacionAdicional.factura_electronica"
-    }],
+  }, [_c("strong", [_vm._v("Fact. electronica *")])]), _vm._v(" "), _c("div", {
+    staticClass: "input-group"
+  }, [_c("div", {
+    staticClass: "input-group-prepend"
+  }, [_c("span", {
+    staticClass: "input-group-text"
+  }, [_vm._v("CVL -")])]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      id: "fecha"
+      id: "factura_electronica",
+      inputmode: "numeric",
+      pattern: "[0-9]*",
+      maxlength: "14",
+      required: "",
+      "aria-required": "true"
     },
     domProps: {
-      value: _vm.informacionAdicional.factura_electronica
+      value: _vm.informacionAdicional.factura_electronica_numero
     },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.informacionAdicional, "factura_electronica", $event.target.value);
-      }
+      input: _vm.actualizarFacturaElectronica
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-6 col-6"
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-sm-6 factura-campo"
   }, [_c("label", {
     attrs: {
       "for": "tipo_factura"
     }
   }, [_c("strong", [_vm._v("Tipo de factura")])]), _vm._v(" "), _c("b-form-select", {
-    staticClass: "mb-3",
     attrs: {
       id: "tipo_factura",
       options: _vm.tiposFactura
@@ -326,13 +396,12 @@ var render = function render() {
       expression: "informacionAdicional.tipo_factura"
     }
   })], 1), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-6 col-6"
+    staticClass: "col-12 col-sm-6 factura-campo"
   }, [_c("label", {
     attrs: {
       "for": "forma_pago"
     }
   }, [_c("strong", [_vm._v("Forma de pago")])]), _vm._v(" "), _c("b-form-select", {
-    staticClass: "mb-3",
     attrs: {
       id: "forma_pago",
       options: _vm.formaspago
@@ -345,13 +414,12 @@ var render = function render() {
       expression: "informacionAdicional.forma_pago"
     }
   })], 1), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-6 col-6"
+    staticClass: "col-12 col-sm-6 factura-campo"
   }, [_c("label", {
     attrs: {
       "for": "medio_pago"
     }
   }, [_c("strong", [_vm._v("Medio de pago")])]), _vm._v(" "), _c("b-form-select", {
-    staticClass: "mb-3",
     attrs: {
       id: "medio_pago",
       options: _vm.mediospago
@@ -364,7 +432,7 @@ var render = function render() {
       expression: "informacionAdicional.medio_pago"
     }
   })], 1), _vm._v(" "), _c("div", {
-    staticClass: "col-12"
+    staticClass: "col-12 factura-campo"
   }, [_c("label", {
     attrs: {
       "for": "observaciones"
@@ -390,14 +458,14 @@ var render = function render() {
       }
     }
   })]), _vm._v(" "), _vm.erroresValidacion ? _c("div", {
-    staticClass: "col-12"
+    staticClass: "col-12 factura-alerta"
   }, [_c("b-alert", {
     attrs: {
       show: "",
       variant: "danger"
     }
   }, [_vm._v("\n                " + _vm._s(_vm.erroresValidacion) + "\n            ")])], 1) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-12"
+    staticClass: "col-12 factura-acciones"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-block",
     attrs: {
@@ -428,23 +496,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _InformacionFinalFacturas_vue_vue_type_template_id_22ced11f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InformacionFinalFacturas.vue?vue&type=template&id=22ced11f */ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f");
+/* harmony import */ var _InformacionFinalFacturas_vue_vue_type_template_id_22ced11f_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true */ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true");
 /* harmony import */ var _InformacionFinalFacturas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InformacionFinalFacturas.vue?vue&type=script&lang=js */ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _InformacionFinalFacturas_vue_vue_type_style_index_0_id_22ced11f_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css */ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _InformacionFinalFacturas_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  _InformacionFinalFacturas_vue_vue_type_template_id_22ced11f__WEBPACK_IMPORTED_MODULE_0__.render,
-  _InformacionFinalFacturas_vue_vue_type_template_id_22ced11f__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _InformacionFinalFacturas_vue_vue_type_template_id_22ced11f_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render,
+  _InformacionFinalFacturas_vue_vue_type_template_id_22ced11f_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "22ced11f",
   null
   
 )
@@ -472,18 +542,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f ***!
-  \********************************************************************************************/
+/***/ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css ***!
+  \**********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_style_index_0_id_22ced11f_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=style&index=0&id=22ced11f&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true ***!
+  \********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_template_id_22ced11f__WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_template_id_22ced11f__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_template_id_22ced11f_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_template_id_22ced11f_scoped_true__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_template_id_22ced11f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InformacionFinalFacturas.vue?vue&type=template&id=22ced11f */ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f");
+/* harmony import */ var _node_modules_vuetify_loader_lib_loader_js_ruleSet_1_rules_0_use_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_lib_index_js_vue_loader_options_InformacionFinalFacturas_vue_vue_type_template_id_22ced11f_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true */ "./node_modules/vuetify-loader/lib/loader.js??ruleSet[1].rules[0].use!./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InformacionFinalFacturas.vue?vue&type=template&id=22ced11f&scoped=true");
 
 
 /***/ })
