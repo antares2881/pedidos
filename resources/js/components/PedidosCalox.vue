@@ -311,6 +311,7 @@
 .purchase-input {
     width: 100%;
     height: 46px;
+    box-sizing: border-box;
     padding: 0.75rem 0.9rem;
     color: #334155;
     background-color: #fff;
@@ -321,6 +322,20 @@
     font-size: 0.9rem;
     line-height: 1.2;
     transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Este formulario conserva una altura uniforme para todos sus controles. */
+.purchase-fields input[type="date"] {
+    height: 46px !important;
+    min-height: 46px !important;
+    max-height: 46px !important;
+    padding-block: 0;
+    text-align: left;
+}
+
+.purchase-fields input[type="date"]::-webkit-date-and-time-value {
+    min-height: 0;
+    text-align: left;
 }
 
 .purchase-input:focus {

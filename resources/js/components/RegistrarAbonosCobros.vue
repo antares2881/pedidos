@@ -3417,18 +3417,6 @@
     box-sizing: border-box;
 }
 
-/* iPadOS conserva un ancho intrínseco en los campos date con apariencia nativa. */
-.payment-meta-row input[type="date"] {
-    -webkit-appearance: none;
-    appearance: none;
-    inline-size: 100%;
-    min-inline-size: 0;
-    max-inline-size: 100%;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-}
-
 .form-label {
     font-weight: 600;
     color: #2d3436;

@@ -3,6 +3,29 @@ html { -webkit-text-size-adjust: 100%; }
 body { overflow-x: hidden; text-rendering: optimizeSpeed; }
 img { max-width: 100%; height: auto; }
 
+/*
+ * iPadOS/Safari asigna a input[type="date"] un ancho intrínseco que puede
+ * desbordar columnas flex o grid. Todos los campos de fecha deben respetar
+ * siempre el ancho disponible de su contenedor.
+ */
+input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    inline-size: 100%;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+    min-height: 0;
+    text-align: inherit;
+}
+
 .dashboard-wrapper, .dashboard-content, .container, .container-fluid { min-width: 0; }
 .table-responsive, .professional-table-wrapper {
     max-width: 100%;

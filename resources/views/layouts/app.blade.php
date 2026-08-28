@@ -23,7 +23,7 @@
         <link href="{{ asset('css/newStyles.css') }}" rel="stylesheet">
         <link href="{{ asset('css/icon-fixes.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sidebar-fixes.css') }}?v={{ filemtime(public_path('css/sidebar-fixes.css')) }}" rel="stylesheet">
-        <link href="{{ asset('css/responsive-performance.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/responsive-performance.css') }}?v={{ filemtime(public_path('css/responsive-performance.css')) }}" rel="stylesheet">
         
     </head>
     <body>
