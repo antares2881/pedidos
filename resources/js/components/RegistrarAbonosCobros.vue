@@ -3487,14 +3487,17 @@
 
 
 
+@media (max-width: 1199px) {
+    .payment-meta-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+    }
+}
+
 @media (max-width: 768px) {
     .form-row {
         flex-direction: column;
         gap: 15px;
-    }
-
-    .payment-meta-row {
-        grid-template-columns: minmax(0, 1fr);
     }
     
     .form-group {
