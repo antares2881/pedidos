@@ -226,6 +226,8 @@
             </div>
         </div>
 
+        @stack('versioned-screens')
+
         <style>
             /* Botón para ocultar/mostrar sidebar */
             .sidebar-toggle-btn {
