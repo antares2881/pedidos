@@ -273,7 +273,7 @@
 
                     <!-- Form Controls -->
                     <div class="form-controls-section">
-                        <div class="form-row">
+                        <div class="form-row payment-meta-row">
                             <div class="form-group">
                                 <label for="fecha" class="form-label">
                                     <span class="custom-icon">📅</span>
@@ -3394,6 +3394,29 @@
     min-width: 200px;
 }
 
+/* Evita que los controles nativos de Safari/iPad desborden su columna. */
+.payment-meta-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.payment-meta-row > .form-group {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.payment-meta-row .professional-input {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .form-label {
     font-weight: 600;
     color: #2d3436;
@@ -3468,6 +3491,10 @@
     .form-row {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .payment-meta-row {
+        grid-template-columns: minmax(0, 1fr);
     }
     
     .form-group {

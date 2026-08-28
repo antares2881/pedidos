@@ -440,6 +440,17 @@
 
                 // También agregar la funcionalidad con tecla de acceso rápido (Shift + S)
                 document.addEventListener('keydown', function(e) {
+                    const target = e.target;
+                    const isEditable = target instanceof Element && (
+                        target.matches('input, textarea, select') ||
+                        target.isContentEditable ||
+                        target.closest('[contenteditable="true"]')
+                    );
+
+                    if (isEditable || e.isComposing || e.repeat) {
+                        return;
+                    }
+
                     if (e.shiftKey && e.key === 'S') {
                         e.preventDefault();
                         toggleBtn.click();
